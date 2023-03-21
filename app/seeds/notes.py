@@ -43,16 +43,56 @@ def seed_notes():
     food_ideas = Note(
         user_id=3, notebook_id=4, title="Sweet Treats",
         content="""
-
+        <ul>
+            <li>cookies with kettlecorn bites</li>
+            <li>sea salt chocolate parfait</li>
+        </ul>
         """, trash=False
     )
     bad_ideas = Note(
         user_id=3, notebook_id=4, title="Really Good Ideas",
         content="""
-
+        <ul>
+            <li>chocolate dipped jalapenos</li>
+            <li>pineapple loaded pancakes</li>
+        </ul>
         """, trash=True
     )
+    chem_notes = Note(
+        user_id=2, notebook_id=1, title="Learning Objectives",
+        content="""
+        <ol>
+            <li>Understand chemical reactions</li>
+            <li>Balance chemical equations</li>
+        </ol>
+        """, trash=False
+    )
+    forensics_notes = Note(
+        user_id=2, notebook_id=2, title="Learning Objectives",
+        content="""
+        <ol>
+            <li>Understand the history and philosophy of Forensic Science</li>
+            <li>Learn the principles of forensic science</li>
+        </ol>
+        """, trash=False
+    )
+    demo = Note(
+        user_id=1, notebook_id=5, title="This is the write notes page",
+        content="""
+        Write your notes here...
+        """, trash=False
+    )
+
+    db.session.add_all([recipe1, recipe2, food_ideas, bad_ideas, chem_notes, forensics_notes, demo])
+    db.session.commit()
 
 
 def undo_notes():
-    pass
+    if environment == "production":
+        db.session.execute(
+            f"TRUNCATE table {SCHEMA}.notes RESTART IDENTITY CASCADE;"
+        )
+    else:
+        db.session.execute(text("DELETE FROM notes"))
+
+    db.session.commit()

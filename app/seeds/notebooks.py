@@ -15,7 +15,7 @@ def seed_notebooks():
         user_id=3, name="Recipes"
     )
     demo = Notebook(
-        user_id=1, name="Demo Notebook"
+        user_id=1, name="Demo's Notebook"
     )
 
     db.session.add_all([chem, forensic, pastries, recipes, demo])
