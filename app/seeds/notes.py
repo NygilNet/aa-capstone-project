@@ -41,7 +41,7 @@ def seed_notes():
         """, trash=False
     )
     food_ideas = Note(
-        user_id=3, notebook_id=4, title="Sweet Treats",
+        user_id=3, notebook_id=3, title="Sweet Treats",
         content="""
         <ul>
             <li>cookies with kettlecorn bites</li>
@@ -50,7 +50,7 @@ def seed_notes():
         """, trash=False
     )
     bad_ideas = Note(
-        user_id=3, notebook_id=4, title="Really Good Ideas",
+        user_id=3, notebook_id=3, title="Really Good Ideas",
         content="""
         <ul>
             <li>chocolate dipped jalapenos</li>
