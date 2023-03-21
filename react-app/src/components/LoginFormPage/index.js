@@ -21,6 +21,14 @@ function LoginFormPage() {
     }
   };
 
+  const demoLogin = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login("demo@aa.io", "password"));
+    if (data) {
+      setErrors(data);
+    }
+  };
+
   return (
     <>
       <h1>Log In</h1>
