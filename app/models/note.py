@@ -25,6 +25,7 @@ class Note(db.Model):
             'notebookId': self.notebook_id,
             'title': self.title,
             'content': self.content,
+            'trash': self.trash,
             'createdAt': self.created_at,
             'updatedAt': self.updated_at
         }
