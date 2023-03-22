@@ -28,6 +28,7 @@ function EditNotebook({ notebook }) {
         const editedNotebook = await dispatch(changeNotebook(notebook.id, { name }));
         if (editedNotebook) {
             closeModal();
+            return history.push('/notebooks');
         }
     }
 
