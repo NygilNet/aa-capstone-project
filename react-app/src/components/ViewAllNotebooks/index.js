@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import OpenModalButton from "../OpenModalButton";
 import EditNotebook from "../EditNotebook";
+import DeleteNotebook from "../DeleteNotebook";
 import { getNotebooks } from "../../store/notebook";
 
 
@@ -44,6 +45,10 @@ function ViewAllNotebooks() {
                     <OpenModalButton
                     buttonText="Rename notebook"
                     modalComponent={<EditNotebook notebook={notebook} />}
+                    />
+                    <OpenModalButton
+                    buttonText="Delete notebook"
+                    modalComponent={<DeleteNotebook notebook={notebook} />}
                     />
                 </div>
             ))}

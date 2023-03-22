@@ -2,6 +2,7 @@
 const ADD_NOTEBOOK = 'notebooks/ADD_NOTEBOOK';
 const LOAD_NOTEBOOKS = 'notebooks/LOAD_NOTEBOOKS';
 const LOAD_NOTEBOOK = 'notebooks/LOAD_NOTEBOOK';
+const REMOVE_NOTEBOOK = 'notebooks/REMOVE_NOTEBOOK';
 const CLEAR_NOTEBOOKS = 'notebooks/CLEAR_NOTEBOOKS';
 
 
@@ -17,6 +18,11 @@ const loadNotebooks = payload => ({
 
 const loadNotebook = payload => ({
     type: LOAD_NOTEBOOK,
+    payload
+});
+
+const removeNotebook = payload => ({
+    type: REMOVE_NOTEBOOK,
     payload
 });
 
@@ -70,6 +76,17 @@ export const changeNotebook = (id, notebook) => async dispatch => {
     }
 }
 
+export const deleteNotebook = (id) => async dispatch => {
+    const response = await fetch(`/api/notebooks/${id}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" }
+    });
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(removeNotebook(id))
+    }
+}
+
 export const resetNotebooks = () => async dispatch => {
     dispatch(clearNotebooks())
 }
@@ -84,6 +101,9 @@ const initialState = {
 const notebookReducer = (state = initialState, action) => {
     let newState = {...state};
     switch(action.type) {
+        case REMOVE_NOTEBOOK:
+            delete newState.all_notebooks[action.payload];
+            return newState;
         case ADD_NOTEBOOK:
             newState.all_notebooks[action.payload.id] = action.payload;
             return newState;
