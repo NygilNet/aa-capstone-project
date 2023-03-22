@@ -35,7 +35,7 @@ function ViewAllNotebooks() {
             {notebooks.map(notebook => (
                 <div style={{border: "1px solid purple"}}>
                     <NavLink to={`/notebooks/${notebook.id}`}>{notebook.id}</NavLink>
-                    <p>{notebook.name} ({notebook.notes.length})</p>
+                    <p>{notebook.name} ({notebook.notes.filter(note => !note.trash).length})</p>
                     <p>{notebook.updatedAt}</p>
                 </div>
             ))}
