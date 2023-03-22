@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { getNotebooks } from "../../store/notebook";
 
 
 function ViewAllNotebooks() {
 
     const dispatch = useDispatch();
+    const history = useHistory();
     const notebooks = useSelector(state => Object.values(state.notebooks.all_notebooks));
 
     useEffect(() => {
@@ -15,7 +16,7 @@ function ViewAllNotebooks() {
 
     const createNotebook = (e) => {
         e.preventDefault();
-        console.log('button is working');
+        return history.push('/notebooks/new');
     }
 
 
