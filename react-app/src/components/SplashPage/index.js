@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { resetNotebooks } from "../../store/notebook";
 
 function SplashPage() {
 
     const history = useHistory();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(resetNotebooks());
+    }, [dispatch])
 
     const handleNotebooks = (e) => {
         e.preventDefault();
