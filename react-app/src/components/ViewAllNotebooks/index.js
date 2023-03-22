@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
+import OpenModalButton from "../OpenModalButton";
+import EditNotebook from "../EditNotebook";
 import { getNotebooks } from "../../store/notebook";
 
 
@@ -39,6 +41,10 @@ function ViewAllNotebooks() {
                     <NavLink to={`/notebooks/${notebook.id}`}>{notebook.id}</NavLink>
                     <p>{notebook.name} ({notebook.notes?.filter(note => !note.trash).length})</p>
                     <p>{notebook.updatedAt}</p>
+                    <OpenModalButton
+                    buttonText="Rename notebook"
+                    modalComponent={<EditNotebook notebook={notebook} />}
+                    />
                 </div>
             ))}
         </div>

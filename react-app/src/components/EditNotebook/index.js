@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { createNotebook } from "../../store/notebook";
+import { useHistory } from "react-router-dom";
+import { useModal } from "../../context/Modal";
+import { changeNotebook } from "../../store/notebook";
 
-
-function CreateNotebook() {
+function EditNotebook({ notebook }) {
 
     const dispatch = useDispatch();
     const history = useHistory();
-    const [name, setName] = useState('');
+    const { closeModal } = useModal();
+
+    const [name, setName] = useState(notebook.name);
+    const ON = notebook.name;
     const [errors, setErrors] = useState({});
     const [attempt, setAttempt] = useState(false);
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -23,16 +25,16 @@ function CreateNotebook() {
 
         if (Object.values(errors).length) return alert('Can not submit');
 
-        const newNotebook = await dispatch(createNotebook({ name }));
-        if (newNotebook) return history.push(`/notebooks`);
-
+        const editedNotebook = await dispatch(changeNotebook(notebook.id, { name }));
+        if (editedNotebook) {
+            closeModal();
+            return history.push(`/notebooks`);
+        }
     }
 
-
-    return (
+    return(
         <>
-            <h1>hello from create notebook form</h1>
-            <p>Notebooks are useful for grouping notes around a common topic.</p>
+            <h1>Rename notebook</h1>
             <form
             onSubmit={handleSubmit}
             >
@@ -41,18 +43,17 @@ function CreateNotebook() {
                     <input
                     type="text"
                     value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Notebook name"
+                    onChange={e => setName(e.target.value)}
                     />
                     { attempt && errors.name ? (
                         <div className="errors">{errors.name}</div>
                     ) : null }
                 </label>
-                <button onClick={(e) => history.push(`/notebooks`)}>Cancel</button>
+                <button onClick={closeModal}>Cancel</button>
                 <input
                 type="submit"
-                value="Create"
-                disabled={name ? false: true}
+                value="Continue"
+                disabled={name === ON ? true: false}
                 />
             </form>
         </>
@@ -60,4 +61,4 @@ function CreateNotebook() {
 
 }
 
-export default CreateNotebook;
+export default EditNotebook;

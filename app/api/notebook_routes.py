@@ -41,7 +41,15 @@ def get_single_notebook(id):
 @notebook_routes.put('/<int:id>')
 @login_required
 def edit_notebook(id):
-    pass
+    json_data = request.json
+    notebook = Notebook.query.get(id)
+    if not notebook.user_id == current_user.id:
+        return jsonify({
+            "message": "Unauthorized"
+        }, 401)
+    notebook.name = json_data.get('name')
+    db.session.commit()
+    return notebook.to_dict()
 
 
 # DELETE NOTEBOOK
