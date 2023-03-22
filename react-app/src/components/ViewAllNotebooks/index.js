@@ -19,6 +19,7 @@ function ViewAllNotebooks() {
         return history.push('/notebooks/new');
     }
 
+    if (!notebooks) return null;
 
     return (
         <div className="notebooks-view-all">
@@ -33,10 +34,10 @@ function ViewAllNotebooks() {
                 )}
                 <button onClick={createNotebook}>New Notebook</button>
             </div>
-            {notebooks.map(notebook => (
+            {notebooks?.map(notebook => (
                 <div style={{border: "1px solid purple"}}>
                     <NavLink to={`/notebooks/${notebook.id}`}>{notebook.id}</NavLink>
-                    <p>{notebook.name} ({notebook.notes.filter(note => !note.trash).length})</p>
+                    <p>{notebook.name} ({notebook.notes?.filter(note => !note.trash).length})</p>
                     <p>{notebook.updatedAt}</p>
                 </div>
             ))}

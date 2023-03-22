@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import db, Notebook
 
@@ -9,10 +9,14 @@ notebook_routes = Blueprint('notebooks', __name__)
 @notebook_routes.post('')
 @login_required
 def post_new_notebook():
-    pass
+    json_data = request.json
+    notebook = Notebook(user_id = current_user.id, name = json_data.get('name'))
+    db.session.add(notebook)
+    db.session.commit()
+    return notebook.to_dict()
 
 
-# VIEWING NOTEBOOKS
+# READ NOTEBOOKS
     # GET ALL NOTEBOOKS
 @notebook_routes.get('')
 @login_required
@@ -33,7 +37,7 @@ def get_single_notebook(id):
     return notebook.to_dict()
 
 
-# EDIT NOTEBOOK
+# UPDATE NOTEBOOK
 @notebook_routes.put('/<int:id>')
 @login_required
 def edit_notebook(id):
