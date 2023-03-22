@@ -59,6 +59,7 @@ function LoginFormModal() {
           />
         </label>
         <button type="submit">Log In</button>
+        <button onClick={demoLogin}>Demo User Log In</button>
       </form>
     </>
   );

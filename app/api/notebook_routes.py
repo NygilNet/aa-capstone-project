@@ -25,7 +25,12 @@ def get_all_notebooks():
 @notebook_routes.get('/<int:id>')
 @login_required
 def get_single_notebook(id):
-    pass
+    notebook = Notebook.query.get(id)
+    if not notebook.user_id == current_user.id:
+        return jsonify({
+            "message": "Unauthorized"
+        }, 401)
+    return notebook.to_dict()
 
 
 # EDIT NOTEBOOK

@@ -5,6 +5,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
+import SplashPage from "./components/SplashPage";
 import ViewAllNotebooks from "./components/ViewAllNotebooks";
 
 function App() {
@@ -26,6 +27,9 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route exact path="/">
+            <SplashPage />
+          </Route>
+          <Route exact path="/notebooks">
             <ViewAllNotebooks />
           </Route>
         </Switch>
