@@ -6,7 +6,7 @@ import { getNotebooks } from "../../store/notebook";
 function ViewAllNotebooks() {
 
     const dispatch = useDispatch();
-    const notebooks = useSelector(state => Object.values(state.notebooks.all_notebooks))
+    const notebooks = useSelector(state => Object.values(state.notebooks.all_notebooks));
 
     useEffect(() => {
         dispatch(getNotebooks());
