@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import SplashPage from "./components/SplashPage";
 import ViewAllNotebooks from "./components/ViewAllNotebooks";
+import ViewSingleNotebook from "./components/ViewSingleNotebook";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +32,9 @@ function App() {
           </Route>
           <Route exact path="/notebooks">
             <ViewAllNotebooks />
+          </Route>
+          <Route path="/notebooks/:id">
+            <ViewSingleNotebook />
           </Route>
         </Switch>
       )}
