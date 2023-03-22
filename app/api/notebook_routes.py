@@ -17,7 +17,8 @@ def post_new_notebook():
 @notebook_routes.get('')
 @login_required
 def get_all_notebooks():
-    pass
+    notebooks = Notebook.query.filter_by(user_id = current_user.id)
+    return { notebook.id: notebook.to_dict() for notebook in notebooks }
 
 
     # GET SINGLE NOTEBOOK
