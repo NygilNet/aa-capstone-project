@@ -30,10 +30,14 @@ def get_all_notebooks():
 @login_required
 def get_single_notebook(id):
     notebook = Notebook.query.get(id)
+    if not notebook:
+        return jsonify({
+            "message": "Notebook not found"
+        }), 404
     if not notebook.user_id == current_user.id:
         return jsonify({
             "message": "Unauthorized"
-        }, 401)
+        }), 401
     return notebook.to_dict()
 
 
@@ -43,10 +47,14 @@ def get_single_notebook(id):
 def edit_notebook(id):
     json_data = request.json
     notebook = Notebook.query.get(id)
+    if not notebook:
+        return jsonify({
+            "message": "Notebook not found"
+        }), 404
     if not notebook.user_id == current_user.id:
         return jsonify({
             "message": "Unauthorized"
-        }, 401)
+        }), 401
     notebook.name = json_data.get('name')
     db.session.commit()
     return notebook.to_dict()
@@ -56,4 +64,17 @@ def edit_notebook(id):
 @notebook_routes.delete('/<int:id>')
 @login_required
 def delete_notebook(id):
-    pass
+    notebook = Notebook.query.get(id)
+    if not notebook:
+        return jsonify({
+            "message": "Notebook not found"
+        }), 404
+    if not notebook.user_id == current_user.id:
+        return jsonify({
+            "message": "Unauthorized"
+        }), 401
+    db.session.delete(notebook)
+    db.session.commit()
+    return jsonify({
+        'message': 'Successfully deleted'
+    }), 200
