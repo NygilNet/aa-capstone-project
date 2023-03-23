@@ -9,6 +9,11 @@ note_routes = Blueprint('notes', __name__)
 @note_routes.post('')
 @login_required
 def post_new_note():
+    """
+    Input:
+    Output:
+    Purpose:
+    """
     json_data = request.json_data
     note = Note(
         user_id= current_user.id, notebook_id= json_data.get('notebook_id'), title= json_data.get('title'), content= json_data.get('content'), trash= False
@@ -21,6 +26,11 @@ def post_new_note():
 @note_routes.get('/<int:id>')
 @login_required
 def get_note(id):
+    """
+    Input:
+    Output:
+    Purpose:
+    """
     note = Note.query.get(id)
     if not note:
         return jsonify({
@@ -38,6 +48,11 @@ def get_note(id):
 @note_routes.put('/<int:id>')
 @login_required
 def edit_note(id):
+    """
+    Input:
+    Output:
+    Purpose:
+    """
     json_data = request.json
     note = Note.query.get(id)
     if not note:
@@ -60,6 +75,11 @@ def edit_note(id):
 @note_routes.put('/<int:id>/delete')
 @login_required
 def trash_note(id):
+    """
+    Input:
+    Output:
+    Purpose:
+    """
     note = Note.query.get(id)
     if not note:
         return jsonify({
@@ -78,6 +98,11 @@ def trash_note(id):
 @note_routes.delete('/<int:id>')
 @login_required
 def delete_note(id):
+    """
+    Input:
+    Output:
+    Purpose:
+    """
     note = Note.query.get(id)
     if not note:
         return jsonify({
