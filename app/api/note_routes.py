@@ -90,7 +90,7 @@ def edit_note(id):
 @login_required
 def trash_note(id):
     """
-    Input: id of note being moved to trash
+    Input: id of note being moved in or out of trash
     Output: edited dictionary of database entry
     Purpose: moves the note to trash without deleting in case it is still needed
     """
