@@ -9,6 +9,7 @@ import SplashPage from "./components/SplashPage";
 import ViewAllNotebooks from "./components/ViewAllNotebooks";
 import ViewSingleNotebook from "./components/ViewSingleNotebook";
 import CreateNotebook from "./components/CreateNotebook";
+import Trash from "./components/Trash";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +40,9 @@ function App() {
           </Route>
           <Route path="/notebooks/:id">
             <ViewSingleNotebook />
+          </Route>
+          <Route path="/trash">
+            <Trash />
           </Route>
         </Switch>
       )}
