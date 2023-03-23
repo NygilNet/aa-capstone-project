@@ -23,6 +23,19 @@ def post_new_note():
     return note.to_dict()
 
 # READ notes
+    # READ USER'S FIVE RECENT notes
+@note_routes.get('')
+@login_required
+def get_recent_notes():
+    """
+    Input: API fetch
+    Output: normalized list of five most recently updated notes
+    Purpose: quickly access five most recent notes, need to use note state somehow
+    """
+    notes = Note.query.filter_by(user_id = current_user.id, trash = False).order_by(Note.updated_at, Note.title).limit(5)
+    return { note.id: note.to_dict() for note in notes }
+
+
     # READ SINGLE note
 @note_routes.get('/<int:id>')
 @login_required
