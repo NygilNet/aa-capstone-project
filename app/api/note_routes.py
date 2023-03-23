@@ -10,9 +10,9 @@ note_routes = Blueprint('notes', __name__)
 @login_required
 def post_new_note():
     """
-    Input:
-    Output:
-    Purpose:
+    Input: API fetch, body has keys: notebook_id, title, content
+    Output: Dictionary of newly created note
+    Purpose: Add a note to the database
     """
     json_data = request.json_data
     note = Note(
@@ -22,14 +22,15 @@ def post_new_note():
     db.session.commit()
     return note.to_dict()
 
-# READ SINGLE note
+# READ notes
+    # READ SINGLE note
 @note_routes.get('/<int:id>')
 @login_required
 def get_note(id):
     """
-    Input:
-    Output:
-    Purpose:
+    Input: id of note
+    Output: Dictionary of note
+    Purpose: Get details of note from database
     """
     note = Note.query.get(id)
     if not note:
@@ -43,15 +44,28 @@ def get_note(id):
     return note.to_dict()
 
 
+    # READ USER'S TRASH notes
+@note_routes.get('/trash')
+@login_required
+def get_trash_notes():
+    """
+    Input: API fetch
+    Output: normalized list of notes moved to trash
+    Purpose: get all the trash notes to display on page
+    """
+    notes = Note.query.filter_by(user_id = current_user.id, trash = True)
+    return { note.id: note.to_dict() for note in notes }
+
+
 # UPDATE note
     # UPDATE TITLE OR CONTENT
 @note_routes.put('/<int:id>')
 @login_required
 def edit_note(id):
     """
-    Input:
-    Output:
-    Purpose:
+    Input: id of noted to be edited, API fetch body has keys: title and/or content
+    Output: Edited dictionary of database entry
+    Purpose: Edit a note in the database
     """
     json_data = request.json
     note = Note.query.get(id)
@@ -76,9 +90,9 @@ def edit_note(id):
 @login_required
 def trash_note(id):
     """
-    Input:
-    Output:
-    Purpose:
+    Input: id of note being moved to trash
+    Output: edited dictionary of database entry
+    Purpose: moves the note to trash without deleting in case it is still needed
     """
     note = Note.query.get(id)
     if not note:
@@ -99,9 +113,9 @@ def trash_note(id):
 @login_required
 def delete_note(id):
     """
-    Input:
-    Output:
-    Purpose:
+    Input: id of note to be deleted
+    Output: success or failure message
+    Purpose: remove an entry from the database
     """
     note = Note.query.get(id)
     if not note:
