@@ -18,7 +18,7 @@ function CreateNote() {
 
 
         setSaved('All changes saved');
-    }, [title, content])
+    }, [title, content, dispatch])
 
     return(
         <>
