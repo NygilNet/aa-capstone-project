@@ -50,7 +50,7 @@ export const createNote = (note) => async dispatch => {
     }
 }
 
-export const readAll = () => async dispatch => {
+export const readAllNotes = () => async dispatch => {
     const response = await fetch(`/api/notes`);
     if (response.ok) {
         const data = await response.json();
@@ -108,9 +108,15 @@ const initialState = {
 
 
 const noteReducer = (state = initialState, action) => {
-    console.log(action.payload)
     let newState = {...state};
     switch(action.type) {
+        case MOVE_NOTE_TO_TRASH:
+            let note = action.payload
+            if (note.trash) {
+                return {...state, trash: {...state.trash, note}}
+            } else {
+                return {...state, notes: {...state.notes, note}}
+            }
         case LOAD_NOTES:
             newState.notes = action.payload;
             return newState;
@@ -120,8 +126,7 @@ const noteReducer = (state = initialState, action) => {
             newState.recent = action.payload;
             return newState;
         case LOAD_TRASHED_NOTES:
-            newState.trash = action.payload;
-            return newState;
+            return {...state, trash: action.payload}
         default:
             return state;
     }

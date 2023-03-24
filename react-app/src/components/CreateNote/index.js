@@ -11,28 +11,36 @@ function CreateNote() {
     const history = useHistory();
     const { id } = useParams();
     const note = useSelector(state => state.notes.note);
-    const user = useSelector(state => state.session.user)
-
-    useEffect(() => {
-        dispatch(readSingleNote(id));
-    }, [dispatch, id])
+    const user = useSelector(state => state.session.user);
 
     const [title, setTitle] = useState(note.title);
     const [content, setContent] = useState(note.content);
+
+
+    useEffect(() => {
+        dispatch(readSingleNote(id));
+        setTitle(note.title);
+        setContent(note.content);
+    }, [dispatch, id])
+
     const [saving, setSaving] = useState(false);
 
-    // useEffect(() => {
-    //     setSaving(true);
+    useEffect(() => {
+        setSaving(true);
 
+        const newNote = {
+            title,
+            content
+        }
 
+        console.log(content)
 
-    //     setSaving(false);
-    // }, [title, content, dispatch])
+        setSaving(false);
+    }, [title, content, dispatch])
 
     // if (note.userId !== user.id) return history.push('/');
 
     if (!note) return null;
-
     return(
         <>
             <h1>hello from create a note</h1>

@@ -11,6 +11,10 @@ function Trash() {
         dispatch(readTrash());
     }, [dispatch])
 
+    return(
+        <h1>hello from trash</h1>
+    )
+
 
 }
 
