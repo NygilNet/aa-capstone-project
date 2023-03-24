@@ -9,7 +9,9 @@ function CreateNotebook() {
     const dispatch = useDispatch();
     const history = useHistory();
     const [name, setName] = useState('');
-    const [errors, setErrors] = useState({});
+    const [validationErrors, setValidationErrors] = useState({
+        name: ''
+    });
     const [attempt, setAttempt] = useState(false);
 
 
@@ -17,13 +19,15 @@ function CreateNotebook() {
         e.preventDefault();
         setAttempt(true);
 
-        const error = {};
-        if (name.length > 100) error.name = 'Name can not be more than 100 characters';
-        setErrors(error);
-
-        if (Object.values(errors).length) return alert('Can not submit');
+        const errors = {};
+        if (name.length > 100) errors.name = 'Name can not be more than 100 characters';
+        if (Object.values(errors)[0]) {
+            setValidationErrors(errors);
+            return alert('Can not submit');
+        }
 
         const newNotebook = await dispatch(createNotebook({ name }));
+        setAttempt(false);
         if (newNotebook) return history.push(`/notebooks`);
 
     }
@@ -44,8 +48,8 @@ function CreateNotebook() {
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Notebook name"
                     />
-                    { attempt && errors.name ? (
-                        <div className="errors">{errors.name}</div>
+                    { attempt && validationErrors.name ? (
+                        <div className="errors">{validationErrors.name}</div>
                     ) : null }
                 </label>
                 <button onClick={(e) => history.push(`/notebooks`)}>Cancel</button>
