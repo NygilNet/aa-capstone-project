@@ -42,7 +42,7 @@ function App() {
           <Route exact path="/notebooks/:id">
             <ViewSingleNotebook />
           </Route>
-          <Route path="/notebooks/:id/new">
+          <Route path="/notes/:id">
             <CreateNote />
           </Route>
           <Route path="/trash">

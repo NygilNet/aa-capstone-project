@@ -1,32 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { readSingleNote } from "../../store/note";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 function CreateNote() {
 
-    const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
+    const dispatch = useDispatch();
+    const { id } = useParams();
+    const note = useSelector(state => state.notes.note);
+
+    const [title, setTitle] = useState(note.title);
+    const [content, setContent] = useState(note.content);
 
     const [saved, setSaved] = useState('All changes saved');
 
-    const dispatch = useDispatch();
-    const { id } = useParams();
+
+    useEffect(() => {
+        readSingleNote(id);
+    }, [dispatch])
 
     useEffect(() => {
         setSaved('Saving...');
-
-        const newNote = {
-            notebook_id: id,
-            title,
-            content
-        }
 
 
 
         setSaved('All changes saved');
     }, [title, content, dispatch])
+
+    if (!note) return null;
 
     return(
         <>

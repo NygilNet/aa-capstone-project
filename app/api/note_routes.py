@@ -14,9 +14,9 @@ def post_new_note():
     Output: Dictionary of newly created note
     Purpose: Add a note to the database
     """
-    json_data = request.json_data
+    json_data = request.json
     note = Note(
-        user_id= current_user.id, notebook_id= json_data.get('notebook_id'), title= '', trash= False
+        user_id= current_user.id, notebook_id= json_data.get('notebook_id'), title= '', content='', trash= False
         )
     db.session.add(note)
     db.session.commit()
