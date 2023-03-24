@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
@@ -11,9 +12,16 @@ function CreateNote() {
     const [saved, setSaved] = useState('All changes saved');
 
     const dispatch = useDispatch();
+    const { id } = useParams();
 
     useEffect(() => {
         setSaved('Saving...');
+
+        const newNote = {
+            notebook_id: id,
+            title,
+            content
+        }
 
 
 
@@ -31,7 +39,12 @@ function CreateNote() {
                 maxLength="255"
                 placeholder="Title"
                 />
-                <ReactQuill theme="snow" value={content} onChange={setContent} />
+                <ReactQuill
+                theme="snow"
+                value={content}
+                onChange={setContent}
+                placeholder="Start writing..."
+                />
             </form>
             <p>{saved}</p>
         </>

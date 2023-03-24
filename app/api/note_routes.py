@@ -16,7 +16,7 @@ def post_new_note():
     """
     json_data = request.json_data
     note = Note(
-        user_id= current_user.id, notebook_id= json_data.get('notebook_id'), title= json_data.get('title'), content= json_data.get('content'), trash= False
+        user_id= current_user.id, notebook_id= json_data.get('notebook_id'), title= '', trash= False
         )
     db.session.add(note)
     db.session.commit()
@@ -33,7 +33,7 @@ def get_recent_notes():
     Purpose: quickly access five most recent notes, need to use note state somehow
     """
     notes = Note.query.filter_by(user_id = current_user.id, trash = False).order_by(Note.updated_at, Note.title).limit(5)
-    return { note.id: note.to_dict() for note in notes }
+    return [note.to_dict() for note in notes]
 
 
     # READ SINGLE note
