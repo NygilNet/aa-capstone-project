@@ -30,6 +30,10 @@ function ViewSingleNotebook() {
         }
     }
 
+    const trashBtn = async (e) => {
+
+    }
+
     if (!notes || !notebook) return null;
 
     return (
@@ -49,6 +53,7 @@ function ViewSingleNotebook() {
                     <div className="note-view-all" style={{border: "1px solid purple"}}>
                         <p>{note.title}</p>
                         <p>{note.updatedAt}</p>
+                        <button value={note.id} onClick={trashBtn}>Move To Trash</button>
                     </div>
                 ))
             }

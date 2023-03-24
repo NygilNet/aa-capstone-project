@@ -23,8 +23,21 @@ def post_new_note():
     return note.to_dict()
 
 # READ notes
-    # READ USER'S FIVE RECENT notes
+    # READ ALL USER'S notes
 @note_routes.get('')
+@login_required
+def get_all_notes():
+    """
+    Input: API fetch
+    Output: normalized list of all the user's notes
+    Purpose: have a list of all the user's notes
+    """
+    notes = Note.query.filter_by(user_id = current_user.id, trash=False)
+    return { note.id: note.to_dict() for note in notes }
+
+
+    # READ USER'S FIVE RECENT notes
+@note_routes.get('/recent')
 @login_required
 def get_recent_notes():
     """

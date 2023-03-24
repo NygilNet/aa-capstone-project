@@ -1,6 +1,7 @@
 
 const ADD_NOTE = 'notes/ADD_NOTE';
 const LOAD_NOTE = 'notes/LOAD_NOTE';
+const LOAD_NOTES = 'notes/LOAD_NOTES';
 const LOAD_RECENT_NOTES = 'notes/LOAD_RECENT_NOTES';
 const LOAD_TRASHED_NOTES = 'notes/LOAD_TRASHED_NOTES';
 
@@ -11,6 +12,11 @@ const addNote = payload => ({
 
 const loadNote = payload => ({
     type: LOAD_NOTE,
+    payload
+});
+
+const loadNotes = payload => ({
+    type: LOAD_NOTES,
     payload
 });
 
@@ -38,6 +44,15 @@ export const createNote = (note) => async dispatch => {
     }
 }
 
+export const readAll = () => async dispatch => {
+    const response = await fetch(`/api/notes`);
+    if (response.ok) {
+        const data = response.json();
+        dispatch(loadNotes(data));
+        return data;
+    }
+}
+
 export const readSingleNote = (id) => async dispatch => {
     const response = await fetch(`/api/notes/${id}`);
     if (response.ok) {
@@ -48,7 +63,7 @@ export const readSingleNote = (id) => async dispatch => {
 }
 
 export const readRecent = () => async dispatch => {
-    const response = await fetch(`/api/notes`);
+    const response = await fetch(`/api/notes/recent`);
     if (response.ok) {
         const data = await response.json();
         dispatch(loadRecentNotes(data));
@@ -67,6 +82,7 @@ export const readTrash = () => async dispatch => {
 
 
 const initialState = {
+    notes: {},
     recent: [],
     trash: {},
     note: {}
@@ -76,6 +92,9 @@ const initialState = {
 const noteReducer = (state = initialState, action) => {
     let newState = {...state};
     switch(action.type) {
+        case LOAD_NOTES:
+            newState.notes = action.payload
+            return newState;
         case LOAD_NOTE:
             newState.note = action.payload;
             return newState;
