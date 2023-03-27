@@ -14,57 +14,46 @@ function CreateNote() {
     const note = useSelector(state => state.notes.note);
     const user = useSelector(state => state.session.user);
 
-    const [title, setTitle] = useState(note.title);
-    const [content, setContent] = useState(note.content);
-
 
     useEffect(() => {
         dispatch(readSingleNote(id));
-        setTitle(note.title);
-        setContent(note.content);
+        // setTitle(note.title);
+        // setContent(note.content);
     }, [dispatch, id])
 
+
+    const [title, setTitle] = useState(note.title);
+    const [content, setContent] = useState(note.content);
     const [saving, setSaving] = useState(false);
+
+
+    // const handleTitleChange = async (e) => {
+    //     setSaving(true);
+    //     setTitle(e.target.value);
+    //     const newNote = { title };
+    //     const update = await dispatch(updateNote(id, newNote));
+    //     if (update) setSaving(false);
+    // }
 
     // useEffect(() => {
     //     setSaving(true);
-
     //     const newNote = {
     //         title,
     //         content
     //     }
-
-    //     dispatch(updateNote(id, newNote));
-
-
+    //     dispatch(updateNote(id, newNote))
     //     setSaving(false);
-    // }, [title, content, dispatch])
+    // }, [title, content])
 
-    const handleTitleChange = async (e) => {
-        setSaving(true);
-        setTitle(e.target.value);
-        const newNote = { title };
-        const update = await dispatch(updateNote(id, newNote));
-        if (update) setSaving(false);
-    }
-
-    useEffect(() => {
+    const handleChange = async (e) => {
         setSaving(true);
         const newNote = {
             title,
             content
-        }
-        dispatch(updateNote(id, newNote))
-        setSaving(false);
-    }, [title, content])
-
-    // const handleContentChange = async (e) => {
-    //     setSaving(true);
-    //     setContent(e.target.value);
-    //     const newNote = { content };
-    //     const update = await dispatch(updateNote(id, newNote));
-    //     if (update) setSaving(false);
-    // }
+        };
+        const update = await dispatch(updateNote(id, newNote));
+        if (update) setSaving(false);
+    }
 
     // if (note.userId !== user.id) return history.push('/');
 
@@ -76,14 +65,20 @@ function CreateNote() {
                 <input
                 type="text"
                 value={title}
-                onChange={e => setTitle(e.target.value)}
+                onChange={e => {
+                    setTitle(e.target.value)
+                    handleChange(e)
+                }}
                 maxLength="255"
                 placeholder="Title"
                 />
                 <ReactQuill
                 theme="snow"
                 value={content}
-                onChange={setContent}
+                onChange={e => {
+                    setContent(e)
+                    handleChange(e)
+                }}
                 placeholder="Start writing..."
                 />
             </form>

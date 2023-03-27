@@ -37,10 +37,10 @@ const moveNoteToTrash = payload => ({
     payload
 });
 
-const changeNote = payload => ({
-    type: CHANGE_NOTE,
-    payload
-});
+// const changeNote = payload => ({
+//     type: CHANGE_NOTE,
+//     payload
+// });
 
 
 export const createNote = (note) => async dispatch => {
@@ -113,7 +113,7 @@ export const updateNote = (id, note) => async dispatch => {
     });
     if (response.ok) {
         const data = await response.json();
-        dispatch(changeNote(data));
+        dispatch(addNote(data));
         return data;
     }
 }
@@ -130,7 +130,7 @@ const initialState = {
 const noteReducer = (state = initialState, action) => {
     let newState = {...state};
     switch(action.type) {
-        case CHANGE_NOTE:
+        case ADD_NOTE:
             newState.notes[action.payload.id] = action.payload;
             if (newState.recent[0]) {
                 if (newState.recent[0].id === action.payload.id) {
