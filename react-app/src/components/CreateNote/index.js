@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { readSingleNote } from "../../store/note";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -8,29 +8,39 @@ import "react-quill/dist/quill.snow.css";
 function CreateNote() {
 
     const dispatch = useDispatch();
+    const history = useHistory();
     const { id } = useParams();
     const note = useSelector(state => state.notes.note);
+    const user = useSelector(state => state.session.user);
 
     const [title, setTitle] = useState(note.title);
     const [content, setContent] = useState(note.content);
 
-    const [saved, setSaved] = useState('All changes saved');
-
 
     useEffect(() => {
-        readSingleNote(id);
-    }, [dispatch])
+        dispatch(readSingleNote(id));
+        setTitle(note.title);
+        setContent(note.content);
+    }, [dispatch, id])
+
+    const [saving, setSaving] = useState(false);
 
     useEffect(() => {
-        setSaved('Saving...');
+        setSaving(true);
 
+        const newNote = {
+            title,
+            content
+        }
 
+        console.log(content)
 
-        setSaved('All changes saved');
+        setSaving(false);
     }, [title, content, dispatch])
 
-    if (!note) return null;
+    // if (note.userId !== user.id) return history.push('/');
 
+    if (!note) return null;
     return(
         <>
             <h1>hello from create a note</h1>
@@ -49,7 +59,7 @@ function CreateNote() {
                 placeholder="Start writing..."
                 />
             </form>
-            <p>{saved}</p>
+            {saving ? (<p>Saving...</p>) : (<p>All changes saved</p>)}
         </>
     )
 

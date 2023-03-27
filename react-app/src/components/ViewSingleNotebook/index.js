@@ -3,7 +3,9 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { getNotebook } from "../../store/notebook";
+import { readAllNotes } from "../../store/note";
 import { createNote } from "../../store/note";
+import { putNoteTrash } from "../../store/note";
 import OpenModalButton from "../OpenModalButton";
 import EditNotebook from "../EditNotebook";
 import DeleteNotebook from "../DeleteNotebook";
@@ -18,6 +20,7 @@ function ViewSingleNotebook() {
 
     useEffect(() => {
         dispatch(getNotebook(id));
+        dispatch(readAllNotes());
     }, [dispatch]);
 
     const newNoteBtn = async (e) => {
@@ -31,7 +34,8 @@ function ViewSingleNotebook() {
     }
 
     const trashBtn = async (e) => {
-
+        e.preventDefault();
+        dispatch(putNoteTrash(e.target.value));
     }
 
     if (!notes || !notebook) return null;
@@ -51,7 +55,7 @@ function ViewSingleNotebook() {
             {
                 notes.map(note => (
                     <div className="note-view-all" style={{border: "1px solid purple"}}>
-                        <p>{note.title}</p>
+                        {note.title ? (<p>{note.title}</p>) : (<p>Untitled</p>)}
                         <p>{note.updatedAt}</p>
                         <button value={note.id} onClick={trashBtn}>Move To Trash</button>
                     </div>

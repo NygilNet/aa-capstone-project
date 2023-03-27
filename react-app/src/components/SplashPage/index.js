@@ -17,6 +17,11 @@ function SplashPage() {
         return history.push('/notebooks');
     }
 
+    const handleNotes = (e) => {
+        e.preventDefault();
+        return history.push('/notes');
+    }
+
     const handleTrash = (e) => {
         e.preventDefault();
         return history.push('/trash');
@@ -26,6 +31,7 @@ function SplashPage() {
         <>
             <h1>Hello from the splash page, make sure you are signed in</h1>
             <button onClick={handleNotebooks}>Notebooks</button>
+            <button onClick={handleNotes}>Notes</button>
             <button onClick={handleTrash}>Trash</button>
         </>
     )

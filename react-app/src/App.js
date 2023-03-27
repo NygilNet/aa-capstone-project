@@ -10,6 +10,7 @@ import ViewAllNotebooks from "./components/ViewAllNotebooks";
 import ViewSingleNotebook from "./components/ViewSingleNotebook";
 import CreateNotebook from "./components/CreateNotebook";
 import CreateNote from "./components/CreateNote";
+import ViewAllNotes from "./components/ViewAllNotes";
 import Trash from "./components/Trash";
 
 function App() {
@@ -41,6 +42,9 @@ function App() {
           </Route>
           <Route exact path="/notebooks/:id">
             <ViewSingleNotebook />
+          </Route>
+          <Route exact path="/notes">
+            <ViewAllNotes />
           </Route>
           <Route path="/notes/:id">
             <CreateNote />

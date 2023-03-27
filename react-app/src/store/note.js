@@ -4,6 +4,7 @@ const LOAD_NOTE = 'notes/LOAD_NOTE';
 const LOAD_NOTES = 'notes/LOAD_NOTES';
 const LOAD_RECENT_NOTES = 'notes/LOAD_RECENT_NOTES';
 const LOAD_TRASHED_NOTES = 'notes/LOAD_TRASHED_NOTES';
+const MOVE_NOTE_TO_TRASH = 'notes/MOVE_NOTE_TO_TRASH';
 
 const addNote = payload => ({
     type: ADD_NOTE,
@@ -30,6 +31,11 @@ const loadTrashedNotes = payload => ({
     payload
 });
 
+const moveNoteToTrash = payload => ({
+    type: MOVE_NOTE_TO_TRASH,
+    payload
+});
+
 export const createNote = (note) => async dispatch => {
     const response = await fetch(`/api/notes`, {
         method: 'POST',
@@ -38,16 +44,16 @@ export const createNote = (note) => async dispatch => {
     });
 
     if (response.ok) {
-        const data = response.json();
-        dispatch(addNote(data));
+        const data = await response.json();
+        // dispatch(addNote(data));
         return data;
     }
 }
 
-export const readAll = () => async dispatch => {
+export const readAllNotes = () => async dispatch => {
     const response = await fetch(`/api/notes`);
     if (response.ok) {
-        const data = response.json();
+        const data = await response.json();
         dispatch(loadNotes(data));
         return data;
     }
@@ -56,7 +62,7 @@ export const readAll = () => async dispatch => {
 export const readSingleNote = (id) => async dispatch => {
     const response = await fetch(`/api/notes/${id}`);
     if (response.ok) {
-        const data = response.json();
+        const data = await response.json();
         dispatch(loadNote(data));
         return data;
     }
@@ -80,6 +86,18 @@ export const readTrash = () => async dispatch => {
     }
 }
 
+export const putNoteTrash = (id) => async dispatch => {
+    const response = await fetch(`/api/notes/${id}/delete`, {
+        method: 'PUT',
+        headers: { "Content-Type": "application/json" }
+    });
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(moveNoteToTrash(data));
+        return data;
+    }
+}
+
 
 const initialState = {
     notes: {},
@@ -92,26 +110,23 @@ const initialState = {
 const noteReducer = (state = initialState, action) => {
     let newState = {...state};
     switch(action.type) {
+        case MOVE_NOTE_TO_TRASH:
+            let note = action.payload
+            if (note.trash) {
+                return {...state, trash: {...state.trash, note}}
+            } else {
+                return {...state, notes: {...state.notes, note}}
+            }
         case LOAD_NOTES:
-            newState.notes = action.payload
+            newState.notes = action.payload;
             return newState;
         case LOAD_NOTE:
-            newState.note = action.payload;
-            return newState;
-        // case ADD_NOTE:
-        //     if (action.payload.id === newState.recent[0].id) {
-        //         newState.recent[0] = action.payload;
-        //     } else {
-        //         newState.recent.pop();
-        //         newState.recent.unshift(action.payload);
-        //     }
-        //     return newState;
+            return {...state, note: action.payload}
         case LOAD_RECENT_NOTES:
             newState.recent = action.payload;
             return newState;
         case LOAD_TRASHED_NOTES:
-            newState.trash = action.payload;
-            return newState;
+            return {...state, trash: action.payload}
         default:
             return state;
     }
