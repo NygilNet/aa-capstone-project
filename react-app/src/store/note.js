@@ -5,6 +5,7 @@ const LOAD_NOTES = 'notes/LOAD_NOTES';
 const LOAD_RECENT_NOTES = 'notes/LOAD_RECENT_NOTES';
 const LOAD_TRASHED_NOTES = 'notes/LOAD_TRASHED_NOTES';
 const MOVE_NOTE_TO_TRASH = 'notes/MOVE_NOTE_TO_TRASH';
+const CHANGE_NOTE = 'notes/CHANGE_NOTE';
 
 const addNote = payload => ({
     type: ADD_NOTE,
@@ -35,6 +36,12 @@ const moveNoteToTrash = payload => ({
     type: MOVE_NOTE_TO_TRASH,
     payload
 });
+
+const changeNote = payload => ({
+    type: CHANGE_NOTE,
+    payload
+});
+
 
 export const createNote = (note) => async dispatch => {
     const response = await fetch(`/api/notes`, {
@@ -98,6 +105,19 @@ export const putNoteTrash = (id) => async dispatch => {
     }
 }
 
+export const updateNote = (id, note) => async dispatch => {
+    const response = await fetch(`/api/notes/${id}`, {
+        method: 'PUT',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(note)
+    });
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(changeNote(data));
+        return data;
+    }
+}
+
 
 const initialState = {
     notes: {},
@@ -110,6 +130,18 @@ const initialState = {
 const noteReducer = (state = initialState, action) => {
     let newState = {...state};
     switch(action.type) {
+        case CHANGE_NOTE:
+            newState.notes[action.payload.id] = action.payload;
+            if (newState.recent[0]) {
+                if (newState.recent[0].id === action.payload.id) {
+                    newState.recent[0] = action.payload;
+                } else {
+                    newState.recent.pop();
+                    newState.recent.unshift(action.payload);
+                }
+            }
+            newState.note = action.payload;
+            return newState;
         case MOVE_NOTE_TO_TRASH:
             let note = action.payload
             if (note.trash) {

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { readSingleNote } from "../../store/note";
+import { updateNote } from "../../store/note";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
@@ -25,18 +26,45 @@ function CreateNote() {
 
     const [saving, setSaving] = useState(false);
 
+    // useEffect(() => {
+    //     setSaving(true);
+
+    //     const newNote = {
+    //         title,
+    //         content
+    //     }
+
+    //     dispatch(updateNote(id, newNote));
+
+
+    //     setSaving(false);
+    // }, [title, content, dispatch])
+
+    const handleTitleChange = async (e) => {
+        setSaving(true);
+        setTitle(e.target.value);
+        const newNote = { title };
+        const update = await dispatch(updateNote(id, newNote));
+        if (update) setSaving(false);
+    }
+
     useEffect(() => {
         setSaving(true);
-
         const newNote = {
             title,
             content
         }
-
-        console.log(content)
-
+        dispatch(updateNote(id, newNote))
         setSaving(false);
-    }, [title, content, dispatch])
+    }, [title, content])
+
+    // const handleContentChange = async (e) => {
+    //     setSaving(true);
+    //     setContent(e.target.value);
+    //     const newNote = { content };
+    //     const update = await dispatch(updateNote(id, newNote));
+    //     if (update) setSaving(false);
+    // }
 
     // if (note.userId !== user.id) return history.push('/');
 
