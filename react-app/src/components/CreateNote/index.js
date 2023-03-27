@@ -11,39 +11,24 @@ function CreateNote() {
     const dispatch = useDispatch();
     const history = useHistory();
     const { id } = useParams();
+    console.log('how often is the id change ===>',id)
+
     const note = useSelector(state => state.notes.note);
-    const user = useSelector(state => state.session.user);
-
-
     useEffect(() => {
         dispatch(readSingleNote(id));
-        // setTitle(note.title);
-        // setContent(note.content);
+        setTitle(note.title);
+        setContent(note.content);
     }, [dispatch, id])
 
+    console.log('The note object from state', note)
+    const user = useSelector(state => state.session.user);
 
     const [title, setTitle] = useState(note.title);
+    console.log('state variable that had the object passed in ---->', title)
+    console.log('The value in the object -->', note.title)
     const [content, setContent] = useState(note.content);
     const [saving, setSaving] = useState(false);
 
-
-    // const handleTitleChange = async (e) => {
-    //     setSaving(true);
-    //     setTitle(e.target.value);
-    //     const newNote = { title };
-    //     const update = await dispatch(updateNote(id, newNote));
-    //     if (update) setSaving(false);
-    // }
-
-    // useEffect(() => {
-    //     setSaving(true);
-    //     const newNote = {
-    //         title,
-    //         content
-    //     }
-    //     dispatch(updateNote(id, newNote))
-    //     setSaving(false);
-    // }, [title, content])
 
     const handleChange = async (e) => {
         setSaving(true);
@@ -55,6 +40,9 @@ function CreateNote() {
         if (update) setSaving(false);
     }
 
+    console.log(note.userId)
+    console.log(user.id)
+    console.log(note.userId === user.id)
     // if (note.userId !== user.id) return history.push('/');
 
     if (!note) return null;

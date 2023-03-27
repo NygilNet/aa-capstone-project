@@ -1,0 +1,29 @@
+.splash-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.splash-page-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.splash-page-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 976px;
+    height: auto;
+}
+
+#splash-page-subtitle {
+    word-break: break-all;
+}
+
+.splash-page-actions {
+    display: flex;
+    flex-direction: column;
+}

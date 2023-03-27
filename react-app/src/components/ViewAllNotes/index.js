@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import { readAllNotes } from "../../store/note";
+import { resetNote } from "../../store/note";
 
 
 function ViewAllNotes() {
@@ -11,6 +12,7 @@ function ViewAllNotes() {
     const notes = useSelector(state => Object.values(state.notes.notes));
 
     useEffect(() => {
+        dispatch(resetNote());
         dispatch(readAllNotes());
     }, [dispatch]);
 

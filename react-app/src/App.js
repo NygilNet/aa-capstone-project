@@ -5,6 +5,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
+import Footer from "./components/Footer";
 import SplashPage from "./components/SplashPage";
 import ViewAllNotebooks from "./components/ViewAllNotebooks";
 import ViewSingleNotebook from "./components/ViewSingleNotebook";
@@ -22,7 +23,7 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
+      {/* <Navigation isLoaded={isLoaded} /> */}
       {isLoaded && (
         <Switch>
           <Route path="/login" >
@@ -32,7 +33,7 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route exact path="/">
-            <SplashPage />
+            <SplashPage isLoaded={isLoaded} />
           </Route>
           <Route exact path="/notebooks">
             <ViewAllNotebooks />
@@ -54,6 +55,7 @@ function App() {
           </Route>
         </Switch>
       )}
+      <Footer />
     </>
   );
 }

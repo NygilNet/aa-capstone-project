@@ -5,7 +5,8 @@ const LOAD_NOTES = 'notes/LOAD_NOTES';
 const LOAD_RECENT_NOTES = 'notes/LOAD_RECENT_NOTES';
 const LOAD_TRASHED_NOTES = 'notes/LOAD_TRASHED_NOTES';
 const MOVE_NOTE_TO_TRASH = 'notes/MOVE_NOTE_TO_TRASH';
-const CHANGE_NOTE = 'notes/CHANGE_NOTE';
+// const CHANGE_NOTE = 'notes/CHANGE_NOTE';
+const CLEAR_NOTE = 'notes/CLEAR_NOTE';
 
 const addNote = payload => ({
     type: ADD_NOTE,
@@ -41,6 +42,11 @@ const moveNoteToTrash = payload => ({
 //     type: CHANGE_NOTE,
 //     payload
 // });
+
+const clearNote = payload => ({
+    type: CLEAR_NOTE,
+    payload
+});
 
 
 export const createNote = (note) => async dispatch => {
@@ -118,6 +124,10 @@ export const updateNote = (id, note) => async dispatch => {
     }
 }
 
+export const resetNote = () => async dispatch => {
+    dispatch(clearNote())
+}
+
 
 const initialState = {
     notes: {},
@@ -130,6 +140,9 @@ const initialState = {
 const noteReducer = (state = initialState, action) => {
     let newState = {...state};
     switch(action.type) {
+        case CLEAR_NOTE:
+            newState.note = {};
+            return newState;
         case ADD_NOTE:
             newState.notes[action.payload.id] = action.payload;
             if (newState.recent[0]) {
