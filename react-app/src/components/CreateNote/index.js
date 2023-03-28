@@ -23,6 +23,9 @@ function CreateNote({ note }) {
 
     useEffect(() => {
         dispatch(resetNote());
+        dispatch(readSingleNote(note?.id))
+        setTitle(note?.title)
+        setContent(note?.content)
     }, [note])
 
     const [title, setTitle] = useState(note?.title);
@@ -30,14 +33,22 @@ function CreateNote({ note }) {
     const [saving, setSaving] = useState(false);
     const id = note?.id;
 
+    let timer;
+
+
     const handleChange = async (e) => {
+
         setSaving(true);
-        const newNote = {
+
+        timer = setTimeout(async () => {
+            const newNote = {
             title,
             content
         };
         const update = await dispatch(updateNote(id, newNote));
         if (update) setSaving(false);
+        }, 2000)
+
     }
 
     if (!note) return null;

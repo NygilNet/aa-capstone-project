@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import { readAllNotes } from "../../store/note";
-import { resetNote } from "../../store/note";
+import { resetNote, readSingleNote } from "../../store/note";
 import Navigation from "../Navigation";
 import CreateNote from "../CreateNote";
 
@@ -12,17 +12,23 @@ function ViewAllNotes({ sessionUser }) {
     const dispatch = useDispatch();
     const history = useHistory();
     const notes = useSelector(state => Object.values(state.notes.notes));
-    console.log('Array of notes ==>', notes)
-    const [note, setNote] = useState(notes[0]);
-    console.log('Current note --->', note)
+    const [note, setNote] = useState(null);
+
 
     useEffect(() => {
         dispatch(resetNote());
-        dispatch(readAllNotes());
+        const func = async e => {
+            const notesArr = Object.values(await dispatch(readAllNotes()));
+        }
+        func()
     }, [dispatch]);
 
+
+
     useEffect(() => {
         dispatch(resetNote());
+        dispatch(readSingleNote(note?.id));
+
     }, [note])
 
     if (!notes || !sessionUser) return null;
@@ -55,7 +61,7 @@ function ViewAllNotes({ sessionUser }) {
                     </div>
                 ))}
             </div>
-            <CreateNote note={note} />
+            {note ? <CreateNote note={note} /> : <p>Select a note to update!</p> }
         </div>
     )
 
