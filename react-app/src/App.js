@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
+import Footer from "./components/Footer";
 import SplashPage from "./components/SplashPage";
+import HomePage from "./components/HomePage";
 import ViewAllNotebooks from "./components/ViewAllNotebooks";
 import ViewSingleNotebook from "./components/ViewSingleNotebook";
 import CreateNotebook from "./components/CreateNotebook";
@@ -19,10 +21,11 @@ function App() {
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
+  const sessionUser = useSelector(state => state.session.user);
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
+      {/* <Navigation isLoaded={isLoaded} /> */}
       {isLoaded && (
         <Switch>
           <Route path="/login" >
@@ -32,28 +35,32 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route exact path="/">
-            <SplashPage />
+            <SplashPage isLoaded={isLoaded} sessionUser={sessionUser} />
+          </Route>
+          <Route exact path="/home">
+            <HomePage sessionUser={sessionUser} />
           </Route>
           <Route exact path="/notebooks">
-            <ViewAllNotebooks />
+            <ViewAllNotebooks sessionUser={sessionUser} />
           </Route>
           <Route path="/notebooks/new">
-            <CreateNotebook />
+            <CreateNotebook sessionUser={sessionUser} />
           </Route>
           <Route exact path="/notebooks/:id">
-            <ViewSingleNotebook />
+            <ViewSingleNotebook sessionUser={sessionUser} />
           </Route>
           <Route exact path="/notes">
-            <ViewAllNotes />
+            <ViewAllNotes sessionUser={sessionUser} />
           </Route>
           <Route path="/notes/:id">
-            <CreateNote />
+            <CreateNote sessionUser={sessionUser} />
           </Route>
           <Route path="/trash">
-            <Trash />
+            <Trash sessionUser={sessionUser} />
           </Route>
         </Switch>
       )}
+      <Footer />
     </>
   );
 }

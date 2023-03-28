@@ -1,0 +1,30 @@
+footer {
+    display: flex;
+    justify-content: space-between;
+
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+
+
+    background-color: rgb(124, 107, 227);
+}
+
+.footer-left > p {
+    color: white;
+}
+
+.footer-links {
+    list-style: none;
+    display: flex;
+}
+
+.footer-links > li {
+    margin: 0px 5px;
+}
+
+.footer-links > li > a {
+    text-decoration-line: none;
+    color: white;
+}
