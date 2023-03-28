@@ -5,3 +5,8 @@
     width: vmax;
     height: 100%;
 }
+
+.display-page {
+    display: flex;
+    height: 100%;
+}

@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import SplashPage from "./components/SplashPage";
+import HomePage from "./components/HomePage";
 import ViewAllNotebooks from "./components/ViewAllNotebooks";
 import ViewSingleNotebook from "./components/ViewSingleNotebook";
 import CreateNotebook from "./components/CreateNotebook";
@@ -34,6 +35,9 @@ function App() {
           </Route>
           <Route exact path="/">
             <SplashPage isLoaded={isLoaded} />
+          </Route>
+          <Route exact path="/home">
+            <HomePage />
           </Route>
           <Route exact path="/notebooks">
             <ViewAllNotebooks />
