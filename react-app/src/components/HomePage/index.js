@@ -3,10 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Navigation from "../Navigation";
 
-function HomePage() {
+function HomePage({ sessionUser }) {
 
     const history = useHistory();
-    const sessionUser = useSelector(state => state.session.user);
 
     if (!sessionUser) return null;
 

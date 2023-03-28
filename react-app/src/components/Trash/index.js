@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { readTrash } from "../../store/note";
+import Navigation from "../Navigation";
 
-function Trash() {
+function Trash({ sessionUser }) {
 
     const dispatch = useDispatch();
     const trash = useSelector(state => Object.values(state.notes.trash));
@@ -11,8 +12,13 @@ function Trash() {
         dispatch(readTrash());
     }, [dispatch])
 
+    if (!sessionUser) return null;
+
     return(
-        <h1>hello from trash</h1>
+        <div className="display-page">
+            <Navigation />
+            <h1>hello from trash</h1>
+        </div>
     )
 
 

@@ -5,3 +5,15 @@
 .hidden {
   display: none;
 }
+
+.nav-bar-container {
+  display: flex;
+  flex-direction: column;
+
+  background-color: gray;
+
+}
+
+.nav-bar-user {
+  display: flex;
+}

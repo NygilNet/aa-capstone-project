@@ -39,7 +39,7 @@ function Navigation(){
 		<div className='nav-bar-container'>
 			<div className='nav-bar-user'>
 				<p>Hello, {sessionUser.username}</p>
-				<button onClick={handleLogout}>
+				<button className='curs' onClick={handleLogout}>
 				<i class="fa-solid fa-right-from-bracket"></i>
 				</button>
 			</div>

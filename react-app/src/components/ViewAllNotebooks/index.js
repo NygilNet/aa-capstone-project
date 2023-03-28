@@ -5,9 +5,10 @@ import OpenModalButton from "../OpenModalButton";
 import EditNotebook from "../EditNotebook";
 import DeleteNotebook from "../DeleteNotebook";
 import { getNotebooks } from "../../store/notebook";
+import Navigation from "../Navigation";
 
 
-function ViewAllNotebooks() {
+function ViewAllNotebooks({ sessionUser }) {
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -22,36 +23,39 @@ function ViewAllNotebooks() {
         return history.push('/notebooks/new');
     }
 
-    if (!notebooks) return null;
+    if (!notebooks || !sessionUser) return null;
 
     return (
-        <div className="notebooks-view-all">
-            <div className="notebooks-view-all-header">
-                <h1>Notebooks</h1>
-            </div>
-            <div className="notebooks-view-all-action">
-                {notebooks.length === 1 ? (
-                    <p>1 Notebook</p>
-                ): (
-                    <p>{notebooks.length} Notebooks</p>
-                )}
-                <button onClick={createNotebook}>New Notebook</button>
-            </div>
-            {notebooks?.map(notebook => (
-                <div style={{border: "1px solid purple"}}>
-                    <NavLink to={`/notebooks/${notebook.id}`}>{notebook.id}</NavLink>
-                    <p>{notebook.name} ({notebook.notes?.filter(note => !note.trash).length})</p>
-                    <p>{notebook.updatedAt}</p>
-                    <OpenModalButton
-                    buttonText="Rename notebook"
-                    modalComponent={<EditNotebook notebook={notebook} />}
-                    />
-                    <OpenModalButton
-                    buttonText="Delete notebook"
-                    modalComponent={<DeleteNotebook notebook={notebook} />}
-                    />
+        <div className="display-page">
+            <Navigation />
+            <div className="notebooks-view-all">
+                <div className="notebooks-view-all-header">
+                    <h1>Notebooks</h1>
                 </div>
-            ))}
+                <div className="notebooks-view-all-action">
+                    {notebooks.length === 1 ? (
+                        <p>1 Notebook</p>
+                    ): (
+                        <p>{notebooks.length} Notebooks</p>
+                    )}
+                    <button onClick={createNotebook}>New Notebook</button>
+                </div>
+                {notebooks?.map(notebook => (
+                    <div style={{border: "1px solid purple"}}>
+                        <NavLink to={`/notebooks/${notebook.id}`}>{notebook.id}</NavLink>
+                        <p>{notebook.name} ({notebook.notes?.filter(note => !note.trash).length})</p>
+                        <p>{notebook.updatedAt}</p>
+                        <OpenModalButton
+                        buttonText="Rename notebook"
+                        modalComponent={<EditNotebook notebook={notebook} />}
+                        />
+                        <OpenModalButton
+                        buttonText="Delete notebook"
+                        modalComponent={<DeleteNotebook notebook={notebook} />}
+                        />
+                    </div>
+                ))}
+            </div>
         </div>
 
     );
