@@ -2,29 +2,33 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { readSingleNote } from "../../store/note";
-import { updateNote } from "../../store/note";
+import { updateNote, resetNote } from "../../store/note";
 import Navigation from "../Navigation";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
-function CreateNote({ sessionUser }) {
+function CreateNote({ note }) {
 
     const dispatch = useDispatch();
-    const history = useHistory();
-    const { id } = useParams();
+    // const history = useHistory();
+    // const { id } = useParams();
+
+    // useEffect(() => {
+    //     dispatch(readSingleNote(id));
+    //     setTitle(note.title);
+    //     setContent(note.content);
+    // }, [dispatch, id])
+
+    // const note = useSelector(state => state.notes.note);
 
     useEffect(() => {
-        dispatch(readSingleNote(id));
-        setTitle(note.title);
-        setContent(note.content);
-    }, [dispatch, id])
+        dispatch(resetNote());
+    }, [note])
 
-    const note = useSelector(state => state.notes.note);
-
-    const [title, setTitle] = useState(note.title);
-    const [content, setContent] = useState(note.content);
+    const [title, setTitle] = useState(note?.title);
+    const [content, setContent] = useState(note?.content);
     const [saving, setSaving] = useState(false);
-
+    const id = note?.id;
 
     const handleChange = async (e) => {
         setSaving(true);
@@ -39,8 +43,6 @@ function CreateNote({ sessionUser }) {
     if (!note) return null;
 
     return(
-        <div className="display-page">
-            <Navigation />
             <div className="edit-note-container">
                 <form>
                     <input
@@ -66,7 +68,6 @@ function CreateNote({ sessionUser }) {
                 </form>
                 {saving ? (<p>Saving...</p>) : (<p>All changes saved</p>)}
             </div>
-        </div>
     )
 
 }

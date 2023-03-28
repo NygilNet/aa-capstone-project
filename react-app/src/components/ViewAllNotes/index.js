@@ -4,6 +4,7 @@ import { NavLink, useHistory } from "react-router-dom";
 import { readAllNotes } from "../../store/note";
 import { resetNote } from "../../store/note";
 import Navigation from "../Navigation";
+import CreateNote from "../CreateNote";
 
 
 function ViewAllNotes({ sessionUser }) {
@@ -11,11 +12,18 @@ function ViewAllNotes({ sessionUser }) {
     const dispatch = useDispatch();
     const history = useHistory();
     const notes = useSelector(state => Object.values(state.notes.notes));
+    console.log('Array of notes ==>', notes)
+    const [note, setNote] = useState(notes[0]);
+    console.log('Current note --->', note)
 
     useEffect(() => {
         dispatch(resetNote());
         dispatch(readAllNotes());
     }, [dispatch]);
+
+    useEffect(() => {
+        dispatch(resetNote());
+    }, [note])
 
     if (!notes || !sessionUser) return null;
 
@@ -23,7 +31,6 @@ function ViewAllNotes({ sessionUser }) {
         <div className="display-page">
             <Navigation />
             <div className="notes-view-all">
-                <h1>hello from view all notes</h1>
                 <div className="notes-view-all-header">
                     <h1>Notes</h1>
                 </div>
@@ -35,12 +42,20 @@ function ViewAllNotes({ sessionUser }) {
                     )}
                 </div>
                 {notes?.map(note => (
-                    <div style={{border: "1px solid purple"}}>
-                        <NavLink to={`/notes/${note.id}`}>{note.title ? note.title : "Untitled"}</NavLink>
-                        <p>{note.updatedAt}</p>
+                    <div
+                    id={note.id}
+                    onClick={e => {
+                        setNote(notes.find(note => +note.id === +e.target.id));
+                    }}
+                    style={{border: "1px solid purple"}}
+                    >
+                        {note.title ? note.title : "Untitled"}
+                        <br></br>
+                        {note.updatedAt}
                     </div>
                 ))}
             </div>
+            <CreateNote note={note} />
         </div>
     )
 
