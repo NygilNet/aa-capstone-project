@@ -12,6 +12,12 @@
 
   background-color: gray;
 
+  position: sticky;
+  top: 0;
+  left: 0;
+
+  height: 100%;
+
 }
 
 .nav-bar-user {

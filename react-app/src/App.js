@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
@@ -35,28 +35,28 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route exact path="/">
-            <SplashPage isLoaded={isLoaded} sessionUser={sessionUser} />
+            { sessionUser ? <Redirect to="/home" /> : <SplashPage isLoaded={isLoaded} sessionUser={sessionUser} /> }
           </Route>
           <Route exact path="/home">
-            <HomePage sessionUser={sessionUser} />
+            { sessionUser ? <HomePage sessionUser={sessionUser} /> : <Redirect to="/" />}
           </Route>
           <Route exact path="/notebooks">
-            <ViewAllNotebooks sessionUser={sessionUser} />
+            { sessionUser ? <ViewAllNotebooks sessionUser={sessionUser} /> : <Redirect to="/" />}
           </Route>
           <Route path="/notebooks/new">
-            <CreateNotebook sessionUser={sessionUser} />
+            { sessionUser ? <CreateNotebook sessionUser={sessionUser} /> : <Redirect to="/" />}
           </Route>
           <Route exact path="/notebooks/:id">
-            <ViewSingleNotebook sessionUser={sessionUser} />
+            { sessionUser ? <ViewSingleNotebook sessionUser={sessionUser} /> : <Redirect to="/" />}
           </Route>
           <Route exact path="/notes">
-            <ViewAllNotes sessionUser={sessionUser} />
+          { sessionUser ? <ViewAllNotes sessionUser={sessionUser} /> : <Redirect to="/" />}
           </Route>
           <Route path="/notes/:id">
-            <CreateNote sessionUser={sessionUser} />
+          { sessionUser ? <CreateNote sessionUser={sessionUser} /> : <Redirect to="/" />}
           </Route>
           <Route path="/trash">
-            <Trash sessionUser={sessionUser} />
+          { sessionUser ? <Trash sessionUser={sessionUser} /> : <Redirect to="/" />}
           </Route>
         </Switch>
       )}
