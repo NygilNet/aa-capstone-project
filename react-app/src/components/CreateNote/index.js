@@ -53,7 +53,7 @@ function CreateNote({ note }) {
         };
         const update = await dispatch(updateNote(id, newNote));
         if (update) setSaving(false);
-        }, 2000)
+        }, 5000)
 
     }
 

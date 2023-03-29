@@ -90,7 +90,15 @@ function SignupFormModal() {
 					</label>
 				</div>
 				<div className="signup-form-submit">
-					<button type="submit">Sign Up</button>
+					<button
+					className="signup-form-button curs"
+					type="submit"
+					disabled = {confirmPassword === password
+						&& email.includes('@')
+						&& username.length ? false : true }
+					>
+						Sign Up
+					</button>
 				</div>
 
 			</form>

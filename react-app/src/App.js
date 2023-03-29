@@ -38,7 +38,7 @@ function App() {
             { sessionUser ? <Redirect to="/home" /> : <SplashPage isLoaded={isLoaded} /> }
           </Route>
           <Route exact path="/home">
-            { sessionUser ? <HomePage /> : <Redirect to="/" />}
+            { sessionUser ? <HomePage sessionUser={sessionUser} /> : <Redirect to="/" />}
           </Route>
           <Route exact path="/notebooks">
             { sessionUser ? <ViewAllNotebooks /> : <Redirect to="/" />}

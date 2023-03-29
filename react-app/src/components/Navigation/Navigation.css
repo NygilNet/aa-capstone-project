@@ -25,7 +25,19 @@
 .nav-bar-user {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
+}
+
+.nav-bar-user-greet {
+  margin: 16px 5px;
+}
+
+.nav-bar-user-signout {
+  width: 24px;
+  height: 24px;
+  margin: 5px;
+  border-radius: 25%;
 }
 
 .new-note-btn {
@@ -35,6 +47,15 @@
 
 .nav-bar-links {
   list-style: none;
+}
+
+.nav-bar-links > ul {
+  margin: 16px;
+  padding: 0px;
+}
+
+.nav-bar-links > li {
+  margin: 5px;
 }
 
 .nav-bar-links > li > a {

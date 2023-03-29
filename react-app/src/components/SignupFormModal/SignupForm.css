@@ -23,3 +23,13 @@
     display: flex;
     align-self: center;
 }
+
+.signup-form-button {
+    width: 250px;
+    height: 46;
+    margin: 5px;
+
+    border: 1px solid #7c6be3;
+    background-color: #7c6be3;
+    color: white;
+}
