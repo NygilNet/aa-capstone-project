@@ -6,6 +6,7 @@ import EditNotebook from "../EditNotebook";
 import DeleteNotebook from "../DeleteNotebook";
 import { getNotebooks } from "../../store/notebook";
 import Navigation from "../Navigation";
+import "./index.css";
 
 
 function ViewAllNotebooks() {
@@ -38,12 +39,23 @@ function ViewAllNotebooks() {
                     ): (
                         <p>{notebooks.length} Notebooks</p>
                     )}
-                    <button onClick={createNotebook}>New Notebook</button>
+                    <button
+                    onClick={createNotebook}
+                    className="notebooks-action-new-button curs"
+                    >
+                        New Notebook
+                    </button>
                 </div>
+                <div
+                className="notebooks-view-all-notebooks"
+                >
                 {notebooks?.map(notebook => (
-                    <div style={{border: "1px solid purple"}}>
-                        <NavLink to={`/notebooks/${notebook.id}`}>{notebook.id}</NavLink>
-                        <p>{notebook.name} ({notebook.notes?.filter(note => !note.trash).length})</p>
+                    <div
+                    id = {notebook.id}
+                    className="notebooks-view-all-notebook"
+                    style={{border: "1px solid purple"}}>
+                        <NavLink to={`/notebooks/${notebook.id}`}>{notebook.name} ({notebook.notes?.filter(note => !note.trash).length})</NavLink>
+
                         <p>{notebook.updatedAt}</p>
                         <OpenModalButton
                         buttonText="Rename notebook"
@@ -55,6 +67,7 @@ function ViewAllNotebooks() {
                         />
                     </div>
                 ))}
+                </div>
             </div>
         </div>
 

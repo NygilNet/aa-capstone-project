@@ -1,0 +1,36 @@
+.notebooks-view-all {
+    display: flex;
+    flex-direction: column;
+
+    width: 82%;
+    margin: 5px;
+}
+
+.notebooks-view-all-action {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+}
+
+.notebooks-action-new-button {
+    height: 24px;
+    width: 125px;
+}
+
+.notebooks-view-all-notebooks {
+    display: flex;
+    flex-direction: column;
+
+    height: 86%;
+
+    overflow-y: auto;
+}
+
+.notebooks-view-all-notebook {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+}

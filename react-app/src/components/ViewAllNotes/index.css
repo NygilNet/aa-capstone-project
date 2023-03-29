@@ -5,3 +5,12 @@
     width: 375px;
     margin: 5px;
 }
+
+.notes-view-all-notes {
+    display: flex;
+    flex-direction: column;
+
+    height: 86%;
+
+    overflow-y: auto;
+}

@@ -56,7 +56,11 @@ function Navigation(){
 		<div className='nav-bar-container'>
 			<div className='nav-bar-user'>
 				<p className='nav-bar-user-greet'>Hello, {sessionUser.username}</p>
-				<button className='nav-bar-user-signout curs' onClick={handleLogout}>
+				<button
+				aria-label='Log out'
+				className='nav-bar-user-signout curs'
+				onClick={handleLogout}
+				>
 				<i class="fa-solid fa-right-from-bracket"></i>
 				</button>
 			</div>
