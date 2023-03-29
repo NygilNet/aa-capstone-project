@@ -39,10 +39,16 @@ function SplashPage({ isLoaded }) {
     return (
         <div className="splash-page-container">
             <div className="splash-page-header">
-                <NavLink to="/">MindPalace</NavLink>
+                <NavLink to="/">
+                    <img
+                    alt="MindPalace"
+                    src="https://i.imgur.com/19eLshm.png"
+                    />
+                </NavLink>
                 {isLoaded && (
                     <OpenModalButton
                     buttonText="Log In"
+                    nameClass="splash-header-login curs"
                     modalComponent={<LoginFormModal />}
                     />
                 )}

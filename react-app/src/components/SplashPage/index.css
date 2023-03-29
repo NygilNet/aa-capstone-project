@@ -8,7 +8,21 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
+    padding: 0px 5px;
+}
+
+.splash-header-login {
+    height: 40px;
+    width: 120px;
+
+    background-color: white;
+
+    border: 1px solid #be6be3;
+
+    color: #be6be3;
+
 }
 
 .splash-page-title {
