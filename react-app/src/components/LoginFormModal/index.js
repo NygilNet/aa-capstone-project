@@ -36,36 +36,49 @@ function LoginFormModal() {
   };
 
   return (
-    <>
+    <div className="login-form-container">
+      <img
+			alt="MindPalace"
+			src="https://i.imgur.com/19eLshm.png"
+			/>
       <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
+      <form
+      onSubmit={handleSubmit}
+      className="login-form"
+      >
         <ul>
           {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
+            <li className="error" key={idx}>{error}</li>
           ))}
         </ul>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Log In</button>
-        <button onClick={demoLogin}>Demo User Log In</button>
+        <div>
+          <label>
+            Email
+            <input
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Password
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </label>
+        </div>
+        <div className="login-form-submit">
+          <button type="submit">Log In</button>
+          <button onClick={demoLogin}>Demo User Log In</button>
+        </div>
       </form>
-    </>
+    </div>
   );
 }
 
