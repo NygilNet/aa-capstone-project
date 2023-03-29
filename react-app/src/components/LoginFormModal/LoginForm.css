@@ -20,5 +20,17 @@
 
 .login-form-submit {
     display: flex;
+    flex-direction: column;
     align-self: center;
+    align-items: center;
+}
+
+.login-form-button {
+    width: 250px;
+    height: 46;
+    margin: 5px;
+
+    border: 1px solid #7c6be3;
+    background-color: #7c6be3;
+    color: white;
 }
