@@ -3,11 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Navigation from "../Navigation";
 
-function HomePage({ sessionUser }) {
+function HomePage() {
 
     const history = useHistory();
 
-    if (!sessionUser) return null;
+    // if (!sessionUser) return null;
 
     return (
         <div className="display-page">

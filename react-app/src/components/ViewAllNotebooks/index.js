@@ -8,7 +8,7 @@ import { getNotebooks } from "../../store/notebook";
 import Navigation from "../Navigation";
 
 
-function ViewAllNotebooks({ sessionUser }) {
+function ViewAllNotebooks() {
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -23,7 +23,7 @@ function ViewAllNotebooks({ sessionUser }) {
         return history.push('/notebooks/new');
     }
 
-    if (!notebooks || !sessionUser) return null;
+    if (!notebooks) return null;
 
     return (
         <div className="display-page">

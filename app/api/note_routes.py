@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import db, Note
+from app.models import db, Note, Notebook
 
 note_routes = Blueprint('notes', __name__)
 
@@ -32,7 +32,7 @@ def get_all_notes():
     Output: normalized list of all the user's notes
     Purpose: have a list of all the user's notes
     """
-    notes = Note.query.filter_by(user_id = current_user.id, trash=False)
+    notes = Note.query.filter_by(user_id = current_user.id, trash=False).order_by(Note.updated_at, Note.title)
     return { note.id: note.to_dict() for note in notes }
 
 
@@ -84,7 +84,7 @@ def get_trash_notes():
 
 
 # UPDATE note
-    # UPDATE TITLE OR CONTENT
+    # UPDATE TITLE, CONTENT, OR NOTEBOOK
 @note_routes.put('/<int:id>')
 @login_required
 def edit_note(id):
@@ -103,6 +103,17 @@ def edit_note(id):
         return jsonify({
             "message": "Unauthorized"
         }), 401
+    if json_data.get('notebook_id'):
+        notebook = Notebook.query.get(json_data.get('notebook_id'))
+        if not notebook:
+            return jsonify({
+            "message": "Notebook not found"
+        }), 404
+        if not notebook.user_id == current_user.id:
+            return jsonify({
+            "message": "Unauthorized"
+        }), 401
+        note.notebook_id = json_data.get('notebook_id')
     if json_data.get('title'):
         note.title = json_data.get('title')
     if json_data.get('content'):

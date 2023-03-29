@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
@@ -35,28 +35,25 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route exact path="/">
-            <SplashPage isLoaded={isLoaded} sessionUser={sessionUser} />
+            { sessionUser ? <Redirect to="/home" /> : <SplashPage isLoaded={isLoaded} /> }
           </Route>
           <Route exact path="/home">
-            <HomePage sessionUser={sessionUser} />
+            { sessionUser ? <HomePage /> : <Redirect to="/" />}
           </Route>
           <Route exact path="/notebooks">
-            <ViewAllNotebooks sessionUser={sessionUser} />
+            { sessionUser ? <ViewAllNotebooks /> : <Redirect to="/" />}
           </Route>
           <Route path="/notebooks/new">
-            <CreateNotebook sessionUser={sessionUser} />
+            { sessionUser ? <CreateNotebook /> : <Redirect to="/" />}
           </Route>
           <Route exact path="/notebooks/:id">
-            <ViewSingleNotebook sessionUser={sessionUser} />
+            { sessionUser ? <ViewSingleNotebook /> : <Redirect to="/" />}
           </Route>
           <Route exact path="/notes">
-            <ViewAllNotes sessionUser={sessionUser} />
-          </Route>
-          <Route path="/notes/:id">
-            <CreateNote sessionUser={sessionUser} />
+          { sessionUser ? <ViewAllNotes /> : <Redirect to="/" />}
           </Route>
           <Route path="/trash">
-            <Trash sessionUser={sessionUser} />
+          { sessionUser ? <Trash /> : <Redirect to="/" />}
           </Route>
         </Switch>
       )}

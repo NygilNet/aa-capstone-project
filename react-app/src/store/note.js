@@ -6,7 +6,9 @@ const LOAD_RECENT_NOTES = 'notes/LOAD_RECENT_NOTES';
 const LOAD_TRASHED_NOTES = 'notes/LOAD_TRASHED_NOTES';
 const MOVE_NOTE_TO_TRASH = 'notes/MOVE_NOTE_TO_TRASH';
 // const CHANGE_NOTE = 'notes/CHANGE_NOTE';
+const REMOVE_NOTE = 'notes/REMOVE_NOTE';
 const CLEAR_NOTE = 'notes/CLEAR_NOTE';
+const CLEAR_NOTES = 'notes/CLEAR_NOTES';
 
 const addNote = payload => ({
     type: ADD_NOTE,
@@ -43,8 +45,18 @@ const moveNoteToTrash = payload => ({
 //     payload
 // });
 
+const removeNote = payload => ({
+    type: REMOVE_NOTE,
+    payload
+});
+
 const clearNote = payload => ({
     type: CLEAR_NOTE,
+    payload
+});
+
+const clearNotes = payload => ({
+    type: CLEAR_NOTES,
     payload
 });
 
@@ -58,7 +70,7 @@ export const createNote = (note) => async dispatch => {
 
     if (response.ok) {
         const data = await response.json();
-        // dispatch(addNote(data));
+        dispatch(addNote(data));
         return data;
     }
 }
@@ -124,8 +136,24 @@ export const updateNote = (id, note) => async dispatch => {
     }
 }
 
+export const deleteNote = (id) => async dispatch => {
+    const response = await fetch(`/api/notes/${id}`, {
+        method: 'DELETE',
+        headers: { "Content-Type": "application/json" }
+    });
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(removeNote(id));
+        return data;
+    }
+}
+
 export const resetNote = () => async dispatch => {
     dispatch(clearNote())
+}
+
+export const resetNotes = () => async dispatch => {
+    dispatch(clearNotes())
 }
 
 
@@ -140,6 +168,17 @@ const initialState = {
 const noteReducer = (state = initialState, action) => {
     let newState = {...state};
     switch(action.type) {
+        case REMOVE_NOTE:
+            delete newState.trash[action.payload];
+            return newState;
+        case CLEAR_NOTES:
+            newState = {
+                notes: {},
+                recent: [],
+                trash: {},
+                note: {}
+            };
+            return newState;
         case CLEAR_NOTE:
             newState.note = {};
             return newState;
@@ -158,9 +197,15 @@ const noteReducer = (state = initialState, action) => {
         case MOVE_NOTE_TO_TRASH:
             let note = action.payload
             if (note.trash) {
-                return {...state, trash: {...state.trash, note}}
+                newState.trash[note.id] = note;
+                delete newState.notes[note.id];
+                return newState;
+                // return {...state, trash: {...state.trash, note}}
             } else {
-                return {...state, notes: {...state.notes, note}}
+                newState.notes[note.id] = note;
+                delete newState.trash[note.id];
+                return newState;
+                // return {...state, notes: {...state.notes, note}}
             }
         case LOAD_NOTES:
             newState.notes = action.payload;

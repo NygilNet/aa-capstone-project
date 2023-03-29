@@ -1,0 +1,7 @@
+.notes-view-all {
+    display: flex;
+    flex-direction: column;
+
+    width: 375px;
+    margin: 5px;
+}

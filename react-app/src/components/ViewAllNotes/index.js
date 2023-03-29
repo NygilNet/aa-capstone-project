@@ -1,29 +1,45 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
-import { readAllNotes } from "../../store/note";
-import { resetNote } from "../../store/note";
+import { resetNote, readSingleNote, readAllNotes, putNoteTrash } from "../../store/note";
 import Navigation from "../Navigation";
+import CreateNote from "../CreateNote";
+import "./index.css";
 
 
-function ViewAllNotes({ sessionUser }) {
+function ViewAllNotes() {
 
     const dispatch = useDispatch();
     const history = useHistory();
     const notes = useSelector(state => Object.values(state.notes.notes));
+    const [note, setNote] = useState(null);
+
 
     useEffect(() => {
         dispatch(resetNote());
-        dispatch(readAllNotes());
+        const func = async e => {
+            const notesArr = Object.values(await dispatch(readAllNotes()));
+        }
+        func()
     }, [dispatch]);
 
-    if (!notes || !sessionUser) return null;
+    useEffect(() => {
+        dispatch(resetNote());
+        dispatch(readSingleNote(note?.id));
+
+    }, [note])
+
+    const trashBtn = (e) => {
+        e.preventDefault();
+        dispatch(putNoteTrash(e.target.value));
+    }
+
+    if (!notes) return null;
 
     return (
         <div className="display-page">
             <Navigation />
             <div className="notes-view-all">
-                <h1>hello from view all notes</h1>
                 <div className="notes-view-all-header">
                     <h1>Notes</h1>
                 </div>
@@ -34,13 +50,26 @@ function ViewAllNotes({ sessionUser }) {
                         <p>{notes.length} notes</p>
                     )}
                 </div>
-                {notes?.map(note => (
-                    <div style={{border: "1px solid purple"}}>
-                        <NavLink to={`/notes/${note.id}`}>{note.title ? note.title : "Untitled"}</NavLink>
-                        <p>{note.updatedAt}</p>
-                    </div>
-                ))}
+                <div className="notes-view-all-notes">
+                    {notes?.map(note => (
+                        <div
+                        id={note.id}
+                        className="curs"
+                        onClick={e => {
+                            setNote(notes.find(note => +note.id === +e.target.id));
+                        }}
+                        style={{border: "1px solid purple"}}
+                        >
+                            {note.title ? note.title : "Untitled"}
+                            <br></br>
+                            {note.updatedAt}
+                            <br></br>
+                            <button value={note.id} onClick={trashBtn}>Move To Trash</button>
+                        </div>
+                    ))}
+                </div>
             </div>
+            {note ? <CreateNote note={note} /> : <p>Select a note to update!</p> }
         </div>
     )
 
