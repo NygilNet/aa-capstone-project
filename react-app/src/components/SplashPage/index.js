@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { resetNotebooks } from "../../store/notebook";
+import { resetNotes } from "../../store/note";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
@@ -11,10 +12,13 @@ function SplashPage({ isLoaded }) {
 
     const history = useHistory();
     const dispatch = useDispatch();
-    const sessionUser = useSelector(state => state.session.user);
 
     useEffect(() => {
-        dispatch(resetNotebooks());
+        const func = async () => {
+            await dispatch(resetNotes());
+            await dispatch(resetNotebooks());
+        }
+        func()
     }, [dispatch])
 
     const handleNotebooks = (e) => {
@@ -31,8 +35,6 @@ function SplashPage({ isLoaded }) {
         e.preventDefault();
         return history.push('/trash');
     }
-
-    // if (sessionUser) return history.push('/home');
 
     return (
         <div className="splash-page-container">

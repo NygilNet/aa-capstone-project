@@ -35,28 +35,25 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route exact path="/">
-            { sessionUser ? <Redirect to="/home" /> : <SplashPage isLoaded={isLoaded} sessionUser={sessionUser} /> }
+            { sessionUser ? <Redirect to="/home" /> : <SplashPage isLoaded={isLoaded} /> }
           </Route>
           <Route exact path="/home">
-            { sessionUser ? <HomePage sessionUser={sessionUser} /> : <Redirect to="/" />}
+            { sessionUser ? <HomePage /> : <Redirect to="/" />}
           </Route>
           <Route exact path="/notebooks">
-            { sessionUser ? <ViewAllNotebooks sessionUser={sessionUser} /> : <Redirect to="/" />}
+            { sessionUser ? <ViewAllNotebooks /> : <Redirect to="/" />}
           </Route>
           <Route path="/notebooks/new">
-            { sessionUser ? <CreateNotebook sessionUser={sessionUser} /> : <Redirect to="/" />}
+            { sessionUser ? <CreateNotebook /> : <Redirect to="/" />}
           </Route>
           <Route exact path="/notebooks/:id">
-            { sessionUser ? <ViewSingleNotebook sessionUser={sessionUser} /> : <Redirect to="/" />}
+            { sessionUser ? <ViewSingleNotebook /> : <Redirect to="/" />}
           </Route>
           <Route exact path="/notes">
-          { sessionUser ? <ViewAllNotes sessionUser={sessionUser} /> : <Redirect to="/" />}
-          </Route>
-          <Route path="/notes/:id">
-          { sessionUser ? <CreateNote sessionUser={sessionUser} /> : <Redirect to="/" />}
+          { sessionUser ? <ViewAllNotes /> : <Redirect to="/" />}
           </Route>
           <Route path="/trash">
-          { sessionUser ? <Trash sessionUser={sessionUser} /> : <Redirect to="/" />}
+          { sessionUser ? <Trash /> : <Redirect to="/" />}
           </Route>
         </Switch>
       )}

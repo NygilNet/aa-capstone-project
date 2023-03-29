@@ -5,9 +5,10 @@ import { readAllNotes } from "../../store/note";
 import { resetNote, readSingleNote } from "../../store/note";
 import Navigation from "../Navigation";
 import CreateNote from "../CreateNote";
+import "./index.css";
 
 
-function ViewAllNotes({ sessionUser }) {
+function ViewAllNotes() {
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -23,15 +24,13 @@ function ViewAllNotes({ sessionUser }) {
         func()
     }, [dispatch]);
 
-
-
     useEffect(() => {
         dispatch(resetNote());
         dispatch(readSingleNote(note?.id));
 
     }, [note])
 
-    if (!notes || !sessionUser) return null;
+    if (!notes) return null;
 
     return (
         <div className="display-page">
@@ -50,6 +49,7 @@ function ViewAllNotes({ sessionUser }) {
                 {notes?.map(note => (
                     <div
                     id={note.id}
+                    className="curs"
                     onClick={e => {
                         setNote(notes.find(note => +note.id === +e.target.id));
                     }}

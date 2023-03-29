@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { NavLink, useHistory, useParams } from "react-router-dom";
 import { readSingleNote } from "../../store/note";
 import { updateNote, resetNote } from "../../store/note";
-import Navigation from "../Navigation";
+import { getNotebooks } from "../../store/notebook";
+import OpenModalButton from "../OpenModalButton";
+import MoveNote from "./MoveNote";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
@@ -24,6 +26,7 @@ function CreateNote({ note }) {
     useEffect(() => {
         dispatch(resetNote());
         dispatch(readSingleNote(note?.id))
+        dispatch(getNotebooks())
         setTitle(note?.title)
         setContent(note?.content)
     }, [note])
@@ -32,6 +35,9 @@ function CreateNote({ note }) {
     const [content, setContent] = useState(note?.content);
     const [saving, setSaving] = useState(false);
     const id = note?.id;
+    const notebooks = useSelector(state => Object.values(state.notebooks.all_notebooks))
+    const notebook = notebooks?.find(notebook => +notebook.id === +note?.notebookId)
+    console.log(notebook)
 
     let timer;
 
@@ -51,10 +57,17 @@ function CreateNote({ note }) {
 
     }
 
-    if (!note) return null;
+    if (!note || !notebook) return null;
 
     return(
             <div className="edit-note-container">
+                <div className="edit-note-notebook">
+                    <NavLink to={`/notebooks/${notebook.id}`}>{notebook.name}</NavLink>
+                    <OpenModalButton
+                    buttonText="Move Note"
+                    modalComponent={<MoveNote notebooks={notebooks} n={notebook} />}
+                    />
+                </div>
                 <form>
                     <input
                     type="text"

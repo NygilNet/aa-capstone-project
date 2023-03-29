@@ -9,17 +9,35 @@
 .nav-bar-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
 
-  background-color: gray;
+  background-color: dimgray;
 
   position: sticky;
   top: 0;
   left: 0;
 
   height: 100%;
+  width: 240px;
 
 }
 
 .nav-bar-user {
   display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.new-note-btn {
+  height: 36px;
+  width: 216px;
+}
+
+.nav-bar-links {
+  list-style: none;
+}
+
+.nav-bar-links > li > a {
+  text-decoration: none;
+  color: #be6be3;
 }

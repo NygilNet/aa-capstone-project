@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import { logout } from '../../store/session';
-import { createNote } from "../../store/note";
+import { createNote, readAllNotes, readTrash } from "../../store/note";
+import { getNotebooks } from '../../store/notebook';
 import './Navigation.css';
 
 function Navigation(){
@@ -11,6 +12,14 @@ function Navigation(){
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const sessionUser = useSelector(state => state.session.user);
+	const defaultNotebook = useSelector(state => Object.values(state.notebooks.all_notebooks)[0]);
+
+	useEffect(() => {
+		dispatch(readAllNotes())
+		dispatch(readTrash())
+		dispatch(getNotebooks())
+	}, [dispatch])
+
 
 	// return (
 	// 	<ul>
@@ -27,6 +36,12 @@ function Navigation(){
 
 	const newNoteBtn = async (e) => {
 		e.preventDefault();
+		const newNote = await dispatch(createNote({ notebook_id: defaultNotebook.id }));
+		if (newNote) {
+			return history.push(`/notes`);
+		}else {
+			return alert("ERROR")
+		}
 	}
 
 	const handleLogout = async (e) => {
@@ -34,6 +49,8 @@ function Navigation(){
 		const resp = await dispatch(logout());
 		if (resp.message) return history.push('/');
 	  };
+
+	if (!defaultNotebook) return null;
 
 	return (
 		<div className='nav-bar-container'>
@@ -44,21 +61,21 @@ function Navigation(){
 				</button>
 			</div>
 			<div className='nav-bar-actions'>
-				<button>New Note</button>
+				<button className='new-note-btn curs' onClick={newNoteBtn}>New Note</button>
 			</div>
 			<nav className='nav-bar-links'>
-				<ul>
+				<ul className='nav-bar-links'>
 					<li>
-						<NavLink to="/home">Home</NavLink>
+						<NavLink to="/home"><i class="fa-solid fa-house"></i> Home</NavLink>
 					</li>
 					<li>
-						<NavLink to="/notes">Notes</NavLink>
+						<NavLink to="/notes"><i class="fa-solid fa-file-lines"> </i> Notes</NavLink>
 					</li>
 					<li>
-						<NavLink to="/notebooks">Notebooks</NavLink>
+						<NavLink to="/notebooks"><i class="fa-solid fa-book"></i> Notebooks</NavLink>
 					</li>
 					<li>
-						<NavLink to="/trash">Trash</NavLink>
+						<NavLink to="/trash"><i class="fa-solid fa-trash"></i> Trash</NavLink>
 					</li>
 				</ul>
 			</nav>

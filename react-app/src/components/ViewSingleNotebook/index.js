@@ -27,7 +27,7 @@ function ViewSingleNotebook() {
         e.preventDefault();
         const newNote = await dispatch(createNote({ notebook_id: id }));
         if (newNote) {
-            return history.push(`/notes/${newNote.id}`)
+            return history.push(`/notes`)
         } else {
             return alert('ERROR')
         }

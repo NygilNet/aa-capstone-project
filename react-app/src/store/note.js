@@ -7,6 +7,7 @@ const LOAD_TRASHED_NOTES = 'notes/LOAD_TRASHED_NOTES';
 const MOVE_NOTE_TO_TRASH = 'notes/MOVE_NOTE_TO_TRASH';
 // const CHANGE_NOTE = 'notes/CHANGE_NOTE';
 const CLEAR_NOTE = 'notes/CLEAR_NOTE';
+const CLEAR_NOTES = 'notes/CLEAR_NOTES';
 
 const addNote = payload => ({
     type: ADD_NOTE,
@@ -48,6 +49,11 @@ const clearNote = payload => ({
     payload
 });
 
+const clearNotes = payload => ({
+    type: CLEAR_NOTES,
+    payload
+});
+
 
 export const createNote = (note) => async dispatch => {
     const response = await fetch(`/api/notes`, {
@@ -58,7 +64,7 @@ export const createNote = (note) => async dispatch => {
 
     if (response.ok) {
         const data = await response.json();
-        // dispatch(addNote(data));
+        dispatch(addNote(data));
         return data;
     }
 }
@@ -128,6 +134,10 @@ export const resetNote = () => async dispatch => {
     dispatch(clearNote())
 }
 
+export const resetNotes = () => async dispatch => {
+    dispatch(clearNotes())
+}
+
 
 const initialState = {
     notes: {},
@@ -140,6 +150,14 @@ const initialState = {
 const noteReducer = (state = initialState, action) => {
     let newState = {...state};
     switch(action.type) {
+        case CLEAR_NOTES:
+            newState = {
+                notes: {},
+                recent: [],
+                trash: {},
+                note: {}
+            };
+            return newState;
         case CLEAR_NOTE:
             newState.note = {};
             return newState;
