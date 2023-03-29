@@ -63,7 +63,7 @@ function ViewAllNotebooks() {
                         />
                         <OpenModalButton
                         buttonText="Delete notebook"
-                        modalComponent={<DeleteNotebook notebook={notebook} />}
+                        modalComponent={<DeleteNotebook notebook={notebook} notebooks={notebooks} />}
                         />
                     </div>
                 ))}

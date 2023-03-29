@@ -64,6 +64,7 @@ function SplashPage({ isLoaded }) {
                     modalComponent={<SignupFormModal />}
                     />
                     <OpenModalButton
+                    nameClass="splash-page-action-login curs"
                     buttonText="Already have an account? Log in"
                     modalComponent={<LoginFormModal />}
                      />

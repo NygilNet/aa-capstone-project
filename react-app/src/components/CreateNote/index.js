@@ -8,6 +8,7 @@ import OpenModalButton from "../OpenModalButton";
 import MoveNote from "./MoveNote";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import "./index.css";
 
 function CreateNote({ note }) {
 
@@ -31,8 +32,8 @@ function CreateNote({ note }) {
         setContent(note?.content)
     }, [note])
 
-    const [title, setTitle] = useState(note?.title);
-    const [content, setContent] = useState(note?.content);
+    const [title, setTitle] = useState('');
+    const [content, setContent] = useState('');
     const [saving, setSaving] = useState(false);
     const id = note?.id;
     const notebooks = useSelector(state => Object.values(state.notebooks.all_notebooks))
@@ -52,7 +53,7 @@ function CreateNote({ note }) {
         };
         const update = await dispatch(updateNote(id, newNote));
         if (update) setSaving(false);
-        }, 5000)
+        }, 3000)
 
     }
 

@@ -40,6 +40,7 @@
 .splash-page-actions {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .splash-page-action-signup {
@@ -51,4 +52,19 @@
     border: 1px solid #be6be3;
     background-color: #be6be3;
     color: white;
+}
+
+.splash-page-action-login {
+    width: fit-content;
+
+    border: none;
+    background-color: transparent;
+
+    text-decoration: underline;
+
+    margin: 5px;
+}
+
+.splash-page-action-login:hover {
+    color: #be6be3;
 }
