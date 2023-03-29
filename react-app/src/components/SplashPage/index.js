@@ -59,6 +59,7 @@ function SplashPage({ isLoaded }) {
             </div>
             <div className="splash-page-actions">
                     <OpenModalButton
+                    nameClass="splash-page-action-signup curs"
                     buttonText="Sign up for free"
                     modalComponent={<SignupFormModal />}
                     />

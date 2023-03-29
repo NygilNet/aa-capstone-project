@@ -54,7 +54,7 @@ function ViewAllNotes() {
                     {notes?.map(note => (
                         <div
                         id={note.id}
-                        className="curs"
+                        className="notes-view-all-note curs"
                         onClick={e => {
                             setNote(notes.find(note => +note.id === +e.target.id));
                         }}

@@ -41,3 +41,14 @@
     display: flex;
     flex-direction: column;
 }
+
+.splash-page-action-signup {
+    height: 56px;
+    width: 302px;
+
+    margin: 5px;
+
+    border: 1px solid #be6be3;
+    background-color: #be6be3;
+    color: white;
+}

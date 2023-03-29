@@ -37,7 +37,6 @@ function CreateNote({ note }) {
     const id = note?.id;
     const notebooks = useSelector(state => Object.values(state.notebooks.all_notebooks))
     const notebook = notebooks?.find(notebook => +notebook.id === +note?.notebookId)
-    console.log(notebook)
 
     let timer;
 

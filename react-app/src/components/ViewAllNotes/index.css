@@ -14,3 +14,7 @@
 
     overflow-y: auto;
 }
+
+.notes-view-all-note {
+    overflow-x: hidden;
+}
