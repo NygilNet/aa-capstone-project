@@ -43,6 +43,10 @@
 .new-note-btn {
   height: 36px;
   width: 216px;
+
+  background-color: #7c6be3;
+  color: white;
+  border: 1px solid #7c6be3;
 }
 
 .nav-bar-links {
@@ -60,5 +64,5 @@
 
 .nav-bar-links > li > a {
   text-decoration: none;
-  color: #be6be3;
+  color: #7787fd;
 }
