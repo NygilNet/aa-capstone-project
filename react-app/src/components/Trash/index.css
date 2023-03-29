@@ -1,0 +1,16 @@
+.trash-view {
+    display: flex;
+    flex-direction: column;
+
+    width: 375px;
+    margin: 5px;
+}
+
+.trash-view-notes {
+    display: flex;
+    flex-direction: column;
+
+    height: 86%;
+
+    overflow-y: auto;
+}

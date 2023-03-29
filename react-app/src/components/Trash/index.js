@@ -4,6 +4,7 @@ import { putNoteTrash } from "../../store/note";
 import OpenModalButton from "../OpenModalButton";
 import Navigation from "../Navigation";
 import DeleteNote from "./DeleteNote";
+import "./index.css";
 
 function Trash() {
 
