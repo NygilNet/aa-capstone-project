@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
-import { readAllNotes } from "../../store/note";
-import { resetNote, readSingleNote } from "../../store/note";
+import { resetNote, readSingleNote, readAllNotes, putNoteTrash } from "../../store/note";
 import Navigation from "../Navigation";
 import CreateNote from "../CreateNote";
 import "./index.css";
@@ -30,6 +29,11 @@ function ViewAllNotes() {
 
     }, [note])
 
+    const trashBtn = (e) => {
+        e.preventDefault();
+        dispatch(putNoteTrash(e.target.value));
+    }
+
     if (!notes) return null;
 
     return (
@@ -46,20 +50,24 @@ function ViewAllNotes() {
                         <p>{notes.length} notes</p>
                     )}
                 </div>
-                {notes?.map(note => (
-                    <div
-                    id={note.id}
-                    className="curs"
-                    onClick={e => {
-                        setNote(notes.find(note => +note.id === +e.target.id));
-                    }}
-                    style={{border: "1px solid purple"}}
-                    >
-                        {note.title ? note.title : "Untitled"}
-                        <br></br>
-                        {note.updatedAt}
-                    </div>
-                ))}
+                <div className="notes-view-all-notes">
+                    {notes?.map(note => (
+                        <div
+                        id={note.id}
+                        className="curs"
+                        onClick={e => {
+                            setNote(notes.find(note => +note.id === +e.target.id));
+                        }}
+                        style={{border: "1px solid purple"}}
+                        >
+                            {note.title ? note.title : "Untitled"}
+                            <br></br>
+                            {note.updatedAt}
+                            <br></br>
+                            <button value={note.id} onClick={trashBtn}>Move To Trash</button>
+                        </div>
+                    ))}
+                </div>
             </div>
             {note ? <CreateNote note={note} /> : <p>Select a note to update!</p> }
         </div>
