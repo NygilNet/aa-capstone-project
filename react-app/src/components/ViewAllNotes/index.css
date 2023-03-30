@@ -17,4 +17,8 @@
 
 .notes-view-all-note {
     overflow-x: hidden;
+    text-overflow: ellipsis;
+
+    margin: 5px 0px;
+    padding: 2px;
 }

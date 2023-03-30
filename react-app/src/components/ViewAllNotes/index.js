@@ -11,7 +11,7 @@ function ViewAllNotes() {
 
     const dispatch = useDispatch();
     const history = useHistory();
-    const notes = useSelector(state => Object.values(state.notes.notes));
+    const notes = useSelector(state => Object.values(state.notes.notes)).reverse();
     const [note, setNote] = useState(null);
 
 
