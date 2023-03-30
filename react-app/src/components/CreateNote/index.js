@@ -50,7 +50,7 @@ function CreateNote({ noteId }) {
         };
         const update = await dispatch(updateNote(noteId, newNote));
         if (update) setSaving(false);
-        }, 3000)
+        }, 300)
 
     }
 
