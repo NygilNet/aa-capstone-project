@@ -14,50 +14,48 @@ import "./index.css";
 function CreateNote({ noteId }) {
 
     const dispatch = useDispatch();
+    const note = useSelector(state => state.notes.note)
+    console.log('HERES THE NOTE', note)
+    const noteTitle = note.title
+    const noteContent = note.content
+    const [title, setTitle] = useState();
+    const [content, setContent] = useState();
+    const [saving, setSaving] = useState(false);
+    const notebooks = useSelector(state => Object.values(state.notebooks.all_notebooks))
+    const notebook = notebooks?.find(notebook => +notebook.id === +note?.notebookId)
+
 
     useEffect(() => {
         dispatch(resetNote());
         dispatch(readSingleNote(noteId))
-        setTitle(note?.title)
-        setContent(note?.content)
-    }, [dispatch])
-
-
-    const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
-    const [saving, setSaving] = useState(false);
-    const note = useSelector(state => state.notes.note)
-    const notebooks = useSelector(state => Object.values(state.notebooks.all_notebooks))
-    const notebook = notebooks?.find(notebook => +notebook.id === +note?.notebookId)
+    }, [dispatch, noteId])
 
     useEffect(() => {
-        setTitle(note?.title)
-        setContent(note?.content)
+        setTitle(noteTitle)
+        setContent(noteContent)
     }, [note])
 
-    let timer;
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
-    const handleChange = async (e) => {
-        console.log(title)
-        setSaving(true);
-        clearTimeout(timer)
-
-        timer = setTimeout(async () => {
-            const newNote = {
+        const newNote = {
             title,
             content
-        };
-        const update = await dispatch(updateNote(noteId, newNote));
-        if (update) setSaving(false);
-        }, 300)
+        }
+
+        dispatch(updateNote(noteId, newNote))
 
     }
+
 
     if (!note || !notebook) return null;
 
     return(
             <div className="edit-note-container">
+                <form
+                onSubmit={handleSubmit}
+                >
                 <div className="edit-note-notebook">
                     <NavLink to={`/notebooks/${notebook.id}`}>{notebook.name}</NavLink>
                     <OpenModalButton
@@ -65,14 +63,10 @@ function CreateNote({ noteId }) {
                     modalComponent={<MoveNote notebooks={notebooks} n={notebook} />}
                     />
                 </div>
-                <form>
                     <input
                     type="text"
                     value={title}
-                    onChange={e => {
-                        setTitle(e.target.value)
-                        handleChange(e.target.value)
-                    }}
+                    onChange={e => setTitle(e.target.value) }
                     maxLength="255"
                     placeholder="Title"
                     />
@@ -80,17 +74,15 @@ function CreateNote({ noteId }) {
                     className="edit-note-editor"
                     theme="snow"
                     value={content}
-                    onChange={e => {
-                        setContent(e)
-                        handleChange(e)
-                    }}
+                    onChange={e => setContent(e) }
                     placeholder="Start writing..."
                     />
-                    {/* <Editor
-
-                    /> */}
+                    <input
+                    type="submit"
+                    value={ saving ? "Please wait..." : "Save current changes" }
+                    disabled={ saving ? true : false }
+                    />
                 </form>
-                {saving ? (<p>Saving...</p>) : (<p>All changes saved</p>)}
             </div>
     )
 

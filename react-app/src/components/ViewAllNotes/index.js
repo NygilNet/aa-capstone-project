@@ -12,22 +12,21 @@ function ViewAllNotes() {
     const dispatch = useDispatch();
     const history = useHistory();
     const notes = useSelector(state => Object.values(state.notes.notes)).reverse();
-    const [note, setNote] = useState(null);
+    const [current, setCurrent] = useState(null);
 
 
-    useEffect(() => {
-        dispatch(resetNote());
-        const func = async e => {
-            const notesArr = Object.values(await dispatch(readAllNotes()));
-        }
-        func()
-    }, [dispatch]);
+    // useEffect(() => {
+    //     dispatch(resetNote());
+    //     const func = async e => {
+    //         const notesArr = Object.values(await dispatch(readAllNotes()));
+    //     }
+    //     func()
+    // }, [dispatch]);
 
-    useEffect(() => {
-        dispatch(resetNote());
-        dispatch(readSingleNote(note?.id));
+    // useEffect(() => {
+    //     dispatch(readSingleNote(current?.id));
 
-    }, [note])
+    // }, [current])
 
     const trashBtn = (e) => {
         e.preventDefault();
@@ -56,7 +55,7 @@ function ViewAllNotes() {
                         id={note.id}
                         className="notes-view-all-note curs"
                         onClick={e => {
-                            setNote(notes.find(note => +note.id === +e.target.id));
+                            setCurrent(notes.find(note => +note.id === +e.target.id));
                         }}
                         style={{border: "1px solid purple"}}
                         >
@@ -69,7 +68,7 @@ function ViewAllNotes() {
                     ))}
                 </div>
             </div>
-            {note ? <CreateNote noteId={note.id} /> : <p>Select a note to update!</p> }
+            {current ? <CreateNote noteId={current.id} /> : <p>Select a note to update!</p> }
         </div>
     )
 
