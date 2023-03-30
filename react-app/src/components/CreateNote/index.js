@@ -3,33 +3,27 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory, useParams } from "react-router-dom";
 import { readSingleNote } from "../../store/note";
 import { updateNote, resetNote } from "../../store/note";
-import { getNotebooks } from "../../store/notebook";
+// import { getNotebooks } from "../../store/notebook";
 import OpenModalButton from "../OpenModalButton";
 import MoveNote from "./MoveNote";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+// import Editor from "./Editor";
 import "./index.css";
 
 function CreateNote({ note }) {
 
     const dispatch = useDispatch();
-    // const history = useHistory();
-    // const { id } = useParams();
-
-    // useEffect(() => {
-    //     dispatch(readSingleNote(id));
-    //     setTitle(note.title);
-    //     setContent(note.content);
-    // }, [dispatch, id])
-
-    // const note = useSelector(state => state.notes.note);
 
     useEffect(() => {
-        dispatch(resetNote());
-        dispatch(readSingleNote(note?.id))
-        dispatch(getNotebooks())
-        setTitle(note?.title)
-        setContent(note?.content)
+
+        const func = async () => {
+            await dispatch(resetNote());
+            await dispatch(readSingleNote(note?.id))
+            setTitle(note?.title)
+            setContent(note?.content)
+        }
+        func()
     }, [note])
 
     const [title, setTitle] = useState('');
@@ -43,8 +37,9 @@ function CreateNote({ note }) {
 
 
     const handleChange = async (e) => {
-
+        console.log(title)
         setSaving(true);
+        clearTimeout(timer)
 
         timer = setTimeout(async () => {
             const newNote = {
@@ -74,7 +69,7 @@ function CreateNote({ note }) {
                     value={title}
                     onChange={e => {
                         setTitle(e.target.value)
-                        handleChange(e)
+                        handleChange(e.target.value)
                     }}
                     maxLength="255"
                     placeholder="Title"
@@ -89,6 +84,9 @@ function CreateNote({ note }) {
                     }}
                     placeholder="Start writing..."
                     />
+                    {/* <Editor
+
+                    /> */}
                 </form>
                 {saving ? (<p>Saving...</p>) : (<p>All changes saved</p>)}
             </div>
