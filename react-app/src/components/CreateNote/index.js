@@ -11,27 +11,29 @@ import "react-quill/dist/quill.snow.css";
 // import Editor from "./Editor";
 import "./index.css";
 
-function CreateNote({ note }) {
+function CreateNote({ noteId }) {
 
     const dispatch = useDispatch();
 
     useEffect(() => {
+        dispatch(resetNote());
+        dispatch(readSingleNote(noteId))
+        setTitle(note?.title)
+        setContent(note?.content)
+    }, [dispatch])
 
-        const func = async () => {
-            await dispatch(resetNote());
-            await dispatch(readSingleNote(note?.id))
-            setTitle(note?.title)
-            setContent(note?.content)
-        }
-        func()
-    }, [note])
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [saving, setSaving] = useState(false);
-    const id = note?.id;
+    const note = useSelector(state => state.notes.note)
     const notebooks = useSelector(state => Object.values(state.notebooks.all_notebooks))
     const notebook = notebooks?.find(notebook => +notebook.id === +note?.notebookId)
+
+    useEffect(() => {
+        setTitle(note?.title)
+        setContent(note?.content)
+    }, [note])
 
     let timer;
 
@@ -46,7 +48,7 @@ function CreateNote({ note }) {
             title,
             content
         };
-        const update = await dispatch(updateNote(id, newNote));
+        const update = await dispatch(updateNote(noteId, newNote));
         if (update) setSaving(false);
         }, 3000)
 

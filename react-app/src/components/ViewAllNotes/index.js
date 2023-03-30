@@ -60,7 +60,7 @@ function ViewAllNotes() {
                         }}
                         style={{border: "1px solid purple"}}
                         >
-                            {note.title ? note.title : "Untitled"}
+                            <p id={note.id} className="note-title">{note.title ? note.title : "Untitled"}</p>
                             <br></br>
                             {note.updatedAt}
                             <br></br>
@@ -69,7 +69,7 @@ function ViewAllNotes() {
                     ))}
                 </div>
             </div>
-            {note ? <CreateNote note={note} /> : <p>Select a note to update!</p> }
+            {note ? <CreateNote noteId={note.id} /> : <p>Select a note to update!</p> }
         </div>
     )
 
