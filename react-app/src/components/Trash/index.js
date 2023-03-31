@@ -22,7 +22,7 @@ function Trash() {
             <Navigation />
             <div className="trash-view">
                 <div className="trash-view-header">
-                    <h1>Trash</h1>
+                    <h1><i class="fa-solid fa-trash"></i>  Trash</h1>
                 </div>
                 <div className="trash-view-action">
                     {trash.length === 1 ? (
@@ -34,15 +34,16 @@ function Trash() {
                 <div className="trash-view-notes">
                     {trash?.map(note => (
                         <div
+                        className="trash-view-note"
                         id={note.id}
-                        style={{border: "1px solid purple"}}
                         >
                             {note.title ? note.title : "Untitled"}
                             <br></br>
                             {note.updatedAt}
                             <br></br>
-                            <button value={note.id} onClick={trashBtn}>Move out of Trash</button>
+                            <button value={note.id} className="trash-trash-btn curs" onClick={trashBtn}>Move out of Trash</button>
                             <OpenModalButton
+                            nameClass="trash-delete-btn curs"
                             buttonText="Delete"
                             modalComponent={<DeleteNote noteId={note.id} />}
                             />

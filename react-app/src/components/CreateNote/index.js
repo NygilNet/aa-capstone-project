@@ -38,16 +38,17 @@ function CreateNote({ noteId }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setSaving(true);
 
         const newNote = {
             title,
             content
         }
 
-        const confirm = dispatch(updateNote(noteId, newNote))
+        const confirm = dispatch(updateNote(noteId, newNote));
 
         if (confirm) return alert('Save successful!');
-
+        setSaving(false);
     }
 
 
@@ -62,7 +63,7 @@ function CreateNote({ noteId }) {
                 <div className="edit-note-notebook">
                     <NavLink to={`/notebooks/${notebook.id}`}><i class="fa-solid fa-book"></i>{notebook.name}</NavLink>
                     <OpenModalButton
-                    nameClass="edit-note-notebook-btn"
+                    nameClass="edit-note-notebook-btn curs"
                     buttonText="Move Note"
                     modalComponent={<MoveNote notebooks={notebooks} n={notebook} />}
                     />
