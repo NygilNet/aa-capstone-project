@@ -6,6 +6,7 @@ import EditNotebook from "../EditNotebook";
 import DeleteNotebook from "../DeleteNotebook";
 import { getNotebooks } from "../../store/notebook";
 import Navigation from "../Navigation";
+import "./index.css";
 
 
 function ViewAllNotebooks() {
@@ -30,7 +31,7 @@ function ViewAllNotebooks() {
             <Navigation />
             <div className="notebooks-view-all">
                 <div className="notebooks-view-all-header">
-                    <h1>Notebooks</h1>
+                    <h1><i class="fa-solid fa-book"></i>  Notebooks</h1>
                 </div>
                 <div className="notebooks-view-all-action">
                     {notebooks.length === 1 ? (
@@ -38,23 +39,37 @@ function ViewAllNotebooks() {
                     ): (
                         <p>{notebooks.length} Notebooks</p>
                     )}
-                    <button onClick={createNotebook}>New Notebook</button>
+                    <button
+                    onClick={createNotebook}
+                    className="notebooks-action-new-button curs"
+                    >
+                        New Notebook
+                    </button>
                 </div>
+                <div
+                className="notebooks-view-all-notebooks"
+                >
                 {notebooks?.map(notebook => (
-                    <div style={{border: "1px solid purple"}}>
-                        <NavLink to={`/notebooks/${notebook.id}`}>{notebook.id}</NavLink>
-                        <p>{notebook.name} ({notebook.notes?.filter(note => !note.trash).length})</p>
+                    <div
+                    id = {notebook.id}
+                    className="notebooks-view-all-notebook"
+                    >
+                        <NavLink to={`/notebooks/${notebook.id}`}>{notebook.name} ({notebook.notes?.filter(note => !note.trash).length})</NavLink>
+
                         <p>{notebook.updatedAt}</p>
                         <OpenModalButton
+                        nameClass="notebook-action-btn curs"
                         buttonText="Rename notebook"
                         modalComponent={<EditNotebook notebook={notebook} />}
                         />
                         <OpenModalButton
+                        nameClass="notebook-action-btn curs"
                         buttonText="Delete notebook"
-                        modalComponent={<DeleteNotebook notebook={notebook} />}
+                        modalComponent={<DeleteNotebook notebook={notebook} notebooks={notebooks} />}
                         />
                     </div>
                 ))}
+                </div>
             </div>
         </div>
 

@@ -39,10 +39,17 @@ function SplashPage({ isLoaded }) {
     return (
         <div className="splash-page-container">
             <div className="splash-page-header">
-                <NavLink to="/">MindPalace</NavLink>
+                <NavLink to="/">
+                    <img
+                    className="splash-header-logo"
+                    alt="MindPalace"
+                    src="https://i.imgur.com/19eLshm.png"
+                    />
+                </NavLink>
                 {isLoaded && (
                     <OpenModalButton
                     buttonText="Log In"
+                    nameClass="splash-header-login curs"
                     modalComponent={<LoginFormModal />}
                     />
                 )}
@@ -53,10 +60,12 @@ function SplashPage({ isLoaded }) {
             </div>
             <div className="splash-page-actions">
                     <OpenModalButton
+                    nameClass="splash-page-action-signup curs"
                     buttonText="Sign up for free"
                     modalComponent={<SignupFormModal />}
                     />
                     <OpenModalButton
+                    nameClass="splash-page-action-login curs"
                     buttonText="Already have an account? Log in"
                     modalComponent={<LoginFormModal />}
                      />

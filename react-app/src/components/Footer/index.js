@@ -6,7 +6,7 @@ function Footer() {
     return (
         <footer>
             <div className="footer-left">
-                <p>MindPalace is an Evernote clone made by Nygil Nettles</p>
+                <p className="footer-copyright">MindPalace is an Evernote clone made by Nygil Nettles</p>
             </div>
             <div className="footer-right">
                 <ul className="footer-links">

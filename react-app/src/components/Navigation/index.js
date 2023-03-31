@@ -55,8 +55,12 @@ function Navigation(){
 	return (
 		<div className='nav-bar-container'>
 			<div className='nav-bar-user'>
-				<p>Hello, {sessionUser.username}</p>
-				<button className='curs' onClick={handleLogout}>
+				<p className='nav-bar-user-greet'>Hello, {sessionUser.username}</p>
+				<button
+				aria-label='Log out'
+				className='nav-bar-user-signout curs'
+				onClick={handleLogout}
+				>
 				<i class="fa-solid fa-right-from-bracket"></i>
 				</button>
 			</div>
@@ -66,16 +70,16 @@ function Navigation(){
 			<nav className='nav-bar-links'>
 				<ul className='nav-bar-links'>
 					<li>
-						<NavLink to="/home"><i class="fa-solid fa-house"></i> Home</NavLink>
+						<NavLink to="/home"><i class="fa-solid fa-house"></i>  Home</NavLink>
 					</li>
 					<li>
-						<NavLink to="/notes"><i class="fa-solid fa-file-lines"> </i> Notes</NavLink>
+						<NavLink to="/notes"><i class="fa-solid fa-file-lines"> </i>  Notes</NavLink>
 					</li>
 					<li>
-						<NavLink to="/notebooks"><i class="fa-solid fa-book"></i> Notebooks</NavLink>
+						<NavLink to="/notebooks"><i class="fa-solid fa-book"></i>  Notebooks</NavLink>
 					</li>
 					<li>
-						<NavLink to="/trash"><i class="fa-solid fa-trash"></i> Trash</NavLink>
+						<NavLink to="/trash"><i class="fa-solid fa-trash"></i>  Trash</NavLink>
 					</li>
 				</ul>
 			</nav>

@@ -1,0 +1,70 @@
+.edit-note-container {
+    display: flex;
+    flex-direction: column;
+
+    width: 50%;
+}
+
+.edit-note-form {
+    display: flex;
+    flex-direction: column;
+
+    height: 95%;
+
+}
+
+.edit-note-notebook {
+    display: flex;
+    padding: 20px 0;
+    align-items: center;
+}
+
+.edit-note-notebook > a {
+    margin-right: 10px;
+    font-size: large;
+}
+
+.edit-note-notebook-btn {
+    border-radius: 20px;
+    padding: 5px;
+    color: white;
+    background-color: #be6be3;
+    border: 1px solid #be6be3;
+}
+
+.edit-note-notebook-btn:hover {
+    background-color: #f877fd;
+    border: 1px solid #f877fd;
+}
+
+.edit-note-title {
+    padding: 5px;
+    font-size: larger;
+    border: none;
+}
+
+.edit-note-title:hover {
+    border: 1px solid black;
+}
+
+.edit-note-editor {
+    height: 75%;
+}
+
+.edit-note-submit {
+    align-self: flex-end;
+
+    margin: 10% 0%;
+    padding: 15px;
+    color: white;
+    font-weight: bold;
+    background-color: #be6be3;
+    border: 1px solid #be6be3;
+    border-radius: 20px;
+    width: 175px;
+}
+
+.edit-note-submit:hover {
+    background-color: #f877fd;
+    border: 1px solid #f877fd;
+}

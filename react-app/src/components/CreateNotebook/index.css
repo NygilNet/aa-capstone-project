@@ -1,0 +1,47 @@
+.create-notebook-page {
+    display: flex;
+    flex-direction: column;
+
+    width: 82%;
+    margin: 5px;
+}
+
+.create-notebook-form {
+    display: flex;
+
+    margin: 15px;
+    justify-content: space-evenly;
+}
+
+.create-notebook-name {
+    display: flex;
+    justify-content: center;
+
+    width: 50%;
+    font-size: large;
+
+    align-items: center;
+}
+
+.create-notebook-name-input {
+    padding: 5px;
+    margin-left: 30px;
+}
+
+.create-notebook-create-btn, .create-notebook-cancel-btn {
+    background-color: #be6be3;
+    border: 1px solid #be6be3;
+    color: white;
+    border-radius: 10px;
+}
+
+.create-notebook-create-btn:hover, .create-notebook-cancel-btn:hover {
+    background-color: #f877fd;
+    border: 1px solid #f877fd;
+}
+
+.create-notebook-create-btn:disabled {
+    background-color: gray;
+    border: 1px solid gray;
+    cursor: not-allowed;
+}

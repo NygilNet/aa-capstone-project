@@ -18,3 +18,7 @@
 .curs {
     cursor: pointer;
 }
+
+.error {
+    color: red;
+}

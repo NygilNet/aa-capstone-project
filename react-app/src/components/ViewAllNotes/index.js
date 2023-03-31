@@ -11,23 +11,22 @@ function ViewAllNotes() {
 
     const dispatch = useDispatch();
     const history = useHistory();
-    const notes = useSelector(state => Object.values(state.notes.notes));
-    const [note, setNote] = useState(null);
+    const notes = useSelector(state => Object.values(state.notes.notes)).reverse();
+    const [current, setCurrent] = useState(null);
 
 
-    useEffect(() => {
-        dispatch(resetNote());
-        const func = async e => {
-            const notesArr = Object.values(await dispatch(readAllNotes()));
-        }
-        func()
-    }, [dispatch]);
+    // useEffect(() => {
+    //     dispatch(resetNote());
+    //     const func = async e => {
+    //         const notesArr = Object.values(await dispatch(readAllNotes()));
+    //     }
+    //     func()
+    // }, [dispatch]);
 
-    useEffect(() => {
-        dispatch(resetNote());
-        dispatch(readSingleNote(note?.id));
+    // useEffect(() => {
+    //     dispatch(readSingleNote(current?.id));
 
-    }, [note])
+    // }, [current])
 
     const trashBtn = (e) => {
         e.preventDefault();
@@ -41,7 +40,7 @@ function ViewAllNotes() {
             <Navigation />
             <div className="notes-view-all">
                 <div className="notes-view-all-header">
-                    <h1>Notes</h1>
+                    <h1><i class="fa-solid fa-file-lines"> </i>  Notes</h1>
                 </div>
                 <div className="notes-view-all-action">
                     {notes.length === 1 ? (
@@ -54,22 +53,21 @@ function ViewAllNotes() {
                     {notes?.map(note => (
                         <div
                         id={note.id}
-                        className="curs"
+                        className="notes-view-all-note curs"
                         onClick={e => {
-                            setNote(notes.find(note => +note.id === +e.target.id));
+                            setCurrent(notes.find(note => +note.id === +e.target.id));
                         }}
-                        style={{border: "1px solid purple"}}
                         >
-                            {note.title ? note.title : "Untitled"}
+                            <p id={note.id} className="note-title">{note.title ? note.title : "Untitled"}</p>
                             <br></br>
                             {note.updatedAt}
                             <br></br>
-                            <button value={note.id} onClick={trashBtn}>Move To Trash</button>
+                            <button className="note-trash-btn curs" value={note.id} onClick={trashBtn}>Move To Trash</button>
                         </div>
                     ))}
                 </div>
             </div>
-            {note ? <CreateNote note={note} /> : <p>Select a note to update!</p> }
+            {current ? <CreateNote noteId={current.id} /> : <p className="create-note-no-note">Select a note to update!</p> }
         </div>
     )
 

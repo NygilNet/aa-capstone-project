@@ -16,6 +16,7 @@ function ViewSingleNotebook() {
     const dispatch = useDispatch();
     const history = useHistory();
     const { id } = useParams();
+    const notebooks = useSelector(state => Object.values(state.notebooks.all_notebooks));
     const notebook = useSelector(state => state.notebooks.notebook);
     const notes = notebook.notes?.filter(note => !note.trash);
 
@@ -52,7 +53,7 @@ function ViewSingleNotebook() {
                 />
                 <OpenModalButton
                 buttonText="Delete notebook"
-                modalComponent={<DeleteNotebook notebook={notebook} />}
+                modalComponent={<DeleteNotebook notebook={notebook} notebooks={notebooks} />}
                 />
                 <button onClick={newNoteBtn}>New Note</button>
                 {

@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { changeNotebook } from "../../store/notebook";
+import "./index.css";
 
 function EditNotebook({ notebook }) {
 
@@ -33,14 +34,18 @@ function EditNotebook({ notebook }) {
     }
 
     return(
-        <>
+        <div className="edit-notebook-container">
             <h1>Rename notebook</h1>
             <form
+            className="edit-notebook-form"
             onSubmit={handleSubmit}
             >
-                <label>
+                <label
+                className="edit-notebook-name"
+                >
                     Name
                     <input
+                    className="edit-notebook-name-input"
                     type="text"
                     value={name}
                     onChange={e => setName(e.target.value)}
@@ -49,14 +54,15 @@ function EditNotebook({ notebook }) {
                         <div className="errors">{errors.name}</div>
                     ) : null }
                 </label>
-                <button onClick={closeModal}>Cancel</button>
                 <input
+                className="edit-notebook-submit"
                 type="submit"
                 value="Continue"
                 disabled={name === ON ? true: false}
                 />
+                <button className="edit-notebook-cancel" onClick={closeModal}>Cancel</button>
             </form>
-        </>
+        </div>
     )
 
 }
