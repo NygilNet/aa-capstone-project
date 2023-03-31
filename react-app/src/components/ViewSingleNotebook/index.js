@@ -11,7 +11,7 @@ import OpenModalButton from "../OpenModalButton";
 import EditNotebook from "../EditNotebook";
 import DeleteNotebook from "../DeleteNotebook";
 
-function ViewSingleNotebook() {
+function ViewSingleNotebook({ user }) {
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -40,11 +40,15 @@ function ViewSingleNotebook() {
         dispatch(putNoteTrash(e.target.value));
     }
 
+    // if (notebook.userId !== user.id) return history.push('/');
     if (!notes || !notebook) return null;
 
     return (
         <div className="display-page">
             <Navigation />
+
+            { user.id === notebook.userId && (
+
             <div className="view-single-notebook-container">
                 <h1>hello from {notebook.name}</h1>
                 <OpenModalButton
@@ -66,6 +70,7 @@ function ViewSingleNotebook() {
                     ))
                 }
             </div>
+            )}
         </div>
     )
 

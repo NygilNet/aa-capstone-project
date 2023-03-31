@@ -11,6 +11,13 @@ function MoveNote({ notebooks, n }) {
     const [current, setCurrent] = useState(n.id);
     const original = n.id;
 
+    const onSubmit = () => {
+        const change = {
+            notebook_id: change
+        }
+        dispatch(updateNote(change));
+    }
+
     return (
         <div className="move-note-modal">
             <h2>Move note to...</h2>
@@ -30,6 +37,7 @@ function MoveNote({ notebooks, n }) {
                 <div className="move-note-buttons">
                     <button onClick={closeModal}>Cancel</button>
                     <button
+                    onClick={onSubmit}
                     disabled= {original === current ? true : false}
                     >
                         Done

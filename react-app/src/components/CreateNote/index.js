@@ -44,7 +44,9 @@ function CreateNote({ noteId }) {
             content
         }
 
-        dispatch(updateNote(noteId, newNote))
+        const confirm = dispatch(updateNote(noteId, newNote))
+
+        if (confirm) return alert('Save successful!');
 
     }
 

@@ -55,6 +55,10 @@
 
 }
 
+.notebooks-view-all-notebook > a:hover {
+    color:#f877fd
+}
+
 .notebook-action-btn {
     border: 1px solid #be6be3;
     background-color: #be6be3;

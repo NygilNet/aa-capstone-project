@@ -25,7 +25,7 @@ function CreateNotebook() {
         if (name.length > 100) errors.name = 'Name can not be more than 100 characters';
         if (Object.values(errors)[0]) {
             setValidationErrors(errors);
-            return alert('Can not submit');
+            return alert('Name can not be more than 100 characters.');
         }
 
         const newNotebook = await dispatch(createNotebook({ name }));

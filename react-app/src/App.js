@@ -47,7 +47,7 @@ function App() {
             { sessionUser ? <CreateNotebook /> : <Redirect to="/" />}
           </Route>
           <Route exact path="/notebooks/:id">
-            { sessionUser ? <ViewSingleNotebook /> : <Redirect to="/" />}
+            { sessionUser ? <ViewSingleNotebook user={sessionUser} /> : <Redirect to="/" />}
           </Route>
           <Route exact path="/notes">
           { sessionUser ? <ViewAllNotes /> : <Redirect to="/" />}
