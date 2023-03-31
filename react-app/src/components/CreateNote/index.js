@@ -54,16 +54,19 @@ function CreateNote({ noteId }) {
     return(
             <div className="edit-note-container">
                 <form
+                className="edit-note-form"
                 onSubmit={handleSubmit}
                 >
                 <div className="edit-note-notebook">
-                    <NavLink to={`/notebooks/${notebook.id}`}>{notebook.name}</NavLink>
+                    <NavLink to={`/notebooks/${notebook.id}`}><i class="fa-solid fa-book"></i>{notebook.name}</NavLink>
                     <OpenModalButton
+                    nameClass="edit-note-notebook-btn"
                     buttonText="Move Note"
                     modalComponent={<MoveNote notebooks={notebooks} n={notebook} />}
                     />
                 </div>
                     <input
+                    className="edit-note-title"
                     type="text"
                     value={title}
                     onChange={e => setTitle(e.target.value) }
@@ -78,6 +81,7 @@ function CreateNote({ noteId }) {
                     placeholder="Start writing..."
                     />
                     <input
+                    className="edit-note-submit curs"
                     type="submit"
                     value={ saving ? "Please wait..." : "Save current changes" }
                     disabled={ saving ? true : false }
