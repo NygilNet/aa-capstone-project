@@ -10,6 +10,8 @@ import Navigation from "../Navigation";
 import OpenModalButton from "../OpenModalButton";
 import EditNotebook from "../EditNotebook";
 import DeleteNotebook from "../DeleteNotebook";
+import "./index.css";
+
 
 function ViewSingleNotebook({ user }) {
 
@@ -50,25 +52,29 @@ function ViewSingleNotebook({ user }) {
             { user.id === notebook.userId && (
 
             <div className="view-single-notebook-container">
-                <h1>hello from {notebook.name}</h1>
-                <OpenModalButton
-                buttonText="Rename notebook"
-                modalComponent={<EditNotebook notebook={notebook} />}
-                />
-                <OpenModalButton
-                buttonText="Delete notebook"
-                modalComponent={<DeleteNotebook notebook={notebook} notebooks={notebooks} />}
-                />
-                <button onClick={newNoteBtn}>New Note</button>
+                <h1>Hello from {notebook.name}</h1>
+                <div className="single-notebook-actions">
+                    <OpenModalButton
+                    buttonText="Rename notebook"
+                    modalComponent={<EditNotebook notebook={notebook} />}
+                    />
+                    <OpenModalButton
+                    buttonText="Delete notebook"
+                    modalComponent={<DeleteNotebook notebook={notebook} notebooks={notebooks} />}
+                    />
+                    <button onClick={newNoteBtn}>New Note</button>
+                </div>
+                <div className="single-notebook-view-notes">
                 {
                     notes.map(note => (
-                        <div className="note-view-all" style={{border: "1px solid purple"}}>
-                            {note.title ? (<p>{note.title}</p>) : (<p>Untitled</p>)}
+                        <div className="note-view-all" >
+                            {note.title ? (<p className="notebook-note-title">{note.title}</p>) : (<p className="notebook-note-title">Untitled</p>)}
                             <p>{note.updatedAt}</p>
-                            <button value={note.id} onClick={trashBtn}>Move To Trash</button>
+                            <button className="notebook-note-trash curs" value={note.id} onClick={trashBtn}>Move To Trash</button>
                         </div>
                     ))
                 }
+                </div>
             </div>
             )}
         </div>

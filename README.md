@@ -1,14 +1,83 @@
 # MindPalace
 
-## About The Project
+## Project Description
 
 MindPalace, an Evernote clone, is a note taking website  where users can store notebooks and notes for their note taking needs.
 
-## Built With
+## Deployed Live Link
+
+[MindPalace](https://nn-mind-palace.onrender.com)
+
+## Technologies/Frameworks Used
 
 * [Flask](https://flask.palletsprojects.com/en/2.2.x/)
 
 * [React](https://reactjs.org/)
+
+* Flask Dependencies
+
+	* click = "==8.1.3"
+	* gunicorn = "==20.1.0"
+	* itsdangerous = "==2.1.2"
+	* python-dotenv = "==0.21.0"
+	* six = "==1.16.0"
+	* Flask = "==2.2.2"
+	* Flask-Cors = "==3.0.10"
+	* Flask-SQLAlchemy = "==3.0.2"
+	* Flask-WTF = "==1.1.1"
+	* Jinja2 = "==3.1.2"
+	* MarkupSafe = "==2.1.2"
+	* SQLAlchemy = "==1.4.46"
+	* Werkzeug = "==2.2.2"
+	* WTForms = "==3.0.1"
+	* Flask-Migrate = "==4.0.2"
+	* Flask-Login = "==0.6.2"
+	* alembic = "==1.9.2"
+	* python-dateutil = "==2.8.2"
+	* python-editor = "==1.0.4"
+	* greenlet = "==2.0.1"
+	* Mako = "==1.2.4"
+
+* React Dependencies
+
+	* @testing-library/jest-dom: "^5.14.1"
+    * @testing-library/react: "^11.2.7"
+    * @testing-library/user-event: "^12.8.3"
+    * http-proxy-middleware: "^1.0.5"
+    * react: "^17.0.2"
+    * react-dom: "^17.0.2"
+    * react-quill: "^2.0.0"
+    * react-redux: "^7.2.4"
+    * react-router-dom: "^5.2.0"
+    * react-scripts: "^4.0.3"
+    * redux: "^4.1.0"
+    * redux-logger: "^3.0.6"
+    * redux-thun": "^2.3.0"
+
+## MVP Core Features
+
+* Notebooks
+
+	* Create, Read, Update, Delete
+
+* Notes
+
+	* Create, Read, Update, Delete
+
+## Screenshots
+
+
+## Future Implementation Goals
+
+- [ ] Live Saving on Edit Notes
+
+- [ ]  Tasks
+
+- [ ] Tags
+
+- [ ] Search
+
+- [ ] WebSockets/ Moment.js
 
 ## Getting Started
 
@@ -72,9 +141,9 @@ If you have a suggestion that would make this better, please fork the repo and c
 
 ## Contact
 
-Nygil Nettles - https://github.com/NygilNet
+[LinkedIn](https://www.linkedin.com/in/nygil-nettles-5168a624b/)
 
-Project Link: https://github.com/NygilNet/aa-capstone-project
+[GitHub](https://github.com/NygilNet)
 
 ## Acknowledgments
 
@@ -87,43 +156,3 @@ Project Link: https://github.com/NygilNet/aa-capstone-project
 * [Imgur](https://imgur.com)
 
 * [Render](https://render.com/)
-
-* Flask Dependencies
-
-	* click = "==8.1.3"
-	* gunicorn = "==20.1.0"
-	* itsdangerous = "==2.1.2"
-	* python-dotenv = "==0.21.0"
-	* six = "==1.16.0"
-	* Flask = "==2.2.2"
-	* Flask-Cors = "==3.0.10"
-	* Flask-SQLAlchemy = "==3.0.2"
-	* Flask-WTF = "==1.1.1"
-	* Jinja2 = "==3.1.2"
-	* MarkupSafe = "==2.1.2"
-	* SQLAlchemy = "==1.4.46"
-	* Werkzeug = "==2.2.2"
-	* WTForms = "==3.0.1"
-	* Flask-Migrate = "==4.0.2"
-	* Flask-Login = "==0.6.2"
-	* alembic = "==1.9.2"
-	* python-dateutil = "==2.8.2"
-	* python-editor = "==1.0.4"
-	* greenlet = "==2.0.1"
-	* Mako = "==1.2.4"
-
-* React Dependencies
-
-	* @testing-library/jest-dom: "^5.14.1"
-    * @testing-library/react: "^11.2.7"
-    * @testing-library/user-event: "^12.8.3"
-    * http-proxy-middleware: "^1.0.5"
-    * react: "^17.0.2"
-    * react-dom: "^17.0.2"
-    * react-quill: "^2.0.0"
-    * react-redux: "^7.2.4"
-    * react-router-dom: "^5.2.0"
-    * react-scripts: "^4.0.3"
-    * redux: "^4.1.0"
-    * redux-logger: "^3.0.6"
-    * redux-thun": "^2.3.0"

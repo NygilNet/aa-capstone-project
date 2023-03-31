@@ -1,0 +1,70 @@
+.view-single-notebook-container {
+    display: flex;
+    flex-direction: column;
+
+    width: 82%;
+    margin: 5px;
+}
+
+.single-notebook-actions > button {
+    height: 50px;
+    width: 200px;
+
+    padding: 10px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+
+    color: white;
+    background-color: #be6be3;
+    border: 1px solid #be6be3;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.single-notebook-actions > button:hover {
+    background-color: #f877fd;
+    border: 1px solid #f877fd;
+}
+
+.single-notebook-view-notes {
+    display: flex;
+    flex-direction: column;
+
+    height: 86%;
+
+    overflow-y: auto;
+}
+
+.note-view-all {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    border: 1px solid #7787fd;
+    border-radius: 10px;
+
+    padding: 0px 5px;
+
+    margin: 5px 0px;
+}
+
+.notebook-note-title {
+    max-width: 30%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.notebook-note-trash {
+    border: 1px solid #be6be3;
+    background-color: #be6be3;
+    color: white;
+    border-radius: 10px;
+
+    padding: 5px;
+}
+
+.notebook-note-trash:hover {
+    background-color: #f877fd;
+    border: 1px solid #f877fd;
+}
