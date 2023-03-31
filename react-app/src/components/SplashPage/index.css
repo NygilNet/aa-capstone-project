@@ -13,16 +13,27 @@
     padding: 0px 5px;
 }
 
+.splash-header-logo {
+    margin: 0px 5px;
+}
+
 .splash-header-login {
     height: 40px;
     width: 120px;
 
-    background-color: white;
+    margin: 0px 5px;
+
+    background-color: transparent;
 
     border: 1px solid #be6be3;
 
     color: #be6be3;
 
+}
+
+.splash-header-login:hover {
+    border: 1px solid #f877fd;
+    color: #f877fd;
 }
 
 .splash-page-title {
@@ -51,7 +62,14 @@
 
     border: 1px solid #be6be3;
     background-color: #be6be3;
+    border-radius: 4%;
     color: white;
+    font-size: large;
+}
+
+.splash-page-action-signup:hover {
+    background-color: #f877fd;
+    border: 1px solid #f877fd;
 }
 
 .splash-page-action-login {
@@ -66,5 +84,5 @@
 }
 
 .splash-page-action-login:hover {
-    color: #be6be3;
+    color: #f877fd;
 }

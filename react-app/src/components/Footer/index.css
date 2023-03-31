@@ -1,6 +1,7 @@
 footer {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     position: absolute;
     left: 0;
@@ -11,8 +12,9 @@ footer {
     background-color: rgb(124, 107, 227);
 }
 
-.footer-left > p {
+.footer-copyright {
     color: white;
+    margin: 0px 5px;
 }
 
 .footer-links {

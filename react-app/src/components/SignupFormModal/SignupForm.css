@@ -26,10 +26,16 @@
 
 .signup-form-button {
     width: 250px;
-    height: 46;
     margin: 5px;
+    padding: 8px;
 
-    border: 1px solid #7c6be3;
-    background-color: #7c6be3;
+    border: 1px solid #be6be3;
+    border-radius: 4%;
+    background-color: #be6be3;
     color: white;
+}
+
+.signup-form-button:hover {
+    border: 1px solid #f877fd;
+    background-color: #f877fd;
 }

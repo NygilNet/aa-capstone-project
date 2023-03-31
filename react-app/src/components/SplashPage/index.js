@@ -41,6 +41,7 @@ function SplashPage({ isLoaded }) {
             <div className="splash-page-header">
                 <NavLink to="/">
                     <img
+                    className="splash-header-logo"
                     alt="MindPalace"
                     src="https://i.imgur.com/19eLshm.png"
                     />
