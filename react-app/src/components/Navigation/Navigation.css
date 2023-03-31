@@ -40,7 +40,9 @@
   margin: 5px;
   border-radius: 25%;
   background-color: white;
+  border: none;
 }
+
 
 .new-note-btn {
   height: 36px;
@@ -74,4 +76,8 @@
 .nav-bar-links > li > a {
   text-decoration: none;
   color: #7787fd;
+}
+
+.nav-bar-links > li > a:hover {
+  color: #f877fd;
 }
