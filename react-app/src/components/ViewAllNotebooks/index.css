@@ -14,8 +14,21 @@
 }
 
 .notebooks-action-new-button {
-    height: 24px;
+    height: 35px;
     width: 125px;
+
+    padding: 10px;
+
+    color: white;
+    background-color: #be6be3;
+    border: 1px solid #be6be3;
+    border-radius: 10px;
+
+}
+
+.notebooks-action-new-button:hover {
+    background-color: #f877fd;
+    border: 1px solid #f877fd;
 }
 
 .notebooks-view-all-notebooks {
@@ -33,4 +46,25 @@
     justify-content: space-between;
     align-items: center;
 
+    border: 1px solid #7787fd;
+    border-radius: 10px;
+
+    padding: 0px 5px;
+
+    margin: 5px 0px;
+
+}
+
+.notebook-action-btn {
+    border: 1px solid #be6be3;
+    background-color: #be6be3;
+    color: white;
+    border-radius: 10px;
+
+    padding: 5px;
+}
+
+.notebook-action-btn:hover {
+    background-color: #f877fd;
+    border: 1px solid #f877fd;
 }

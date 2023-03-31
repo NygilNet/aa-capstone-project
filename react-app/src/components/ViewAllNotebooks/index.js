@@ -53,15 +53,17 @@ function ViewAllNotebooks() {
                     <div
                     id = {notebook.id}
                     className="notebooks-view-all-notebook"
-                    style={{border: "1px solid purple"}}>
+                    >
                         <NavLink to={`/notebooks/${notebook.id}`}>{notebook.name} ({notebook.notes?.filter(note => !note.trash).length})</NavLink>
 
                         <p>{notebook.updatedAt}</p>
                         <OpenModalButton
+                        nameClass="notebook-action-btn curs"
                         buttonText="Rename notebook"
                         modalComponent={<EditNotebook notebook={notebook} />}
                         />
                         <OpenModalButton
+                        nameClass="notebook-action-btn curs"
                         buttonText="Delete notebook"
                         modalComponent={<DeleteNotebook notebook={notebook} notebooks={notebooks} />}
                         />
