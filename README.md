@@ -67,6 +67,12 @@ MindPalace, an Evernote clone, is a note taking website  where users can store n
 ## Screenshots
 
 
+![mindpalace_screenshot_splash](https://user-images.githubusercontent.com/109548330/229244441-65a2a7d3-d9cc-44fa-aff5-661cb0dc8f66.jpg)
+
+![mindpalace_screenshot_home](https://user-images.githubusercontent.com/109548330/229244452-7f3dcc07-e846-4a99-ab48-104cc895981a.jpg)
+
+![mindpalace_screenshot_notes](https://user-images.githubusercontent.com/109548330/229244473-ed02c105-fa0f-4b61-8ffa-decfd454247f.jpg)
+
 ## Future Implementation Goals
 
 - [ ] Live Saving on Edit Notes
