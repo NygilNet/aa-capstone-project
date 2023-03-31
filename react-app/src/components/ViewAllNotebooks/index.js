@@ -31,7 +31,7 @@ function ViewAllNotebooks() {
             <Navigation />
             <div className="notebooks-view-all">
                 <div className="notebooks-view-all-header">
-                    <h1>Notebooks</h1>
+                    <h1><i class="fa-solid fa-book"></i>  Notebooks</h1>
                 </div>
                 <div className="notebooks-view-all-action">
                     {notebooks.length === 1 ? (
