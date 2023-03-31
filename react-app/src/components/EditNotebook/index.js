@@ -55,12 +55,12 @@ function EditNotebook({ notebook }) {
                     ) : null }
                 </label>
                 <input
-                className="edit-notebook-submit"
+                className="edit-notebook-submit curs"
                 type="submit"
                 value="Continue"
                 disabled={name === ON ? true: false}
                 />
-                <button className="edit-notebook-cancel" onClick={closeModal}>Cancel</button>
+                <button className="edit-notebook-cancel curs" onClick={closeModal}>Cancel</button>
             </form>
         </div>
     )

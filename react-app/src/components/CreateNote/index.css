@@ -24,6 +24,10 @@
     font-size: large;
 }
 
+.edit-note-notebook > a:hover {
+    color: #f877fd
+}
+
 .edit-note-notebook-btn {
     border-radius: 20px;
     padding: 5px;
@@ -67,4 +71,9 @@
 .edit-note-submit:hover {
     background-color: #f877fd;
     border: 1px solid #f877fd;
+}
+
+.edit-note-submit:disabled {
+    background-color: gray;
+    border: 1px solid gray;
 }

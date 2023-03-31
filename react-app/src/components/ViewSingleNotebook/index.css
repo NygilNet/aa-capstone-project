@@ -1,4 +1,4 @@
-.notebooks-view-all {
+.view-single-notebook-container {
     display: flex;
     flex-direction: column;
 
@@ -6,32 +6,27 @@
     margin: 5px;
 }
 
-.notebooks-view-all-action {
-    display: flex;
-
-    justify-content: space-between;
-    align-items: center;
-}
-
-.notebooks-action-new-button {
-    height: 35px;
-    width: 125px;
+.single-notebook-actions > button {
+    height: 50px;
+    width: 200px;
 
     padding: 10px;
+    margin-right: 10px;
+    margin-bottom: 5px;
 
     color: white;
     background-color: #be6be3;
     border: 1px solid #be6be3;
     border-radius: 10px;
-
+    cursor: pointer;
 }
 
-.notebooks-action-new-button:hover {
+.single-notebook-actions > button:hover {
     background-color: #f877fd;
     border: 1px solid #f877fd;
 }
 
-.notebooks-view-all-notebooks {
+.single-notebook-view-notes {
     display: flex;
     flex-direction: column;
 
@@ -40,7 +35,7 @@
     overflow-y: auto;
 }
 
-.notebooks-view-all-notebook {
+.note-view-all {
     display: flex;
 
     justify-content: space-between;
@@ -52,14 +47,15 @@
     padding: 0px 5px;
 
     margin: 5px 0px;
-
 }
 
-.notebooks-view-all-notebook > a:hover {
-    color:#f877fd
+.notebook-note-title {
+    max-width: 30%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.notebook-action-btn {
+.notebook-note-trash {
     border: 1px solid #be6be3;
     background-color: #be6be3;
     color: white;
@@ -68,7 +64,7 @@
     padding: 5px;
 }
 
-.notebook-action-btn:hover {
+.notebook-note-trash:hover {
     background-color: #f877fd;
     border: 1px solid #f877fd;
 }
