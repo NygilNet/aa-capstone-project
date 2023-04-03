@@ -11,7 +11,8 @@ function MoveNote({ notebooks, n }) {
     const [current, setCurrent] = useState(n.id);
     const original = n.id;
 
-    const onSubmit = () => {
+    const onSubmit = (e) => {
+        e.preventDefault();
         const change = {
             notebook_id: change
         }
@@ -35,13 +36,14 @@ function MoveNote({ notebooks, n }) {
                     ))}
                 </select>
                 <div className="move-note-buttons">
-                    <button onClick={closeModal}>Cancel</button>
                     <button
+                    className="move-note-submit"
                     onClick={onSubmit}
                     disabled= {original === current ? true : false}
                     >
                         Done
                     </button>
+                    <button className="move-note-cancel" onClick={closeModal}>Cancel</button>
                 </div>
             </form>
         </div>

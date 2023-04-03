@@ -1,0 +1,28 @@
+.move-note-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 575px;
+    width: 512px;
+}
+
+.move-note-submit, .move-note-cancel {
+    background-color: #be6be3;
+    border: #be6be3;
+    color: white;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.move-note-submit:hover, .move-note-cancel:hover {
+    background-color: #f877fd;
+    border: #f877fd;
+}
+
+.move-note-submit:disabled {
+    background-color: gray;
+    border: 1px solid gray;
+    cursor: not-allowed;
+}
