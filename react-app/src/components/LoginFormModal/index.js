@@ -35,6 +35,28 @@ function LoginFormModal() {
     }
   };
 
+  const marnieLogin = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login("marnie@aa.io", "password"));
+    if (data) {
+      setErrors(data);
+    } else {
+      closeModal();
+      return history.push("/home");
+    }
+  };
+
+  const bobLogin = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login("bobbie@aa.io", "password"));
+    if (data) {
+      setErrors(data);
+    } else {
+      closeModal();
+      return history.push("/home");
+    }
+  };
+
   return (
     <div className="login-form-container">
       <img
@@ -78,7 +100,13 @@ function LoginFormModal() {
             <button className="login-form-button curs" type="submit">Log In</button>
           </div>
           <div>
-            <button className="login-form-button curs" onClick={demoLogin}>Demo User Log In</button>
+            <button className="login-form-button curs" onClick={demoLogin}>Demo User: Demo</button>
+          </div>
+          <div>
+            <button className="login-form-button curs" onClick={marnieLogin}>Demo User: Marnie</button>
+          </div>
+          <div>
+            <button className="login-form-button curs" onClick={bobLogin}>Demo User: Bobbie</button>
           </div>
         </div>
       </form>

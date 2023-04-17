@@ -147,7 +147,7 @@ If you have a suggestion that would make this better, please fork the repo and c
 
 ## Contact
 
-[LinkedIn](https://www.linkedin.com/in/nygil-nettles-5168a624b/)
+[LinkedIn](https://www.linkedin.com/in/nygil-nettles-dev/)
 
 [GitHub](https://github.com/NygilNet)
 

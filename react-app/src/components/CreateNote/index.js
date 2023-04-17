@@ -15,7 +15,7 @@ function CreateNote({ noteId }) {
 
     const dispatch = useDispatch();
     const note = useSelector(state => state.notes.note)
-    console.log('HERES THE NOTE', note)
+    // console.log('HERES THE NOTE', note)
     const noteTitle = note.title
     const noteContent = note.content
     const [title, setTitle] = useState();
