@@ -39,3 +39,9 @@
     border: 1px solid #f877fd;
     background-color: #f877fd;
 }
+
+.signup-form-button:disabled {
+    background-color: gray;
+    border: 1px solid gray;
+    cursor: not-allowed;
+}
