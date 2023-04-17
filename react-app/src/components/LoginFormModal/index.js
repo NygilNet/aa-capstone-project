@@ -17,7 +17,7 @@ function LoginFormModal() {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
-      setErrors(data);
+      setErrors(['The provided credentials were invalid']);
     } else {
         closeModal();
         return history.push("/home");
@@ -97,7 +97,11 @@ function LoginFormModal() {
         </div>
         <div className="login-form-submit">
           <div>
-            <button className="login-form-button curs" type="submit">Log In</button>
+            <button
+            className="login-form-button curs"
+            type="submit"
+            disabled={email.length && password.length ? false : true}
+            >Log In</button>
           </div>
           <div>
             <button className="login-form-button curs" onClick={demoLogin}>Demo User: Demo</button>

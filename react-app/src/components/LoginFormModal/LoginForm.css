@@ -40,3 +40,9 @@
     border: 1px solid #f877fd;
     background-color: #f877fd;
 }
+
+.login-form-button:disabled {
+    background-color: gray;
+    border: 1px solid gray;
+    cursor: not-allowed;
+}
