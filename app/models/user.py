@@ -17,6 +17,7 @@ class User(db.Model, UserMixin):
 
     notebooks = db.relationship("Notebook", back_populates="user", cascade="all,delete")
     notes = db.relationship("Note", back_populates="user", cascade="all,delete")
+    tags = db.relationship("Tag", back_populates="user", cascade="all,delete")
 
     @property
     def password(self):
@@ -33,5 +34,6 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'tags': [tag.to_dict() for tag in self.tags]
         }

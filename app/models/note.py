@@ -1,5 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
+from .note_tag import note_tags
 
 class Note(db.Model):
     __tablename__ = "notes"
@@ -17,6 +18,7 @@ class Note(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
 
     user = db.relationship("User", back_populates="notes")
+    tags = db.relationship("Tag", secondary = note_tags, back_populates = 'notes' )
     notebook = db.relationship("Notebook", back_populates="notes")
 
     def to_dict(self):
@@ -28,5 +30,6 @@ class Note(db.Model):
             'content': self.content,
             'trash': self.trash,
             'createdAt': self.created_at,
-            'updatedAt': self.updated_at
+            'updatedAt': self.updated_at,
+            'tags': [tag.to_dict() for tag in self.tags]
         }
