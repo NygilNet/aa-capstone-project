@@ -79,6 +79,9 @@ function Navigation(){
 						<NavLink to="/notebooks"><i class="fa-solid fa-book"></i>  Notebooks</NavLink>
 					</li>
 					<li>
+						<NavLink to="/tags"><i class="fa-solid fa-tags"></i>  Tags</NavLink>
+					</li>
+					<li>
 						<NavLink to="/trash"><i class="fa-solid fa-trash"></i>  Trash</NavLink>
 					</li>
 				</ul>

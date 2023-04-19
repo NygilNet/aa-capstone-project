@@ -14,6 +14,7 @@ import CreateNotebook from "./components/CreateNotebook";
 import CreateNote from "./components/CreateNote";
 import ViewAllNotes from "./components/ViewAllNotes";
 import Trash from "./components/Trash";
+import ViewTags from "./components/Tags";
 import NotFound from "./components/404Page";
 
 function App() {
@@ -55,6 +56,9 @@ function App() {
           </Route>
           <Route path="/trash">
           { sessionUser ? <Trash /> : <Redirect to="/" />}
+          </Route>
+          <Route path="/tags">
+            { sessionUser ? <ViewTags user={sessionUser} /> : <Redirect to="/" /> }
           </Route>
           <Route><NotFound /></Route>
         </Switch>
