@@ -12,7 +12,7 @@ function Footer() {
                 <ul className="footer-links">
                     <li><i class="fa-brands fa-github" style={{color: "#ffffff"}}></i> <a href="https://github.com/NygilNet" target="_blank" rel="noopener noreferrer">GitHub</a></li>
                     <li><i class="fa-brands fa-linkedin" style={{color: "#ffffff"}}></i> <a href="https://www.linkedin.com/in/nygil-nettles-dev/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-                    <li><i class="fa-solid fa-book-bookmark" style={{color: "#ffffff"}}></i> <a href="https://github.com/NygilNet/aa-capstone-project" target="_blank" rel="noopener noreferrer">Project Repo</a></li>
+                    <li><i class="fa-solid fa-book-bookmark" style={{color: "#ffffff"}}></i> <a href="https://github.com/NygilNet/mind_palace" target="_blank" rel="noopener noreferrer">Project Repo</a></li>
                 </ul>
             </div>
         </footer>

@@ -14,6 +14,7 @@ import CreateNotebook from "./components/CreateNotebook";
 import CreateNote from "./components/CreateNote";
 import ViewAllNotes from "./components/ViewAllNotes";
 import Trash from "./components/Trash";
+import NotFound from "./components/404Page";
 
 function App() {
   const dispatch = useDispatch();
@@ -55,6 +56,7 @@ function App() {
           <Route path="/trash">
           { sessionUser ? <Trash /> : <Redirect to="/" />}
           </Route>
+          <Route><NotFound /></Route>
         </Switch>
       )}
       <Footer />
