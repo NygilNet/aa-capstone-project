@@ -60,12 +60,12 @@ function CreateNote({ noteId }) {
                 className="edit-note-form"
                 onSubmit={handleSubmit}
                 >
-                <div className="edit-note-notebook">
+                <div className="edit-note-notebook" onClick={e => e.preventDefault()}>
                     <NavLink to={`/notebooks/${notebook.id}`}><i class="fa-solid fa-book"></i>{notebook.name}</NavLink>
                     <OpenModalButton
                     nameClass="edit-note-notebook-btn curs"
                     buttonText="Move Note"
-                    modalComponent={<MoveNote notebooks={notebooks} n={notebook} />}
+                    modalComponent={<MoveNote notebooks={notebooks} n={notebook} id={noteId} />}
                     />
                 </div>
                     <input

@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { useModal } from "../../context/Modal";
 import { useDispatch } from "react-redux";
 import { updateNote } from "../../store/note";
+import "./MoveNote.css";
 
-function MoveNote({ notebooks, n }) {
+function MoveNote({ notebooks, n, id }) {
 
     const { closeModal } = useModal();
     const dispatch = useDispatch();
@@ -14,9 +15,10 @@ function MoveNote({ notebooks, n }) {
     const onSubmit = (e) => {
         e.preventDefault();
         const change = {
-            notebook_id: change
+            notebook_id: current
         }
-        dispatch(updateNote(change));
+        dispatch(updateNote(id, change));
+        closeModal();
     }
 
     return (
@@ -37,13 +39,13 @@ function MoveNote({ notebooks, n }) {
                 </select>
                 <div className="move-note-buttons">
                     <button
-                    className="move-note-submit"
+                    className="move-note-submit curs"
                     onClick={onSubmit}
-                    disabled= {original === current ? true : false}
+                    disabled= {original == current ? true : false}
                     >
                         Done
                     </button>
-                    <button className="move-note-cancel" onClick={closeModal}>Cancel</button>
+                    <button className="move-note-cancel curs" onClick={closeModal}>Cancel</button>
                 </div>
             </form>
         </div>
