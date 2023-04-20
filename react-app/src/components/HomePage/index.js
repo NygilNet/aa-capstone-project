@@ -14,6 +14,7 @@ function HomePage({ sessionUser }) {
     return (
         <div className="display-page">
             <Navigation />
+
             <div className="home-page-container">
                 <h1>Welcome, {sessionUser.username}</h1>
                 <h2>{date}</h2>

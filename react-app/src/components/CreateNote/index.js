@@ -55,6 +55,7 @@ function CreateNote({ noteId }) {
     if (!note || !notebook) return null;
 
     return(
+
             <div className="edit-note-container">
                 <form
                 className="edit-note-form"

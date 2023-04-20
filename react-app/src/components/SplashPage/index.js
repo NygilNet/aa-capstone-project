@@ -37,6 +37,8 @@ function SplashPage({ isLoaded }) {
     }
 
     return (
+        <div className="container">
+
         <div className="splash-page-container">
             <div className="splash-page-header">
                 <NavLink to="/">
@@ -76,6 +78,7 @@ function SplashPage({ isLoaded }) {
                 alt="Stock image of laptop and notes - Andrew Neel on unsplash"
                 />
             </div>
+        </div>
         </div>
     )
 

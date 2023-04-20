@@ -5,6 +5,8 @@ import "./index.css";
 function NotFound() {
 
     return (
+        <div className="container">
+
         <div className="fourofourpage">
             <div className="splash-page-header">
                 <NavLink to="/">
@@ -27,6 +29,7 @@ function NotFound() {
                 </div>
 
             </div>
+        </div>
         </div>
     )
 

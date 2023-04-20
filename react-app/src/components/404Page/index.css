@@ -1,6 +1,4 @@
-.fourofourpage {
-    height: 95%;
-}
+
 
 .not-found-content {
     display: flex;
@@ -14,6 +12,8 @@
 .not-found-content-img {
     height: 50%;
     width: 50%;
+    min-height: 400px;
+    min-width: 700px;
     margin: 25px 0;
 }
 

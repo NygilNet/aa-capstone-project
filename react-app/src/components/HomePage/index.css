@@ -6,9 +6,16 @@
 
     margin: 5px;
     width: 82%;
+
+    overflow-y: auto;
 }
 
 .home-page-image {
     height: 75%;
     width: 75%;
+
+    min-height: 900px;
+    min-width: 800px;
+
+    margin: 20px;
 }
