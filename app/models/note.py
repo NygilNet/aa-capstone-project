@@ -31,5 +31,4 @@ class Note(db.Model):
             'trash': self.trash,
             'createdAt': self.created_at,
             'updatedAt': self.updated_at,
-            'tags': [tag.to_dict() for tag in self.tags]
         }

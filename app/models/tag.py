@@ -19,5 +19,6 @@ class Tag(db.Model):
         return {
             'id': self.id,
             'userId': self.user_id,
-            'tagName': self.tag_name
+            'tagName': self.tag_name,
+            'notes': [note.id for note in self.notes]
         }

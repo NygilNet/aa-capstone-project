@@ -15,7 +15,7 @@ def post_new_tag():
     """
     json_data = request.json
 
-    exists = Tag.query.filter(user_id = current_user.id, tag_name = json_data.get('tag_name')).first()
+    exists = Tag.query.filter_by(user_id = current_user.id, tag_name = json_data.get('tag_name')).first()
 
     if not exists:
         tag = Tag(
@@ -39,8 +39,8 @@ def get_tags():
     Output:
     Purpose:
     """
-    tags = Tag.query.filter(user_id = current_user.id)
-    return [tag.to_dict() for tag in tags]
+    tags = Tag.query.filter_by(user_id = current_user.id)
+    return { tag.id : tag.to_dict() for tag in tags }
 
 
 # DELETE TAG

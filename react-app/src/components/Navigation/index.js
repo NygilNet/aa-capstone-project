@@ -5,6 +5,7 @@ import ProfileButton from './ProfileButton';
 import { logout } from '../../store/session';
 import { createNote, readAllNotes, readTrash } from "../../store/note";
 import { getNotebooks } from '../../store/notebook';
+import { readAllTags } from '../../store/tag';
 import './Navigation.css';
 
 function Navigation(){
@@ -18,6 +19,7 @@ function Navigation(){
 		dispatch(readAllNotes())
 		dispatch(readTrash())
 		dispatch(getNotebooks())
+		dispatch(readAllTags())
 	}, [dispatch])
 
 

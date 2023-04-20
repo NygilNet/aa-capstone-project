@@ -35,5 +35,4 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            'tags': [tag.to_dict() for tag in self.tags]
         }

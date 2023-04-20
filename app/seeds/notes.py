@@ -46,7 +46,17 @@ def seed_notes():
         content="""<p>Welcome to MindPalace. Write your notes here...</p>""", trash=False
     )
 
-    db.session.add_all([recipe1, recipe2, food_ideas, bad_ideas, chem_notes, forensics_notes, demo])
+    tips = Note(
+        user_id=1, notebook_id=5, title="Do you know markup?",
+        content="""<p>The editor will accept some markdown shortcuts.</p><ul><li>Use a '*' or a '-' to create a bullet point</li></ul><ol><li>Write '1.' to start a numbered list</li></ol>""",
+        trash=False
+    )
+
+    trash = Note(
+        user_id=1, notebook_id=5, title="You can move notes out of trash", trash=True
+    )
+
+    db.session.add_all([recipe1, recipe2, food_ideas, bad_ideas, chem_notes, forensics_notes, demo, tips, trash])
     db.session.commit()
 
 
