@@ -81,3 +81,12 @@
 .nav-bar-links > li > a:hover {
   color: #f877fd;
 }
+
+.open-tag-modal-link {
+  color: #7787fd;
+  width: fit-content;
+}
+
+.open-tag-modal-link:hover {
+  color: #f877fd;
+}

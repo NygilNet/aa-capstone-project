@@ -1,0 +1,37 @@
+.tags-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 575px;
+    width: 512px;
+}
+
+.tags-header {
+    width: 80%;
+}
+
+.tags-action-btn {
+    background-color: #be6be3;
+    border: #be6be3;
+    color: white;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.tags-action-btn:hover {
+    background-color: #f877fd;
+    border: #f877fd;
+}
+
+.view-tags {
+    margin: 5px;
+    height: 420px;
+    width: 450px;
+    overflow-y: auto;
+}
+
+.view-tags-tag:hover {
+    color: #f877fd;
+}

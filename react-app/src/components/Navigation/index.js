@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import ProfileButton from './ProfileButton';
+import OpenModalItem from '../OpenModalItem';
+import ViewTags from '../Tags';
 import { logout } from '../../store/session';
 import { createNote, readAllNotes, readTrash } from "../../store/note";
 import { getNotebooks } from '../../store/notebook';
@@ -14,6 +15,7 @@ function Navigation(){
 	const history = useHistory();
 	const sessionUser = useSelector(state => state.session.user);
 	const defaultNotebook = useSelector(state => Object.values(state.notebooks.all_notebooks)[0]);
+	const tags = useSelector(state => state.tags);
 
 	useEffect(() => {
 		dispatch(readAllNotes())
@@ -22,19 +24,6 @@ function Navigation(){
 		dispatch(readAllTags())
 	}, [dispatch])
 
-
-	// return (
-	// 	<ul>
-	// 		<li>
-	// 			<NavLink exact to="/">Home</NavLink>
-	// 		</li>
-	// 		{isLoaded && (
-	// 			<li>
-	// 				<ProfileButton user={sessionUser} />
-	// 			</li>
-	// 		)}
-	// 	</ul>
-	// );
 
 	const newNoteBtn = async (e) => {
 		e.preventDefault();
@@ -80,9 +69,11 @@ function Navigation(){
 					<li>
 						<NavLink to="/notebooks"><i class="fa-solid fa-book"></i>  Notebooks</NavLink>
 					</li>
-					<li>
-						<NavLink to="/tags"><i class="fa-solid fa-tags"></i>  Tags</NavLink>
-					</li>
+					<OpenModalItem
+					modalComponent={<ViewTags tags={tags} />}
+					nameClass="open-tag-modal-link curs"
+					itemText={<><i class="fa-solid fa-tags"></i> Tags</>}
+					/>
 					<li>
 						<NavLink to="/trash"><i class="fa-solid fa-trash"></i>  Trash</NavLink>
 					</li>
@@ -93,3 +84,4 @@ function Navigation(){
 }
 
 export default Navigation;
+{/*  */}
