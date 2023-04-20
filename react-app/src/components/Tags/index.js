@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import OpenModalButton from "../OpenModalButton";
 import CreateNewTag from "./CreateNewTag";
+import DeleteTag from "./DeleteTag";
 import "./index.css";
 
 
@@ -40,6 +41,11 @@ function ViewTags({ tags }) {
                     className="view-tags-tag curs"
                     >
                         <p>{tag.tagName} ({tag.notes.length})</p>
+                        <OpenModalButton
+                        modalComponent={<DeleteTag tagId={tag.id} />}
+                        buttonText="Delete"
+                        nameClass="tag-delete-btn curs"
+                        />
                     </div>
                 ))}
             </div>
