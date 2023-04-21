@@ -32,6 +32,7 @@
 .view-tags-tag {
     display: flex;
     justify-content: space-between;
+    margin: 5px;
 }
 
 .view-tags-tag > p:hover {
