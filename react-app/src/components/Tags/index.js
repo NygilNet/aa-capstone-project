@@ -22,6 +22,11 @@ function ViewTags({ user, tags }) {
             return 0;
         });
 
+    const handleClick = e => {
+        e.preventDefault();
+        return alert('Filter/Sort Tags coming soon');
+    }
+
     return (
         <div className="display-page">
             <Navigation />
@@ -37,19 +42,20 @@ function ViewTags({ user, tags }) {
                     />
                 </div>
                 <div className="view-tags">
-                    {tagList?.map(tag => (
+                { tagList[0] ? (tagList?.map(tag => (
                         <div
                         key = {tag.id}
                         className="view-tags-tag"
                         >
-                            <p className="curs">{tag.tagName} ({tag.notes.length})</p>
+                            <p className="curs" onClick={handleClick}>{tag.tagName} ({tag.notes.length})</p>
                             <OpenModalButton
                             modalComponent={<DeleteTag tagId={tag.id} />}
                             buttonText="Delete"
                             nameClass="tag-delete-btn curs"
                             />
                         </div>
-                    ))}
+                    ))) : <p className="view-tags-no-tag">You have no tags! You can create one by clicking the new tag button.</p> }
+
                 </div>
             </div>
         </div>

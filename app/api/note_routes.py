@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import db, Note, Notebook
+from app.models import db, Note, Notebook, Tag
 
 note_routes = Blueprint('notes', __name__)
 
@@ -103,6 +103,8 @@ def edit_note(id):
         return jsonify({
             "message": "Unauthorized"
         }), 401
+    if json_data.get('tags'):
+        note.tags = list(Tag.query.filter(Tag.id.in_(json_data.get('tags'))).all())
     if json_data.get('notebook_id'):
         notebook = Notebook.query.get(json_data.get('notebook_id'))
         if not notebook:

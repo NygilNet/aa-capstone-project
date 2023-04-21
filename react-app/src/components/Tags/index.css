@@ -52,3 +52,13 @@
     background-color: #f877fd;
     border: 1px solid #f877fd;
 }
+
+.view-tags-no-tag {
+    display: flex;
+    height: 85%;
+    width: 100%;
+    font-weight: bold;
+    font-size: large;
+    justify-content: center;
+    align-items: center;
+}
