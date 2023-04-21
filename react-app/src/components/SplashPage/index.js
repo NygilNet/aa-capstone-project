@@ -3,6 +3,7 @@ import { NavLink, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { resetNotebooks } from "../../store/notebook";
 import { resetNotes } from "../../store/note";
+import { resetTags } from "../../store/tag";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
@@ -17,6 +18,7 @@ function SplashPage({ isLoaded }) {
         const func = async () => {
             await dispatch(resetNotes());
             await dispatch(resetNotebooks());
+            await dispatch(resetTags());
         }
         func()
     }, [dispatch])

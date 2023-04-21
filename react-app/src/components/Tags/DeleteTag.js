@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
+import { deleteTag } from "../../store/tag";
 import "./DeleteTag.css";
 
 function DeleteTag({ tagId }) {
@@ -9,7 +10,7 @@ function DeleteTag({ tagId }) {
     const { closeModal } = useModal();
 
     const onDelete = async () => {
-        // await dispatch
+        await dispatch(deleteTag(tagId));
         closeModal();
     }
 
@@ -18,7 +19,7 @@ function DeleteTag({ tagId }) {
             <div className="delete-tag-content">
                 <h1>Delete this tag?</h1>
                 <p>This cannot be undone.</p>
-                <button className="delete-tag-submit curs">Delete</button>
+                <button className="delete-tag-submit curs" onClick={onDelete}>Delete</button>
                 <button className="delete-tag-cancel curs" onClick={closeModal}>Cancel</button>
             </div>
         </div>

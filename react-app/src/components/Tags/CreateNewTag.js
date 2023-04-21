@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useModal } from "../../context/Modal";
 import { useDispatch } from "react-redux";
-
+import { createTag } from "../../store/tag";
 import "./CreateNewTag.css";
 
-function CreateNewTag() {
+function CreateNewTag({ userId }) {
 
     const dispatch = useDispatch();
     const { closeModal } = useModal();
@@ -25,9 +25,12 @@ function CreateNewTag() {
             return alert('Name can not be more than 100 characters.')
         }
 
-        // const newTag = await dispatch
+        const newTag = await dispatch(createTag({
+            user_id: userId,
+            tag_name: name
+        }));
         setAttempt(false);
-        // if (newTag) closeModal();
+        if (newTag) closeModal();
     }
 
     return (

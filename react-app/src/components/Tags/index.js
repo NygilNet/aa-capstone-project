@@ -10,9 +10,8 @@ import "./index.css";
 
 
 
-function ViewTags({ tags }) {
+function ViewTags({ user, tags }) {
 
-    console.log(tags)
     const tagList = Object.values(tags)
 
     tagList.sort((a, b) => {
@@ -32,7 +31,7 @@ function ViewTags({ tags }) {
                 </div>
                 <div className="tags-action-buttons">
                     <OpenModalButton
-                    modalComponent={<CreateNewTag />}
+                    modalComponent={<CreateNewTag userId={user.id} />}
                     buttonText="New Tag"
                     nameClass="tags-action-btn curs"
                     />

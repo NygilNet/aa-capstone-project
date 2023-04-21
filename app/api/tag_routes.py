@@ -21,7 +21,7 @@ def post_new_tag():
         tag = Tag(
             user_id = current_user.id, tag_name = json_data.get('tag_name')
         )
-        db.session.add(note)
+        db.session.add(tag)
         db.session.commit()
         return tag.to_dict()
     else:
