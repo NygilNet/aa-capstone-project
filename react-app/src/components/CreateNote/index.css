@@ -34,6 +34,7 @@
     color: white;
     background-color: #be6be3;
     border: 1px solid #be6be3;
+    margin: 0 5px;
 }
 
 .edit-note-notebook-btn:hover {
@@ -53,6 +54,7 @@
 
 .edit-note-editor {
     height: 75%;
+    width: 100%;
 }
 
 .edit-note-submit {

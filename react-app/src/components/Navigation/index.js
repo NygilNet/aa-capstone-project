@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import ProfileButton from './ProfileButton';
+import OpenModalItem from '../OpenModalItem';
+import ViewTags from '../Tags';
 import { logout } from '../../store/session';
 import { createNote, readAllNotes, readTrash } from "../../store/note";
 import { getNotebooks } from '../../store/notebook';
+import { readAllTags } from '../../store/tag';
 import './Navigation.css';
 
 function Navigation(){
@@ -14,25 +16,14 @@ function Navigation(){
 	const sessionUser = useSelector(state => state.session.user);
 	const defaultNotebook = useSelector(state => Object.values(state.notebooks.all_notebooks)[0]);
 
+
 	useEffect(() => {
 		dispatch(readAllNotes())
 		dispatch(readTrash())
 		dispatch(getNotebooks())
+		dispatch(readAllTags())
 	}, [dispatch])
 
-
-	// return (
-	// 	<ul>
-	// 		<li>
-	// 			<NavLink exact to="/">Home</NavLink>
-	// 		</li>
-	// 		{isLoaded && (
-	// 			<li>
-	// 				<ProfileButton user={sessionUser} />
-	// 			</li>
-	// 		)}
-	// 	</ul>
-	// );
 
 	const newNoteBtn = async (e) => {
 		e.preventDefault();
@@ -77,6 +68,9 @@ function Navigation(){
 					</li>
 					<li>
 						<NavLink to="/notebooks"><i class="fa-solid fa-book"></i>  Notebooks</NavLink>
+					</li>
+					<li>
+						<NavLink to="/tags"><i class="fa-solid fa-tags"></i> Tags</NavLink>
 					</li>
 					<li>
 						<NavLink to="/trash"><i class="fa-solid fa-trash"></i>  Trash</NavLink>

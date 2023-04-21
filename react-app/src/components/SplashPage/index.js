@@ -3,6 +3,7 @@ import { NavLink, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { resetNotebooks } from "../../store/notebook";
 import { resetNotes } from "../../store/note";
+import { resetTags } from "../../store/tag";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
@@ -17,6 +18,7 @@ function SplashPage({ isLoaded }) {
         const func = async () => {
             await dispatch(resetNotes());
             await dispatch(resetNotebooks());
+            await dispatch(resetTags());
         }
         func()
     }, [dispatch])
@@ -37,6 +39,8 @@ function SplashPage({ isLoaded }) {
     }
 
     return (
+        <div className="container">
+
         <div className="splash-page-container">
             <div className="splash-page-header">
                 <NavLink to="/">
@@ -76,6 +80,7 @@ function SplashPage({ isLoaded }) {
                 alt="Stock image of laptop and notes - Andrew Neel on unsplash"
                 />
             </div>
+        </div>
         </div>
     )
 

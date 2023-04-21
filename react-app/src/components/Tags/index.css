@@ -1,0 +1,64 @@
+.tags-container {
+    display: flex;
+    flex-direction: column;
+
+    height: 95%;
+    width: 82%;
+    margin: 5px;
+}
+
+
+
+.tags-action-btn {
+    background-color: #be6be3;
+    border: #be6be3;
+    color: white;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.tags-action-btn:hover {
+    background-color: #f877fd;
+    border: #f877fd;
+}
+
+.view-tags {
+    margin: 5px;
+    height: 90%;
+    width: 98%;
+    overflow-y: auto;
+}
+
+.view-tags-tag {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+}
+
+.view-tags-tag > p:hover {
+    color: #f877fd;
+}
+
+.tag-delete-btn {
+    border: 1px solid #be6be3;
+    background-color: #be6be3;
+    color: white;
+    border-radius: 10px;
+
+    padding: 5px;
+}
+
+.tag-delete-btn:hover {
+    background-color: #f877fd;
+    border: 1px solid #f877fd;
+}
+
+.view-tags-no-tag {
+    display: flex;
+    height: 85%;
+    width: 100%;
+    font-weight: bold;
+    font-size: large;
+    justify-content: center;
+    align-items: center;
+}

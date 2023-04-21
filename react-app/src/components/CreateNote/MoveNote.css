@@ -8,6 +8,19 @@
     width: 512px;
 }
 
+.move-note-list {
+    display: flex;
+    width: 75%;
+    justify-content: space-evenly;
+
+}
+
+.move-note-buttons {
+    display: flex;
+    width: 45%;
+    justify-content: space-around;
+}
+
 .move-note-submit, .move-note-cancel {
     background-color: #be6be3;
     border: #be6be3;

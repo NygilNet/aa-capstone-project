@@ -14,6 +14,8 @@ import CreateNotebook from "./components/CreateNotebook";
 import CreateNote from "./components/CreateNote";
 import ViewAllNotes from "./components/ViewAllNotes";
 import Trash from "./components/Trash";
+import ViewTags from "./components/Tags";
+import NotFound from "./components/404Page";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,6 +24,7 @@ function App() {
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
   const sessionUser = useSelector(state => state.session.user);
+  const tags = useSelector(state => state.tags);
 
   return (
     <>
@@ -55,6 +58,10 @@ function App() {
           <Route path="/trash">
           { sessionUser ? <Trash /> : <Redirect to="/" />}
           </Route>
+          <Route path="/tags">
+            { sessionUser ? <ViewTags user={sessionUser} tags={tags} /> : <Redirect to="/" /> }
+          </Route>
+          <Route><NotFound /></Route>
         </Switch>
       )}
       <Footer />
