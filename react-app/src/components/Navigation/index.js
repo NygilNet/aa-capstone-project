@@ -15,7 +15,7 @@ function Navigation(){
 	const history = useHistory();
 	const sessionUser = useSelector(state => state.session.user);
 	const defaultNotebook = useSelector(state => Object.values(state.notebooks.all_notebooks)[0]);
-	const tags = useSelector(state => state.tags);
+
 
 	useEffect(() => {
 		dispatch(readAllNotes())
@@ -69,11 +69,9 @@ function Navigation(){
 					<li>
 						<NavLink to="/notebooks"><i class="fa-solid fa-book"></i>  Notebooks</NavLink>
 					</li>
-					<OpenModalItem
-					modalComponent={<ViewTags tags={tags} />}
-					nameClass="open-tag-modal-link curs"
-					itemText={<><i class="fa-solid fa-tags"></i> Tags</>}
-					/>
+					<li>
+						<NavLink to="/tags"><i class="fa-solid fa-tags"></i> Tags</NavLink>
+					</li>
 					<li>
 						<NavLink to="/trash"><i class="fa-solid fa-trash"></i>  Trash</NavLink>
 					</li>
@@ -84,4 +82,3 @@ function Navigation(){
 }
 
 export default Navigation;
-{/*  */}

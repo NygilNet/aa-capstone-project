@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useModal } from "../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
+import Navigation from "../Navigation";
 import OpenModalButton from "../OpenModalButton";
 import CreateNewTag from "./CreateNewTag";
 import DeleteTag from "./DeleteTag";
@@ -23,31 +24,34 @@ function ViewTags({ tags }) {
         });
 
     return (
-        <div className="tags-container">
-            <div className="tags-header">
-                <h1><i class="fa-solid fa-tags"></i> Tags</h1>
-            </div>
-            <div className="tags-action-buttons">
-                <OpenModalButton
-                modalComponent={<CreateNewTag />}
-                buttonText="New Tag"
-                nameClass="tags-action-btn curs"
-                />
-            </div>
-            <div className="view-tags">
-                {tagList?.map(tag => (
-                    <div
-                    key = {tag.id}
-                    className="view-tags-tag curs"
-                    >
-                        <p>{tag.tagName} ({tag.notes.length})</p>
-                        <OpenModalButton
-                        modalComponent={<DeleteTag tagId={tag.id} />}
-                        buttonText="Delete"
-                        nameClass="tag-delete-btn curs"
-                        />
-                    </div>
-                ))}
+        <div className="display-page">
+            <Navigation />
+            <div className="tags-container">
+                <div className="tags-header">
+                    <h1><i class="fa-solid fa-tags"></i> Tags</h1>
+                </div>
+                <div className="tags-action-buttons">
+                    <OpenModalButton
+                    modalComponent={<CreateNewTag />}
+                    buttonText="New Tag"
+                    nameClass="tags-action-btn curs"
+                    />
+                </div>
+                <div className="view-tags">
+                    {tagList?.map(tag => (
+                        <div
+                        key = {tag.id}
+                        className="view-tags-tag"
+                        >
+                            <p className="curs">{tag.tagName} ({tag.notes.length})</p>
+                            <OpenModalButton
+                            modalComponent={<DeleteTag tagId={tag.id} />}
+                            buttonText="Delete"
+                            nameClass="tag-delete-btn curs"
+                            />
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     )

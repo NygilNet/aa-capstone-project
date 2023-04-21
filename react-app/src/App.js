@@ -24,6 +24,7 @@ function App() {
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
   const sessionUser = useSelector(state => state.session.user);
+  const tags = useSelector(state => state.tags);
 
   return (
     <>
@@ -58,7 +59,7 @@ function App() {
           { sessionUser ? <Trash /> : <Redirect to="/" />}
           </Route>
           <Route path="/tags">
-            { sessionUser ? <ViewTags user={sessionUser} /> : <Redirect to="/" /> }
+            { sessionUser ? <ViewTags user={sessionUser} tags={tags} /> : <Redirect to="/" /> }
           </Route>
           <Route><NotFound /></Route>
         </Switch>

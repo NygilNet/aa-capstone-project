@@ -19,7 +19,7 @@ function DeleteTag({ tagId }) {
                 <h1>Delete this tag?</h1>
                 <p>This cannot be undone.</p>
                 <button className="delete-tag-submit curs">Delete</button>
-                <button className="delete-tag-cancel curs">Cancel</button>
+                <button className="delete-tag-cancel curs" onClick={closeModal}>Cancel</button>
             </div>
         </div>
     )
