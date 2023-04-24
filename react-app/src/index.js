@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { ModalProvider, Modal } from "./context/Modal";
 import FilterParamsProvider from "./context/FilterParamsContext";
+import CurrentNoteProvider from "./context/CurrentNoteContext";
 import configureStore from "./store";
 import * as sessionActions from "./store/session";
 import App from "./App";
@@ -24,12 +25,14 @@ function Root() {
 	return (
 		<ModalProvider>
 			<FilterParamsProvider>
+			<CurrentNoteProvider>
 				<Provider store={store}>
 				<BrowserRouter>
 					<App />
 					<Modal />
 				</BrowserRouter>
 				</Provider>
+			</CurrentNoteProvider>
 			</FilterParamsProvider>
 		</ModalProvider>
 	);

@@ -7,36 +7,25 @@ import { resetTags } from "../../store/tag";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import { useCurrentNote } from "../../context/CurrentNoteContext";
 import "./index.css"
 
 function SplashPage({ isLoaded }) {
 
     const history = useHistory();
     const dispatch = useDispatch();
+    const { current, setCurrent } = useCurrentNote();
 
     useEffect(() => {
         const func = async () => {
             await dispatch(resetNotes());
             await dispatch(resetNotebooks());
             await dispatch(resetTags());
+            setCurrent(null);
         }
         func()
     }, [dispatch])
 
-    const handleNotebooks = (e) => {
-        e.preventDefault();
-        return history.push('/notebooks');
-    }
-
-    const handleNotes = (e) => {
-        e.preventDefault();
-        return history.push('/notes');
-    }
-
-    const handleTrash = (e) => {
-        e.preventDefault();
-        return history.push('/trash');
-    }
 
     return (
         <div className="container">

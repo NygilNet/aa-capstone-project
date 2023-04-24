@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import { resetNote, readSingleNote, readAllNotes, putNoteTrash } from "../../store/note";
 import Navigation from "../Navigation";
+import NotesList from "./NotesList";
 import CreateNote from "../CreateNote";
+import { useCurrentNote } from "../../context/CurrentNoteContext";
 import "./index.css";
 
 
@@ -12,7 +14,8 @@ function ViewAllNotes() {
     const dispatch = useDispatch();
     const history = useHistory();
     const notes = useSelector(state => Object.values(state.notes.notes)).reverse();
-    const [current, setCurrent] = useState(null);
+    // const [current, setCurrent] = useState(null);
+    const { current, setCurrent } = useCurrentNote();
 
 
     // useEffect(() => {
@@ -49,7 +52,8 @@ function ViewAllNotes() {
                         <p>{notes.length} notes</p>
                     )}
                 </div>
-                <div className="notes-view-all-notes">
+                <NotesList notes={notes} />
+                {/* <div className="notes-view-all-notes">
                     {notes?.map(note => (
                         <div
                         id={note.id}
@@ -65,7 +69,7 @@ function ViewAllNotes() {
                             <button className="note-trash-btn curs" value={note.id} onClick={trashBtn}>Move To Trash</button>
                         </div>
                     ))}
-                </div>
+                </div> */}
             </div>
             {current ? <CreateNote noteId={current.id} /> : <p className="create-note-no-note">Select a note to update!</p> }
         </div>

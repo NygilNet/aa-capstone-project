@@ -1,12 +1,12 @@
-function filterResults(list, tags) {
+function filterResults(notes, tags) {
 
-    let filteredList = list;
+    let list = notes;
 
     if (tags[0]) {
-        filteredList = queryTags(filteredList, tags)
+        list = queryTags(list, tags)
     }
 
-    return filteredList;
+    return list;
 
 }
 
@@ -18,6 +18,12 @@ function queryTags(list, query) {
         // filteredList = filteredList.filter(el =>)
     }
 
+}
+
+function scanTags(searchTerm, tagList) {
+    for (let tag of tagList) {
+        // if (tag.)
+    }
 }
 
 export function isFiltered(QuObj) {
