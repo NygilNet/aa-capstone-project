@@ -4,15 +4,13 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
-import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import SplashPage from "./components/SplashPage";
 import HomePage from "./components/HomePage";
 import ViewAllNotebooks from "./components/ViewAllNotebooks";
 import ViewSingleNotebook from "./components/ViewSingleNotebook";
 import CreateNotebook from "./components/CreateNotebook";
-import CreateNote from "./components/CreateNote";
-import ViewAllNotes from "./components/ViewAllNotes";
+import NotesPage from "./components/ViewAllNotes";
 import Trash from "./components/Trash";
 import ViewTags from "./components/Tags";
 import NotFound from "./components/404Page";
@@ -28,7 +26,6 @@ function App() {
 
   return (
     <>
-      {/* <Navigation isLoaded={isLoaded} /> */}
       {isLoaded && (
         <Switch>
           <Route path="/login" >
@@ -53,7 +50,7 @@ function App() {
             { sessionUser ? <ViewSingleNotebook user={sessionUser} /> : <Redirect to="/" />}
           </Route>
           <Route exact path="/notes">
-          { sessionUser ? <ViewAllNotes /> : <Redirect to="/" />}
+          { sessionUser ? <NotesPage tags={tags} /> : <Redirect to="/" />}
           </Route>
           <Route path="/trash">
           { sessionUser ? <Trash /> : <Redirect to="/" />}
