@@ -2,8 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-
 import { ModalProvider, Modal } from "./context/Modal";
+import FilterParamsProvider from "./context/FilterParamsContext";
+import CurrentNoteProvider from "./context/CurrentNoteContext";
 import configureStore from "./store";
 import * as sessionActions from "./store/session";
 import App from "./App";
@@ -23,12 +24,16 @@ if (process.env.NODE_ENV !== "production") {
 function Root() {
 	return (
 		<ModalProvider>
-			<Provider store={store}>
+			<FilterParamsProvider>
+			<CurrentNoteProvider>
+				<Provider store={store}>
 				<BrowserRouter>
 					<App />
 					<Modal />
 				</BrowserRouter>
-			</Provider>
+				</Provider>
+			</CurrentNoteProvider>
+			</FilterParamsProvider>
 		</ModalProvider>
 	);
 }

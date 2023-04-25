@@ -7,6 +7,7 @@ import { logout } from '../../store/session';
 import { createNote, readAllNotes, readTrash } from "../../store/note";
 import { getNotebooks } from '../../store/notebook';
 import { readAllTags } from '../../store/tag';
+import { useCurrentNote } from '../../context/CurrentNoteContext';
 import './Navigation.css';
 
 function Navigation(){
@@ -15,6 +16,7 @@ function Navigation(){
 	const history = useHistory();
 	const sessionUser = useSelector(state => state.session.user);
 	const defaultNotebook = useSelector(state => Object.values(state.notebooks.all_notebooks)[0]);
+	const { current, setCurrent } = useCurrentNote();
 
 
 	useEffect(() => {
@@ -29,6 +31,7 @@ function Navigation(){
 		e.preventDefault();
 		const newNote = await dispatch(createNote({ notebook_id: defaultNotebook.id }));
 		if (newNote) {
+			setCurrent(newNote);
 			return history.push(`/notes`);
 		}else {
 			return alert("ERROR")
