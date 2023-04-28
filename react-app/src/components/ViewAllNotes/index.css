@@ -8,6 +8,19 @@
     height: 95%;
 }
 
+.notes-view-all-filter {
+    margin-bottom: 10px;
+}
+
+.notes-view-all-filter > select {
+    margin-left: 10px;
+    width: 275px;
+}
+
+.notes-view-all-action {
+    display: flex;
+}
+
 .notes-view-all-notes {
     display: flex;
     flex-direction: column;
