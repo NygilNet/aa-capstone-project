@@ -43,6 +43,10 @@
   border: none;
 }
 
+.nav-bar-user-signout:hover {
+  background-color: hsl(0, 0%, 100%, .7);
+}
+
 
 .new-note-btn {
   height: 36px;

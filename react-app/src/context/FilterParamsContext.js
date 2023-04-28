@@ -5,10 +5,7 @@ export const useFilterParams = () => useContext(FilterParamsContext);
 
 function FilterParamsProvider(props) {
 
-    const [filterParams, setFilterParams] = useState({
-        filters: false,
-        tags: []
-    });
+    const [filterParams, setFilterParams] = useState("All");
 
     return (
         <FilterParamsContext.Provider value={{filterParams, setFilterParams}}>

@@ -8,6 +8,7 @@ import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import { useCurrentNote } from "../../context/CurrentNoteContext";
+import { useFilterParams } from "../../context/FilterParamsContext";
 import "./index.css"
 
 function SplashPage({ isLoaded }) {
@@ -15,6 +16,7 @@ function SplashPage({ isLoaded }) {
     const history = useHistory();
     const dispatch = useDispatch();
     const { current, setCurrent } = useCurrentNote();
+    const { filterParams, setFilterParams } = useFilterParams();
 
     useEffect(() => {
         const func = async () => {
@@ -22,6 +24,7 @@ function SplashPage({ isLoaded }) {
             await dispatch(resetNotebooks());
             await dispatch(resetTags());
             setCurrent(null);
+            setFilterParams("All");
         }
         func()
     }, [dispatch])
