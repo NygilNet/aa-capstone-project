@@ -77,6 +77,7 @@ function LoginFormModal() {
           <label>
             Email
             <input
+              className="bg-black"
               type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}

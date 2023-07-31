@@ -1,11 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./index.css";
+// import "../../../dist/output.css";
 
 function NotFound() {
 
     return (
         <div className="container">
+
+        <h1 className="text-3xl font-bold underline">testing</h1>
 
         <div className="fourofourpage">
             <div className="splash-page-header">
