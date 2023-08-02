@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "./index.css";
+// import "./index.css";
 // import "../../../dist/output.css";
 
 function NotFound() {
@@ -8,7 +8,7 @@ function NotFound() {
     return (
         <div className="container">
 
-        <h1 className="text-3xl font-bold underline">testing</h1>
+        <h1 className="bg-purple-50">testing</h1>
 
         <div className="fourofourpage">
             <div className="splash-page-header">
