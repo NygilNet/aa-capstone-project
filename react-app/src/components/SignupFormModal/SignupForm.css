@@ -12,11 +12,13 @@
 .signup-form {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
 }
 
-.signup-form > div > label > input {
+.signup-form > div > input {
     margin: 2px 5px;
+    width: 255px;
+    padding: 10px 14px;
 }
 
 .signup-form-submit {
@@ -44,4 +46,22 @@
     background-color: gray;
     border: 1px solid gray;
     cursor: not-allowed;
+}
+
+.signup-form-have-account {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    align-items: center;
+}
+
+.signup-form-sign-in-button {
+    border: none;
+    background-color: transparent;
+    color: #be6be3;
+}
+
+.signup-form-sign-in-button:hover {
+    color: #f877fd;
+    text-decoration: underline;
 }

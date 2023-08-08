@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
+import OpenModalButton from "../OpenModalButton";
+import LoginFormModal from "../LoginFormModal";
 import "./SignupForm.css";
 
 function SignupFormModal() {
@@ -46,48 +48,40 @@ function SignupFormModal() {
 					))}
 				</ul>
 				<div>
-					<label>
-						Email
 						<input
 							type="text"
+							placeholder="Email"
 							value={email}
 							onChange={(e) => setEmail(e.target.value)}
 							required
 						/>
-					</label>
 				</div>
 				<div>
-					<label>
-						Username
 						<input
 							type="text"
+							placeholder="Username"
 							value={username}
 							onChange={(e) => setUsername(e.target.value)}
 							required
 						/>
-					</label>
 				</div>
 				<div>
-					<label>
-						Password
 						<input
 							type="password"
+							placeholder="Password"
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
 							required
 						/>
-					</label>
 				</div>
 				<div>
-					<label>
-						Confirm Password
 						<input
 							type="password"
+							placeholder="Confirm Password"
 							value={confirmPassword}
 							onChange={(e) => setConfirmPassword(e.target.value)}
 							required
 						/>
-					</label>
 				</div>
 				<div className="signup-form-submit">
 					<button
@@ -100,7 +94,14 @@ function SignupFormModal() {
 						Sign Up
 					</button>
 				</div>
-
+				<div className="signup-form-have-account">
+					<p>Already have an account?</p>
+            		<OpenModalButton
+              			buttonText="Create account"
+              			nameClass="signup-form-sign-in-button curs"
+              			modalComponent={<LoginFormModal />}
+            		/>
+				</div>
 			</form>
 		</div>
 	);

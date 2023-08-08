@@ -3,6 +3,8 @@ import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
+import OpenModalButton from "../OpenModalButton";
+import SignupFormModal from "../SignupFormModal";
 import "./LoginForm.css";
 
 function LoginFormModal() {
@@ -56,6 +58,10 @@ function LoginFormModal() {
       return history.push("/home");
     }
   };
+
+  const createAccount = () => {
+    closeModal();
+  }
 
   return (
     <div className="login-form-container">
@@ -112,7 +118,11 @@ function LoginFormModal() {
         </div>
         <div className="login-form-no-account">
             <p>Don't have an account?</p>
-            <button className="login-form-create-account-button curs">Create account</button>
+            <OpenModalButton
+              buttonText="Create account"
+              nameClass="login-form-create-account-button curs"
+              modalComponent={<SignupFormModal />}
+            />
         </div>
       </form>
     </div>
