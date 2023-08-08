@@ -74,27 +74,23 @@ function LoginFormModal() {
           ))}
         </ul>
         <div>
-          <label>
-            Email
             <input
               className="bg-black"
               type="text"
+              placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-          </label>
         </div>
         <div>
-          <label>
-            Password
             <input
               type="password"
+              placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-          </label>
         </div>
         <div className="login-form-submit">
           <div>
@@ -113,6 +109,10 @@ function LoginFormModal() {
           <div>
             <button className="login-form-button curs" onClick={bobLogin}>Demo User: Bobbie</button>
           </div>
+        </div>
+        <div className="login-form-no-account">
+            <p>Don't have an account?</p>
+            <button className="login-form-create-account-button curs">Create account</button>
         </div>
       </form>
     </div>
