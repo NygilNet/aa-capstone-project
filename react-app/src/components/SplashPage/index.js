@@ -39,7 +39,7 @@ function SplashPage({ isLoaded }) {
                     <img
                     className="splash-header-logo"
                     alt="MindPalace"
-                    src="https://i.imgur.com/19eLshm.png"
+                    src="https://i.imgur.com/h7huPwH.png"
                     />
                 </NavLink>
                 {isLoaded && (
