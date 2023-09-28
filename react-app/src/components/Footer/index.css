@@ -30,3 +30,7 @@ footer {
     text-decoration-line: none;
     color: white;
 }
+
+.footer-links > li > a:hover {
+    color: #f877fd;
+}
