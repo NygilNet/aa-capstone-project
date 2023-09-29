@@ -61,7 +61,9 @@ function LoginFormModal() {
     <div className="login-form-container">
       <img
 			alt="MindPalace"
-			src="https://i.imgur.com/19eLshm.png"
+			src="https://i.imgur.com/h7huPwH.png"
+      height={"154px"}
+      width={"200px"}
 			/>
       <h1>Log In</h1>
       <form
@@ -74,26 +76,22 @@ function LoginFormModal() {
           ))}
         </ul>
         <div>
-          <label>
-            Email
             <input
               type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email address"
               required
             />
-          </label>
         </div>
         <div>
-          <label>
-            Password
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
               required
             />
-          </label>
         </div>
         <div className="login-form-submit">
           <div>

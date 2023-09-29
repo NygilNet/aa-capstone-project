@@ -33,7 +33,9 @@ function SignupFormModal() {
 		<div className="signup-form-container">
 			<img
 			alt="MindPalace"
-			src="https://i.imgur.com/19eLshm.png"
+			src="https://i.imgur.com/h7huPwH.png"
+      		height={"154px"}
+      		width={"200px"}
 			/>
 			<h1>Sign Up</h1>
 			<form
@@ -46,48 +48,40 @@ function SignupFormModal() {
 					))}
 				</ul>
 				<div>
-					<label>
-						Email
 						<input
 							type="text"
 							value={email}
 							onChange={(e) => setEmail(e.target.value)}
+							placeholder="Email"
 							required
 						/>
-					</label>
 				</div>
 				<div>
-					<label>
-						Username
 						<input
 							type="text"
 							value={username}
 							onChange={(e) => setUsername(e.target.value)}
+							placeholder="Username"
 							required
 						/>
-					</label>
 				</div>
 				<div>
-					<label>
-						Password
 						<input
 							type="password"
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
+							placeholder="Password"
 							required
 						/>
-					</label>
 				</div>
 				<div>
-					<label>
-						Confirm Password
 						<input
 							type="password"
 							value={confirmPassword}
 							onChange={(e) => setConfirmPassword(e.target.value)}
+							placeholder="Confirm Password"
 							required
 						/>
-					</label>
 				</div>
 				<div className="signup-form-submit">
 					<button
