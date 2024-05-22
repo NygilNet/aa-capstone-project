@@ -7,8 +7,9 @@ import { updateNote, resetNote } from "../../store/note";
 import OpenModalButton from "../OpenModalButton";
 import MoveNote from "./MoveNote";
 import EditTags from "./EditTags";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+// import ReactQuill from "react-quill";
+// // import "react-quill/dist/quill.snow.css";
+import Editor from "../Editor";
 import "./index.css";
 
 function CreateNote({ noteId }) {
@@ -85,13 +86,14 @@ function CreateNote({ noteId }) {
                     maxLength="255"
                     placeholder="Title"
                     />
-                    <ReactQuill
+                    <Editor />
+                    {/* <ReactQuill
                     className="edit-note-editor"
                     theme="snow"
                     value={content}
                     onChange={e => setContent(e) }
                     placeholder="Start writing..."
-                    />
+                    /> */}
                     <input
                     className="edit-note-submit curs"
                     type="submit"
