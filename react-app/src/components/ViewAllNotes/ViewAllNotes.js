@@ -4,6 +4,7 @@ import CreateNote from "../CreateNote";
 import { useCurrentNote } from "../../context/CurrentNoteContext";
 import { useFilterParams } from "../../context/FilterParamsContext";
 import "./index.css";
+import Maintenance from "../Maintenance";
 
 
 function ViewAllNotes({ notes, tags }) {
@@ -45,7 +46,8 @@ function ViewAllNotes({ notes, tags }) {
                 </div>
                 <NotesList notes={notes} />
             </div>
-            {current ? <CreateNote noteId={current.id} /> : <p className="create-note-no-note">Select a note to update!</p> }
+            {current ? <Maintenance /> : <p className="create-note-no-note">Select a note to update!</p> }
+            {/*<CreateNote noteId={current.id} />*/}
         </>
     )
 
