@@ -3,13 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory, useParams } from "react-router-dom";
 import { readSingleNote } from "../../store/note";
 import { updateNote, resetNote } from "../../store/note";
-// import { getNotebooks } from "../../store/notebook";
 import OpenModalButton from "../OpenModalButton";
 import MoveNote from "./MoveNote";
 import EditTags from "./EditTags";
-// import ReactQuill from "react-quill";
-// // import "react-quill/dist/quill.snow.css";
-import Editor from "../Editor";
+import MarkdownEditor from "@uiw/react-markdown-editor";
 import "./index.css";
 
 function CreateNote({ noteId }) {
@@ -86,7 +83,12 @@ function CreateNote({ noteId }) {
                     maxLength="255"
                     placeholder="Title"
                     />
-                    <Editor />
+                    <MarkdownEditor 
+                        className="edit-note-editor"
+                        value={ content }
+                        onChange={ e => setContent(e) }
+                        placeholder="Start writing..."
+                    />
                     {/* <ReactQuill
                     className="edit-note-editor"
                     theme="snow"
